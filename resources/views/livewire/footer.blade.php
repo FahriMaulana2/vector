@@ -1,5 +1,5 @@
 <footer class="bg-[#0B5ED7] text-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16" data-aos="fade-up">
         <div class="grid gap-12 lg:grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]">
             <div class="space-y-5">
                 <div class="inline-flex items-center gap-3">
@@ -14,19 +14,19 @@
             <div>
                 <p class="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Quick Links</p>
                 <div class="mt-6 space-y-3 text-sm text-white/80">
-                    <a href="#home" class="block transition hover:text-white">Home</a>
-                    <a href="#about" class="block transition hover:text-white">Tentang Kami</a>
-                    <a href="#services" class="block transition hover:text-white">Layanan</a>
-                    <a href="#contact" class="block transition hover:text-white">Kontak</a>
+                    <a href="#home" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Home</a>
+                    <a href="#about" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Tentang Kami</a>
+                    <a href="#services" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Layanan</a>
+                    <a href="#contact" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Kontak</a>
                 </div>
             </div>
             <div>
                 <p class="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Services</p>
                 <div class="mt-6 space-y-3 text-sm text-white/80">
-                    <a href="#products" class="block transition hover:text-white">Business Card</a>
-                    <a href="#products" class="block transition hover:text-white">Banner Printing</a>
-                    <a href="#products" class="block transition hover:text-white">Sticker Printing</a>
-                    <a href="#products" class="block transition hover:text-white">Custom Merchandise</a>
+                    <a href="#products" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Business Card</a>
+                    <a href="#products" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Banner Printing</a>
+                    <a href="#products" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Sticker Printing</a>
+                    <a href="#products" class="block transition-all duration-200 hover:text-white hover:translate-x-1">Custom Merchandise</a>
                 </div>
             </div>
             <div>
@@ -36,10 +36,10 @@
                     <p>Sat: 09:00 - 15:00</p>
                     <p>Sun: Closed</p>
                 </div>
-                <div class="mt-8 flex items-center gap-3 text-white/90">
-                    <a href="#" class="hover:text-white">Facebook</a>
-                    <a href="#" class="hover:text-white">Instagram</a>
-                    <a href="#" class="hover:text-white">LinkedIn</a>
+                <div class="mt-8 flex items-center gap-6 text-white/70">
+                    <a href="#" class="transition-all duration-200 hover:text-white hover:scale-105">Facebook</a>
+                    <a href="#" class="transition-all duration-200 hover:text-white hover:scale-105">Instagram</a>
+                    <a href="#" class="transition-all duration-200 hover:text-white hover:scale-105">LinkedIn</a>
                 </div>
             </div>
         </div>

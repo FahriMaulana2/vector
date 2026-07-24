@@ -12,16 +12,16 @@
             </a>
 
             <div class="hidden lg:flex items-center gap-1 font-medium text-slate-700">
-                <a href="#home" class="transition hover:text-[#0B5ED7] px-3 py-2 rounded-full">Home</a>
-                <a href="#about" class="transition hover:text-[#0B5ED7] px-3 py-2 rounded-full">Tentang Kami</a>
-                <a href="#services" class="transition hover:text-[#0B5ED7] px-3 py-2 rounded-full">Layanan</a>
-                <a href="#products" class="transition hover:text-[#0B5ED7] px-3 py-2 rounded-full">Produk</a>
-                <a href="#portfolio" class="transition hover:text-[#0B5ED7] px-3 py-2 rounded-full">Portofolio</a>
-                <a href="#contact" class="transition hover:text-[#0B5ED7] px-3 py-2 rounded-full">Kontak</a>
+                <a href="#home" class="relative px-3 py-2 rounded-full transition-all duration-300 hover:text-[#0B5ED7] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0B5ED7] after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">Home</a>
+                <a href="#about" class="relative px-3 py-2 rounded-full transition-all duration-300 hover:text-[#0B5ED7] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0B5ED7] after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">Tentang Kami</a>
+                <a href="#services" class="relative px-3 py-2 rounded-full transition-all duration-300 hover:text-[#0B5ED7] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0B5ED7] after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">Layanan</a>
+                <a href="#products" class="relative px-3 py-2 rounded-full transition-all duration-300 hover:text-[#0B5ED7] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0B5ED7] after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">Produk</a>
+                <a href="#portfolio" class="relative px-3 py-2 rounded-full transition-all duration-300 hover:text-[#0B5ED7] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0B5ED7] after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">Portofolio</a>
+                <a href="#contact" class="relative px-3 py-2 rounded-full transition-all duration-300 hover:text-[#0B5ED7] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0B5ED7] after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">Kontak</a>
             </div>
 
             <div class="hidden lg:flex items-center gap-3">
-                <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center rounded-full border border-[#0B5ED7] bg-[#0B5ED7] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#0a4dc2] hover:border-[#0a4dc2]">Order via WhatsApp</a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center rounded-full border border-[#0B5ED7] bg-[#0B5ED7] px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl hover:bg-[#0a4dc2] hover:border-[#0a4dc2]">Order via WhatsApp</a>
             </div>
 
             <button @click="open = !open" type="button" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white p-3 text-slate-600 transition hover:border-slate-300 hover:text-[#0B5ED7] lg:hidden">
