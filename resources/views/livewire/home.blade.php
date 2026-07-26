@@ -1,4 +1,4 @@
-<div class="space-y-24">
+<div>
     <livewire:hero />
     <livewire:about />
     <livewire:services />

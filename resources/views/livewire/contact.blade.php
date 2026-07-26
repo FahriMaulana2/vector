@@ -1,73 +1,182 @@
-<section id="contact" class="bg-white py-24">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid gap-14 xl:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div class="space-y-8" data-aos="fade-right">
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0B5ED7]">Get in touch</p>
-                    <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Hubungi kami untuk konsultasi atau pemesanan cetak.</h2>
-                    <p class="mt-4 text-lg leading-8 text-slate-600">Tim kami siap membantu pemilihan bahan, desain, hingga pengiriman sesuai kebutuhan Anda.</p>
-                </div>
-                <div class="space-y-6 rounded-[2rem] border border-slate-200 bg-[#F8FAFC] p-8 shadow-xl shadow-slate-200/40">
-                    <div class="flex items-start gap-4 group transition-all duration-300 hover:-translate-y-1">
-                        <div class="mt-1 flex h-11 w-11 items-center justify-center rounded-3xl bg-[#0B5ED7]/10 text-[#0B5ED7] transition-all duration-300 group-hover:bg-[#0B5ED7] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 0v8a2 2 0 002 2h14a2 2 0 002-2V8" /> </svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-slate-950">Email</p>
-                            <p class="mt-2 text-sm text-slate-600">hello@printifystudio.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 group transition-all duration-300 hover:-translate-y-1">
-                        <div class="mt-1 flex h-11 w-11 items-center justify-center rounded-3xl bg-[#0B5ED7]/10 text-[#0B5ED7] transition-all duration-300 group-hover:bg-[#0B5ED7] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l3.6 7.59a1 1 0 00.9.41h7.67a1 1 0 00.92-.59l3.38-6.82H21"/> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 13a5 5 0 0010 0"/> </svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-slate-950">Phone</p>
-                            <p class="mt-2 text-sm text-slate-600">+62 812-3456-7890</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 group transition-all duration-300 hover:-translate-y-1">
-                        <div class="mt-1 flex h-11 w-11 items-center justify-center rounded-3xl bg-[#0B5ED7]/10 text-[#0B5ED7] transition-all duration-300 group-hover:bg-[#0B5ED7] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.38 0 2.5-1.12 2.5-2.5S13.38 6 12 6s-2.5 1.12-2.5 2.5S10.62 11 12 11z"/> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.97 0-9-4.03-9-9 0-4.54 3.26-8.32 7.53-8.92a2 2 0 012.94 0C17.74 3.68 21 7.46 21 12c0 4.97-4.03 9-9 9z"/> </svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-slate-950">Address</p>
-                            <p class="mt-2 text-sm text-slate-600">Jl. Digital Printing No. 15, Jakarta Selatan</p>
-                        </div>
-                    </div>
-                    <div class="rounded-[1.75rem] overflow-hidden border border-slate-300">
-                        <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=80" alt="Google Maps placeholder" class="h-56 w-full object-cover" />
-                    </div>
-                </div>
+<section id="contact" class="relative overflow-hidden bg-white py-28 lg:py-32">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/4 left-1/3 w-[450px] h-[450px] bg-gradient-to-r from-[#0B5ED7]/4 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] bg-gradient-to-l from-[#FFC107]/4 to-transparent rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        {{-- Section Header --}}
+        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+            <div class="inline-flex items-center gap-3 rounded-full bg-[#0B5ED7]/5 px-5 py-2 border border-[#0B5ED7]/10 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#0B5ED7]"></span>
+                <span class="text-sm font-semibold uppercase tracking-[0.2em] text-[#0B5ED7]">Get in Touch</span>
             </div>
-            <div class="rounded-[2rem] border border-slate-200 bg-[#F8FAFC] p-8 shadow-xl shadow-slate-200/40 transition-all duration-300 hover:shadow-2xl" data-aos="fade-left">
-                <h3 class="text-2xl font-bold text-slate-950">Kirim Pesan</h3>
-                <p class="mt-3 text-sm leading-6 text-slate-600">Formulir ini hanya untuk tampilan. Data tidak akan disimpan.</p>
-                <form class="mt-8 space-y-6">
-                    <div class="grid gap-6 sm:grid-cols-2">
-                        <label class="block">
-                            <span class="text-sm font-semibold text-slate-700">Name</span>
-                            <input type="text" placeholder="Nama Anda" class="mt-2 w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/20 hover:border-slate-400" />
-                        </label>
-                        <label class="block">
-                            <span class="text-sm font-semibold text-slate-700">Email</span>
-                            <input type="email" placeholder="Email Anda" class="mt-2 w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/20 hover:border-slate-400" />
-                        </label>
+            <h2 class="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl leading-[1.15]">Let's Start Your <span class="gradient-text">Project</span></h2>
+            <p class="mt-5 text-lg leading-relaxed text-slate-500">Tim kami siap membantu konsultasi, pemilihan bahan, desain, hingga pengiriman.</p>
+        </div>
+
+        <div class="mt-16 grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+            {{-- Left: Contact Info --}}
+            <div class="space-y-8" data-aos="fade-right">
+                {{-- Contact Details Card --}}
+                <div class="rounded-[1.5rem] border border-slate-100 bg-white p-8 shadow-premium">
+                    <div class="space-y-6">
+                        {{-- Email --}}
+                        <div class="flex items-start gap-5 group transition-all duration-300 hover:-translate-x-1">
+                            <div class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0B5ED7]/10 to-[#0B5ED7]/5 text-[#0B5ED7] transition-all duration-300 group-hover:from-[#0B5ED7] group-hover:to-blue-500 group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Email</p>
+                                <p class="mt-1 font-semibold text-slate-950">hello@omhvector.com</p>
+                            </div>
+                        </div>
+
+                        {{-- Divider --}}
+                        <div class="border-t border-slate-100"></div>
+
+                        {{-- WhatsApp --}}
+                        <div class="flex items-start gap-5 group transition-all duration-300 hover:-translate-x-1">
+                            <div class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0B5ED7]/10 to-[#0B5ED7]/5 text-[#0B5ED7] transition-all duration-300 group-hover:from-[#0B5ED7] group-hover:to-blue-500 group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">WhatsApp</p>
+                                <p class="mt-1 font-semibold text-slate-950">+62 812-3456-7890</p>
+                            </div>
+                        </div>
+
+                        {{-- Divider --}}
+                        <div class="border-t border-slate-100"></div>
+
+                        {{-- Address --}}
+                        <div class="flex items-start gap-5 group transition-all duration-300 hover:-translate-x-1">
+                            <div class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0B5ED7]/10 to-[#0B5ED7]/5 text-[#0B5ED7] transition-all duration-300 group-hover:from-[#0B5ED7] group-hover:to-blue-500 group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Alamat</p>
+                                <p class="mt-1 font-semibold text-slate-950">Jl. Digital Printing No. 15, Jakarta Selatan</p>
+                            </div>
+                        </div>
                     </div>
-                    <label class="block">
-                        <span class="text-sm font-semibold text-slate-700">Service</span>
-                        <select class="mt-2 w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/20 hover:border-slate-400">
-                            <option>Logo Design</option>
-                            <option>Banner Printing</option>
-                            <option>Business Card</option>
-                            <option>Custom Merchandise</option>
-                        </select>
-                    </label>
-                    <label class="block">
-                        <span class="text-sm font-semibold text-slate-700">Message</span>
-                        <textarea rows="5" placeholder="Tulis pesan Anda" class="mt-2 w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/20 hover:border-slate-400"></textarea>
-                    </label>
-                    <button type="button" class="w-full rounded-full bg-[#0B5ED7] px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:shadow-2xl hover:bg-[#0a4dc2]">Send Message</button>
+                </div>
+
+                {{-- Working Hours Card --}}
+                <div class="rounded-[1.5rem] border border-slate-100 bg-white p-8 shadow-premium">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0B5ED7]/10 text-[#0B5ED7]">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-slate-950">Jam Operasional</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-500">Senin – Jumat</span>
+                            <span class="font-medium text-slate-900">08:00 – 18:00</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-500">Sabtu</span>
+                            <span class="font-medium text-slate-900">09:00 – 15:00</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-500">Minggu</span>
+                            <span class="font-medium text-red-500">Tutup</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Quick WhatsApp CTA --}}
+                <a href="https://wa.me/6281234567890" target="_blank"
+                   class="group flex items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-br from-[#0B5ED7] to-blue-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[#0B5ED7]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#0B5ED7]/30 hover:-translate-y-0.5 active:translate-y-0">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>Chat via WhatsApp</span>
+                    <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+
+            {{-- Right: Contact Form --}}
+            <div class="rounded-[1.5rem] border border-slate-100 bg-white p-10 shadow-premium transition-all duration-300 hover:shadow-premium-lg" data-aos="fade-left">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#0B5ED7]/10 to-[#0B5ED7]/5 text-[#0B5ED7]">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-950">Kirim Pesan</h3>
+                        <p class="text-sm text-slate-400">Kami akan merespon dalam 1×24 jam</p>
+                    </div>
+                </div>
+
+                <form class="space-y-5">
+                    {{-- Name + Phone Row --}}
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lengkap</label>
+                            <input type="text" placeholder="Masukkan nama Anda"
+                                   class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/10 hover:border-slate-300" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">No. WhatsApp</label>
+                            <input type="tel" placeholder="+62 812-xxxx-xxxx"
+                                   class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/10 hover:border-slate-300" />
+                        </div>
+                    </div>
+
+                    {{-- Email --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Email</label>
+                        <input type="email" placeholder="contoh@email.com"
+                               class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/10 hover:border-slate-300" />
+                    </div>
+
+                    {{-- Service Selection --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Layanan</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            @php
+                            $services = ['Banner Printing', 'Sticker Printing', 'Wedding Invitation', 'Business Card', 'Custom Tumbler', 'Merchandise', 'Graphic Design', 'Lainnya'];
+                            @endphp
+                            @foreach($services as $service)
+                            <label class="group flex items-center gap-2.5 rounded-xl border border-slate-200 px-3.5 py-2.5 cursor-pointer transition-all duration-200 hover:border-[#0B5ED7]/30 hover:bg-[#0B5ED7]/5">
+                                <input type="radio" name="service" value="{{ $service }}" class="h-4 w-4 accent-[#0B5ED7]">
+                                <span class="text-sm text-slate-600 group-hover:text-slate-900">{{ $service }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- Message --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Pesan</label>
+                        <textarea rows="4" placeholder="Jelaskan kebutuhan cetak atau branding Anda..."
+                                  class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-[#0B5ED7] focus:ring-2 focus:ring-[#0B5ED7]/10 hover:border-slate-300 resize-none"></textarea>
+                    </div>
+
+                    {{-- Submit Button --}}
+                    <button type="submit"
+                            class="group relative w-full rounded-xl bg-gradient-to-r from-[#0B5ED7] to-blue-500 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-[#0B5ED7]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#0B5ED7]/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Kirim Pesan
+                            <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    </button>
+
+                    {{-- Trust note --}}
+                    <p class="text-center text-xs text-slate-400">Your information is kept confidential. We respect your privacy.</p>
                 </form>
             </div>
         </div>
