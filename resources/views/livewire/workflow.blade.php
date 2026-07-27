@@ -35,60 +35,54 @@ $steps = [
 ];
 ?>
 
-<section id="workflow" class="relative overflow-hidden bg-white py-28 lg:py-32">
+<section id="workflow" class="relative overflow-hidden bg-white">
+    {{-- Single subtle background --}}
     <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-[#0B5ED7]/4 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/3 left-1/4 w-[350px] h-[350px] bg-gradient-to-tr from-[#FFC107]/4 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-[#0B5ED7]/3 to-transparent rounded-full blur-3xl"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 relative">
         {{-- Section Header --}}
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
-            <div class="inline-flex items-center gap-3 rounded-full bg-[#0B5ED7]/5 px-5 py-2 border border-[#0B5ED7]/10 mb-6">
+            <span class="inline-flex items-center gap-2 rounded-full bg-[#0B5ED7]/5 px-4 py-1.5 border border-[#0B5ED7]/10 mb-6">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#0B5ED7]"></span>
-                <span class="text-sm font-semibold uppercase tracking-[0.2em] text-[#0B5ED7]">Work Process</span>
-            </div>
-            <h2 class="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl leading-[1.15]">How We Turn Your Ideas <span class="gradient-text">Into Reality</span></h2>
-            <p class="mt-5 text-lg leading-relaxed text-slate-500">Empat langkah sederhana untuk mewujudkan proyek percetakan dan branding Anda dengan hasil maksimal.</p>
+                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#0B5ED7]">Work Process</span>
+            </span>
+            <h2 class="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-slate-950 leading-[1.1]">How We Turn Your Ideas <span class="text-[#0B5ED7]">Into Reality</span></h2>
+            <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg leading-relaxed text-slate-500">Empat langkah sederhana untuk mewujudkan proyek percetakan dan branding Anda dengan hasil maksimal.</p>
         </div>
 
         {{-- Steps Grid --}}
-        <div class="relative mt-16">
+        <div class="relative mt-12">
             {{-- Desktop Connector Line --}}
-            <div class="hidden lg:block absolute top-[76px] left-[10%] right-[10%] h-px">
-                <div class="h-full bg-gradient-to-r from-[#0B5ED7]/5 via-[#0B5ED7]/20 to-[#0B5ED7]/5"></div>
-            </div>
+            <div class="hidden lg:block absolute top-[68px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#0B5ED7]/20 to-transparent"></div>
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach($steps as $step)
                 <div class="group relative" data-aos="fade-up" data-aos-delay="{{ $step['delay'] }}">
-                    <div class="relative rounded-[1.5rem] border border-slate-100 bg-white p-8 shadow-premium transition-all duration-500 hover:-translate-y-2 hover:shadow-premium-xl hover:border-[#0B5ED7]/20 h-full flex flex-col z-10 overflow-hidden">
-                        {{-- Large translucent background number --}}
+                    <div class="relative rounded-2xl border border-slate-100 bg-white p-8 shadow-card transition-all duration-500 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-[#0B5ED7]/20 h-full flex flex-col z-10 overflow-hidden">
+                        {{-- Background number --}}
                         <div class="absolute -top-4 -right-4 text-[100px] font-bold leading-none text-[#0B5ED7]/[0.04] select-none pointer-events-none">
                             {{ $step['num'] }}
                         </div>
 
-                        {{-- Icon --}}
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#0B5ED7]/10 to-[#0B5ED7]/5 text-[#0B5ED7] transition-all duration-500 group-hover:from-[#0B5ED7] group-hover:to-blue-500 group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#0B5ED7]/20 group-hover:scale-110 relative z-10">
-                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0B5ED7]/10 text-[#0B5ED7] transition-all duration-500 group-hover:bg-[#0B5ED7] group-hover:text-white relative z-10">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="{{ $step['icon'] }}" />
                             </svg>
                         </div>
 
-                        {{-- Step Number Badge --}}
-                        <div class="mt-5 flex items-center gap-3">
+                        <div class="mt-4 flex items-center gap-3">
                             <span class="inline-flex items-center justify-center rounded-full bg-[#0B5ED7]/10 px-3 py-1 text-[11px] font-bold text-[#0B5ED7]">
                                 Step {{ $step['num'] }}
                             </span>
                             <span class="text-[11px] text-slate-400 font-medium">{{ $step['duration'] }}</span>
                         </div>
 
-                        {{-- Title & Description --}}
                         <h3 class="mt-4 text-xl font-semibold text-slate-950">{{ $step['title'] }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-slate-500 flex-1">{{ $step['desc'] }}</p>
 
-                        {{-- Bottom accent line --}}
-                        <div class="mt-5 h-0.5 w-10 rounded-full bg-[#0B5ED7]/20 transition-all duration-500 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-[#0B5ED7] group-hover:to-blue-400"></div>
+                        <div class="mt-5 h-0.5 w-8 rounded-full bg-[#0B5ED7]/20 transition-all duration-500 group-hover:w-full group-hover:bg-[#0B5ED7]"></div>
                     </div>
                 </div>
                 @endforeach
@@ -96,14 +90,15 @@ $steps = [
         </div>
 
         {{-- Bottom CTA --}}
-        <div class="mt-16 text-center" data-aos="fade-up">
+        <div class="mt-12 text-center" data-aos="fade-up">
             <p class="text-lg font-semibold text-slate-900">Need a Custom Printing Solution?</p>
             <p class="mt-2 text-sm text-slate-500">Kami siap membantu mewujudkan proyek cetak dan branding Anda.</p>
             <a href="#contact"
-               class="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0B5ED7] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#0B5ED7]/15 transition-all duration-300 hover:bg-[#0B5ED7]/90 hover:shadow-xl hover:shadow-[#0B5ED7]/25 hover:-translate-y-0.5 active:translate-y-0 group">
+               class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0B5ED7] px-8 py-3.5 text-sm font-semibold text-white shadow-button transition-all duration-300 hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 group">
                 Start Your Project
                 <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
     </div>
 </section>
+

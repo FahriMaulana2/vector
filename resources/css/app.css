@@ -7,45 +7,19 @@
 @theme {
     --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    /* Custom Shadows */
-    --shadow-premium: 0 4px 24px rgba(0, 0, 0, 0.04);
-    --shadow-premium-lg: 0 8px 40px rgba(0, 0, 0, 0.06);
-    --shadow-premium-xl: 0 12px 60px rgba(0, 0, 0, 0.08);
+    /* Premium Shadow System */
+    --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
+    --shadow-card-hover: 0 12px 48px rgba(0, 0, 0, 0.07);
+    --shadow-button: 0 4px 16px rgba(11, 94, 215, 0.15);
+    --shadow-button-hover: 0 8px 32px rgba(11, 94, 215, 0.25);
 
-    /* Custom Animations */
-    --animate-float: float 6s ease-in-out infinite;
-    --animate-float-slow: float 8s ease-in-out infinite;
-    --animate-float-delayed: float 7s ease-in-out 2s infinite;
-    --animate-drift: drift 12s ease-in-out infinite;
-    --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
-    --animate-shimmer: shimmer 3s linear infinite;
-    --animate-progress: progress 5s linear infinite;
+    /* Subtle Float Animation (single) */
+    --animate-float-subtle: float-subtle 6s ease-in-out infinite;
 
-    @keyframes float {
+    @keyframes float-subtle {
         0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-15px); }
-    }
-    @keyframes float-slow {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(2deg); }
-    }
-    @keyframes drift {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        25% { transform: translate(20px, -20px) scale(1.05); }
-        50% { transform: translate(-10px, 10px) scale(0.95); }
-        75% { transform: translate(15px, -10px) scale(1.02); }
-    }
-    @keyframes pulse-soft {
-        0%, 100% { opacity: 0.3; transform: scale(1); }
-        50% { opacity: 0.6; transform: scale(1.05); }
-    }
-    @keyframes shimmer {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
-    @keyframes progress {
-        0% { width: 0%; }
-        100% { width: 100%; }
+        50% { transform: translateY(-8px); }
     }
 }
 
@@ -86,15 +60,6 @@ html {
     background: linear-gradient(135deg, #0B5ED7 0%, #2563EB 100%);
 }
 
-/* Mesh Gradient Background */
-.mesh-gradient {
-    background:
-        radial-gradient(ellipse 80% 80% at 0% 0%, rgba(11, 94, 215, 0.03) 0%, transparent 100%),
-        radial-gradient(ellipse 80% 80% at 100% 0%, rgba(255, 193, 7, 0.03) 0%, transparent 100%),
-        radial-gradient(ellipse 80% 80% at 0% 100%, rgba(11, 94, 215, 0.02) 0%, transparent 100%),
-        radial-gradient(ellipse 80% 80% at 100% 100%, rgba(255, 193, 7, 0.02) 0%, transparent 100%);
-}
-
 /* Glassmorphism */
 .glass {
     background: rgba(255, 255, 255, 0.7);
@@ -109,38 +74,16 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Grid Overlay */
-.bg-grid {
-    background-image:
-        linear-gradient(rgba(11, 94, 215, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(11, 94, 215, 0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+/* Standardized Border Radius Helpers (12, 16, 20, 24) */
+.radius-card {
+    border-radius: 24px;
 }
 
-.bg-grid-light {
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 60px 60px;
+.radius-image {
+    border-radius: 24px;
 }
 
-/* Blob Shapes */
-.blob {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+.radius-button {
+    border-radius: 9999px;
 }
 
-.blob-2 {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-}
-
-.blob-3 {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-}
-
-/* Custom Border Radius */
-.rounded-2xl { border-radius: 1rem; }
-.rounded-3xl { border-radius: 1.5rem; }
-.rounded-\[2rem\] { border-radius: 2rem; }
-.rounded-\[2\.3rem\] { border-radius: 2.3rem; }
-.rounded-\[2\.5rem\] { border-radius: 2.5rem; }
-.rounded-\[1\.75rem\] { border-radius: 1.75rem; }
