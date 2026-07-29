@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('key')->unique()->index();
+            $table->text('value')->nullable();
+            $table->string('group')->default('general')->index();
             $table->timestamps();
+
+            $table->index(['group', 'key']);
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('testimonials');
+        Schema::dropIfExists('settings');
     }
 };
