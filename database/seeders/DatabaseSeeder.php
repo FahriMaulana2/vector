@@ -1,25 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Standalone Content (No dependencies)
+        $this->call([
+            HeroSectionSeeder::class,
+            HeroStatisticSeeder::class, // Depends on HeroSection
+            AboutSectionSeeder::class,
+            ServiceSeeder::class,
+            WhyChooseUsSeeder::class,
+            WorkflowStepSeeder::class,
+            TestimonialSeeder::class,
+            FaqSeeder::class,
+            SettingSeeder::class,
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Products (Depends on ProductCategory)
+        $this->call([
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
+            ProductImageSeeder::class, // Depends on Product
+        ]);
+
+        // Portfolios (Depends on PortfolioCategory)
+        $this->call([
+            PortfolioCategorySeeder::class,
+            PortfolioSeeder::class,
+            PortfolioImageSeeder::class, // Depends on Portfolio
         ]);
     }
 }
