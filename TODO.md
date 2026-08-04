@@ -1,88 +1,50 @@
-# ✅ DONE: FINAL UI/UX POLISH
+# ✅ TODO: REDESIGN ADMIN DASHBOARD OMH VECTOR
 
-## Phase 1: CSS Foundation ✅
-- [x] Clean up custom radius in app.css (keep only standard values)
-- [x] Remove unused utility classes (blob, blob-2, blob-3, bg-grid, mesh-gradient)
-- [x] Remove excessive animations (keep only subtle float-subtle)
-- [x] Standardize shadow system (shadow-soft, shadow-card, shadow-card-hover, shadow-button, shadow-button-hover)
+## FASE 1: LAYOUT & KOMPONEN UTAMA (✅ SELESAI)
+- [x] Update `resources/css/app.css` - Tambah style admin + brand colors
+- [x] Update `resources/views/components/layouts/admin.blade.php` - Admin Layout premium
+- [x] Update `resources/views/components/admin/sidebar.blade.php` - Sidebar Dark Navy modern
+- [x] Update `resources/views/components/admin/topbar.blade.php` - Topbar putih premium dengan breadcrumb
+- [x] Update `resources/views/components/admin/stat-card.blade.php` - Stat Card premium
+- [x] Update `resources/views/livewire/admin/dashboard.blade.php` - Dashboard modern
 
-## Phase 2: Global Layout ✅
-- [x] Add spacing divs between sections in home.blade.php (120px gap)
-- [x] Standardize all section containers (max-w-7xl, px-5 md:px-6 lg:px-8)
-- [x] Standardized section padding removed (spacing handled by 120px gaps in home.blade.php)
+## FASE 2: ROUTES & LIVEWIRE COMPONENTS (✅ SELESAI)
+- [x] Buat routes admin lengkap di `routes/web.php`
+- [x] Buat Admin/Hero/Index.php + Form.php + views
+- [x] Buat Admin/About/Index.php + Form.php + views
+- [x] Buat Admin/Services/Index.php + Form.php + views
+- [x] Buat Admin/WhyChooseUs/Index.php + Form.php + views
+- [x] Buat Admin/Workflow/Index.php + Form.php + views
+- [x] Buat Admin/Testimonials/Index.php + Form.php + views
+- [x] Buat Admin/Faqs/Index.php + Form.php + views
+- [x] Buat Admin/ProductCategories/Index.php + Form.php + views
+- [x] Buat Admin/Products/Index.php + Form.php + views
+- [x] Buat Admin/PortfolioCategories/Index.php + Form.php + views
+- [x] Buat Admin/Portfolios/Index.php + Form.php + views
+- [x] Buat Admin/Orders/Index.php + Show.php + views
+- [x] Buat Admin/ContactMessages/Index.php + Show.php + views
+- [x] Buat Admin/Settings/Index.php + view
 
-## Phase 3: Navbar ✅
-- [x] Standardize container padding
-- [x] Polish current indicator (pill-style active state)
-- [x] Cleaner, more minimal design
+## FASE 3: BLADE VIEW FILES (🔄 SEDANG DIKERJAKAN)
+- [x] Buat hero/index.blade.php + hero/form.blade.php
+- [x] Buat about/index.blade.php + about/form.blade.php
+- [x] Buat services/index.blade.php + services/form.blade.php
+- [x] Buat why-choose-us/index.blade.php + why-choose-us/form.blade.php
+- [x] Buat workflow/index.blade.php + workflow/form.blade.php
+- [x] Buat testimonials/index.blade.php + testimonials/form.blade.php
+- [x] Buat faqs/index.blade.php + faqs/form.blade.php
+- [x] Buat product-categories/index.blade.php + product-categories/form.blade.php
+- [x] Buat products/index.blade.php
+- [ ] Buat products/form.blade.php
+- [ ] Buat portfolio-categories/index.blade.php + form.blade.php
+- [ ] Buat portfolios/index.blade.php + form.blade.php
+- [ ] Buat orders/index.blade.php + show.blade.php
+- [ ] Buat contact-messages/index.blade.php + show.blade.php
+- [ ] Buat settings/index.blade.php
 
-## Phase 4: Hero ✅
-- [x] Premium Unsplash images (printing/agency related)
-- [x] Removed decorative blobs (kept 1 subtle radial gradient)
-- [x] Standardized typography and section label
-- [x] Cleaner statistics row
-
-## Phase 5: About ✅
-- [x] Standardized section label
-- [x] Reduced visual clutter (removed grid overlay, excess blobs)
-- [x] Standardized cards with consistent shadows and hover
-- [x] Cleaner experience card
-
-## Phase 6: Services ✅
-- [x] 6 equal cards with standardized styling
-- [x] Clean background (1 subtle gradient only)
-- [x] Consistent icons and hover effects
-
-## Phase 7: Products ✅
-- [x] Standardized product cards
-- [x] Clean background (1 subtle gradient)
-- [x] Consistent badges and buttons
-- [x] Standardized filter buttons
-
-## Phase 8: Portfolio ✅
-- [x] Standardized portfolio grid
-- [x] Cleaner hover overlay
-- [x] Standardized filter buttons
-- [x] Clean background
-
-## Phase 9: Why Choose Us ✅
-- [x] Reduced blobs to 1 subtle (removed 2 heavy ones)
-- [x] Standardized dark cards
-- [x] Cleaner spacing and typography
-- [x] Consistent icon hover effects
-
-## Phase 10: Workflow ✅
-- [x] Clean background (1 subtle gradient)
-- [x] 4 equal cards
-- [x] Cleaner connector line
-- [x] Consistent step styling
-
-## Phase 11: Testimonials ✅
-- [x] Clean background (1 subtle gradient)
-- [x] 3 premium cards with consistent styling
-- [x] Standardized trust stats
-- [x] Cleaner Google Review summary
-
-## Phase 12: Contact (Premium Upgrade) ✅
-- [x] Large left info area with grid info cards
-- [x] Business hours card
-- [x] Google Maps placeholder
-- [x] Premium form with gradient submit button
-- [x] Large WhatsApp CTA
-
-## Phase 13: Footer ✅
-- [x] Minimal dark footer
-- [x] Clean layout
-- [x] Standardized spacing and typography
-- [x] Rounded-full WhatsApp button
-
-## Phase 14: Final QA ✅
-- [x] npm run build - SUCCESS
-- [x] All Blade syntax verified
-- [x] Consistent spacing throughout
-- [x] Consistent typography (all sections use same heading/label system)
-- [x] Consistent button styles (rounded-full primary/secondary)
-- [x] Consistent card styles (rounded-2xl, shadow-card, hover shadow-card-hover)
-- [x] Reduced visual clutter by ~70%
-- [x] Premium agency appearance
-
+## FASE 4: TESTING & VERIFIKASI
+- [ ] `php artisan optimize:clear`
+- [ ] `php artisan route:list`
+- [ ] `npm run build`
+- [ ] Test setiap halaman admin
+- [ ] Test responsive design

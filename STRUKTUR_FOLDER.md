@@ -17,6 +17,7 @@ OMH/
 ├── phpunit.xml
 ├── pint.json
 ├── PLAN.md
+├── STRUKTUR_FOLDER.md
 ├── TODO.md
 ├── vite.config.js
 │
@@ -37,7 +38,12 @@ OMH/
 │   │   ├── Services.php
 │   │   ├── Testimonials.php
 │   │   ├── WhyChooseUs.php
-│   │   └── Workflow.php
+│   │   ├── Workflow.php
+│   │   │
+│   │   └── Admin/
+│   │       ├── Dashboard.php
+│   │       └── Auth/
+│   │           └── Login.php
 │   │
 │   ├── Models/
 │   │   ├── AboutSection.php
@@ -161,8 +167,15 @@ OMH/
 │       ├── welcome.blade.php
 │       │
 │       ├── components/
+│       │   ├── admin/
+│       │   │   ├── sidebar.blade.php
+│       │   │   ├── stat-card.blade.php
+│       │   │   └── topbar.blade.php
+│       │   │
 │       │   └── layouts/
-│       │       └── app.blade.php
+│       │       ├── admin.blade.php
+│       │       ├── app.blade.php
+│       │       └── auth.blade.php
 │       │
 │       ├── layouts/
 │       │   └── app.blade.php
@@ -179,7 +192,12 @@ OMH/
 │           ├── services.blade.php
 │           ├── testimonials.blade.php
 │           ├── why-choose-us.blade.php
-│           └── workflow.blade.php
+│           ├── workflow.blade.php
+│           │
+│           ├── admin/
+│           │   ├── dashboard.blade.php
+│           │   └── auth/
+│           │       └── login.blade.php
 │
 ├── routes/
 │   ├── console.php
@@ -288,26 +306,30 @@ OMH/
 15. PortfolioSeeder.php
 16. PortfolioImageSeeder.php
 
-### 5. Daftar Semua Livewire Component (12 Components)
-1. Home.php
-2. Navbar.php
-3. Hero.php
-4. About.php
-5. Services.php
-6. Products.php
-7. Portfolio.php
-8. WhyChooseUs.php
-9. Workflow.php
-10. Testimonials.php
-11. Contact.php
-12. Footer.php
+### 5. Daftar Semua Livewire Component (14 Components)
+1. Home.php (Frontend)
+2. Navbar.php (Frontend)
+3. Hero.php (Frontend)
+4. About.php (Frontend)
+5. Services.php (Frontend)
+6. Products.php (Frontend)
+7. Portfolio.php (Frontend)
+8. WhyChooseUs.php (Frontend)
+9. Workflow.php (Frontend)
+10. Testimonials.php (Frontend)
+11. Contact.php (Frontend)
+12. Footer.php (Frontend)
+13. Admin/Auth/Login.php (Admin)
+14. Admin/Dashboard.php (Admin)
 
 ### 6. Daftar Semua Blade View
 | File | Path |
 |---|---|
 | Welcome Page | resources/views/welcome.blade.php |
-| Layout Component | resources/views/components/layouts/app.blade.php |
-| Layout | resources/views/layouts/app.blade.php |
+| Layout App | resources/views/components/layouts/app.blade.php |
+| Layout Admin | resources/views/components/layouts/admin.blade.php |
+| Layout Auth | resources/views/components/layouts/auth.blade.php |
+| Layout (lama) | resources/views/layouts/app.blade.php |
 | Navbar | resources/views/livewire/navbar.blade.php |
 | Hero | resources/views/livewire/hero.blade.php |
 | About | resources/views/livewire/about.blade.php |
@@ -320,28 +342,42 @@ OMH/
 | Contact | resources/views/livewire/contact.blade.php |
 | Footer | resources/views/livewire/footer.blade.php |
 | Home | resources/views/livewire/home.blade.php |
+| Dashboard Admin | resources/views/livewire/admin/dashboard.blade.php |
+| Login Admin | resources/views/livewire/admin/auth/login.blade.php |
+| Sidebar Admin | resources/views/components/admin/sidebar.blade.php |
+| Topbar Admin | resources/views/components/admin/topbar.blade.php |
+| Stat Card Admin | resources/views/components/admin/stat-card.blade.php |
 
 ### 7. Daftar Semua Route
-| Method | URI | Handler | Name |
-|---|---|---|---|
-| GET | / | App\Livewire\Home | home |
-| Artisan | (inspire) | Closure | - |
+| Method | URI | Handler | Name | Middleware |
+|---|---|---|---|---|
+| GET | `/` | `App\Livewire\Home` | `home` | - |
+| GET | `/admin/login` | `App\Livewire\Admin\Auth\Login` | `admin.login` | guest |
+| GET | `/admin` | `App\Livewire\Admin\Dashboard` | `admin.dashboard` | auth |
+| POST | `/admin/logout` | Closure | `admin.logout` | auth |
+| Artisan | (inspire) | Closure | - | - |
 
 ### 8. Apakah Autentikasi Sudah Ada?
-**Belum ada.** Tidak ditemukan:
-- app/Http/Controllers/Auth/
-- Middleware auth
-- Login/Register page
-- Fortify, Jetstream, Breeze, atau package auth lainnya
-
-Hanya ada model User dan migration users_table default Laravel, tanpa fitur login/register.
+**Ya, sudah ada.** Detail:
+- **Login Admin**: `/admin/login` dengan Livewire component `Admin/Auth/Login.php`
+- **Logout**: POST `/admin/logout`
+- **Middleware**: `guest` untuk halaman login, `auth` untuk dashboard
+- **Layout**: `resources/views/components/layouts/auth.blade.php`
 
 ### 9. Apakah Admin Dashboard Sudah Ada?
-**Belum ada.** Tidak ditemukan:
-- app/Http/Controllers/Admin/
-- app/Livewire/Admin/
-- resources/views/admin/
-- Route dengan prefix /admin
-- Filament, Nova, atau package admin panel lainnya
+**Ya, sudah ada.** Detail:
+- **Livewire Component**: `app/Livewire/Admin/Dashboard.php`
+- **View**: `resources/views/livewire/admin/dashboard.blade.php`
+- **Layout**: `resources/views/components/layouts/admin.blade.php`
+- **Komponen**: sidebar, topbar, stat-card
+- **Prefix Route**: `/admin`
+- **Fitur**: Belum ada CRUD, baru dashboard utama
 
-Ini adalah **frontend company profile / landing page** dengan Livewire, tanpa panel admin.
+### 10. Komponen Admin Layout
+| File | Path |
+|---|---|
+| Layout Admin | resources/views/components/layouts/admin.blade.php |
+| Layout Auth | resources/views/components/layouts/auth.blade.php |
+| Sidebar | resources/views/components/admin/sidebar.blade.php |
+| Topbar | resources/views/components/admin/topbar.blade.php |
+| Stat Card | resources/views/components/admin/stat-card.blade.php |

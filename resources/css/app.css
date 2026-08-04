@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 @source '../views';
@@ -6,13 +6,29 @@
 
 @theme {
     --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Warna Brand OMH Vector */
+    --color-primary: #1E4F91;
+    --color-primary-dark: #173B6C;
+    --color-primary-light: #2563EB;
+    --color-accent: #FBBF24;
+    --color-accent-dark: #F59E0B;
+    --color-surface: #F5F7FA;
+    --color-text-primary: #1F2937;
+    --color-text-secondary: #64748B;
+    --color-border: #E2E8F0;
+    --color-success: #16A34A;
+    --color-warning: #F59E0B;
+    --color-danger: #DC2626;
+    --color-info: #3B82F6;
 
     /* Premium Shadow System */
     --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.04);
     --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
     --shadow-card-hover: 0 12px 48px rgba(0, 0, 0, 0.07);
-    --shadow-button: 0 4px 16px rgba(11, 94, 215, 0.15);
-    --shadow-button-hover: 0 8px 32px rgba(11, 94, 215, 0.25);
+    --shadow-button: 0 4px 16px rgba(30, 79, 145, 0.15);
+    --shadow-button-hover: 0 8px 32px rgba(30, 79, 145, 0.25);
 
     /* Subtle Float Animation (single) */
     --animate-float-subtle: float-subtle 6s ease-in-out infinite;
@@ -28,6 +44,15 @@
 }
 
 body {
+    font-family: var(--font-sans);
+}
+
+/* Admin Dashboard Specific */
+.admin-body {
+    font-family: var(--font-inter);
+}
+
+.admin-heading {
     font-family: var(--font-sans);
 }
 
