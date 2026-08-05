@@ -5,25 +5,33 @@ $aboutData = [
 ];
 ?>
 
-<section id="about" class="relative overflow-hidden bg-white">
-    {{-- Single subtle background --}}
+<section id="about" class="relative overflow-hidden bg-[#F5F7FA]">
+    {{-- Subtle layered background --}}
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-gradient-to-bl from-[#0B5ED7]/4 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-[380px] h-[380px] bg-gradient-to-tr from-[#FBBF24]/4 to-transparent rounded-full blur-3xl"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 relative">
+<div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
         <div class="grid lg:grid-cols-[1fr_1fr] lg:items-center gap-16 lg:gap-20">
-            {{-- Left: Image with experience card --}}
+            {{-- Left: Image with decorative frame --}}
             <div class="relative" data-aos="fade-right" data-aos-delay="100">
-                <div class="relative rounded-[2rem] overflow-hidden shadow-card-hover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0B5ED7]/10 via-transparent to-transparent z-10"></div>
+                {{-- Decorative navy accent shape behind image --}}
+                <div class="absolute -top-5 -left-5 w-28 h-28 rounded-3xl bg-[#0B5ED7]/10 border border-[#0B5ED7]/10 hidden md:block"></div>
+                <div class="absolute -bottom-6 -right-5 w-20 h-20 rounded-2xl bg-[#FBBF24]/15 border border-[#FBBF24]/20 hidden md:block"></div>
+
+                {{-- Gold accent line --}}
+                <div class="absolute top-8 -right-4 w-1.5 h-24 rounded-full bg-gradient-to-b from-[#FBBF24] to-[#F59E0B] hidden md:block"></div>
+
+                <div class="relative rounded-[2rem] overflow-hidden shadow-card-hover ring-1 ring-slate-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0B1E3D]/20 via-transparent to-transparent z-10"></div>
                     <img src="{{ $aboutData['image'] }}"
                          alt="{{ $aboutData['imageAlt'] }}"
                          class="h-[520px] w-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
 
-                {{-- Experience Card --}}
-                <div class="absolute -bottom-8 -left-8 bg-white rounded-2xl px-6 py-5 shadow-card-hover border border-slate-100 z-20 animate-float-subtle">
+                {{-- Floating Experience Card --}}
+                <div class="absolute -bottom-8 -left-4 md:-left-8 bg-white rounded-2xl px-6 py-5 shadow-card-hover border border-slate-100 z-20 animate-float-subtle">
                     <div class="flex items-center gap-4">
                         <div class="flex items-center justify-center w-14 h-14 rounded-xl gradient-primary text-white font-bold text-xl shadow-button">6+</div>
                         <div>
@@ -32,16 +40,22 @@ $aboutData = [
                         </div>
                     </div>
                 </div>
+
+                {{-- Small gold trust badge --}}
+                <div class="absolute top-6 right-6 z-20 hidden sm:flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-4 py-2 shadow-lg border border-white/40">
+                    <svg class="w-4 h-4 text-[#F59E0B] fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <span class="text-xs font-semibold text-slate-700">Terpercaya Sejak 2019</span>
+                </div>
             </div>
 
             {{-- Right: Content --}}
             <div class="space-y-8" data-aos="fade-left" data-aos-delay="200">
                 <div class="space-y-4">
                     <span class="inline-flex items-center gap-2 rounded-full bg-[#0B5ED7]/5 px-4 py-1.5 border border-[#0B5ED7]/10">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#0B5ED7]"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
                         <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#0B5ED7]">Tentang OMH Vector</span>
                     </span>
-                    <h2 class="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-slate-950 leading-[1.1]">
+                    <h2 class="text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-[#0B1E3D] leading-[1.1]">
                         Mitra Digital Printing &amp; Branding
                         <span class="text-[#0B5ED7]">Terpercaya</span>
                     </h2>
@@ -57,8 +71,8 @@ $aboutData = [
                         <h3 class="mt-4 text-lg font-semibold text-slate-950">Misi Kami</h3>
                         <p class="mt-2 text-sm leading-relaxed text-slate-500">Memberikan layanan cetak dan branding berkualitas tinggi dengan harga terjangkau dan tepat waktu.</p>
                     </div>
-                    <div class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-[#0B5ED7]/15">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0B5ED7]/10 text-[#0B5ED7] transition-all duration-300 group-hover:bg-[#0B5ED7] group-hover:text-white">
+                    <div class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-[#F59E0B]/20">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F59E0B]/10 text-[#F59E0B] transition-all duration-300 group-hover:bg-[#FBBF24] group-hover:text-white">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         </div>
                         <h3 class="mt-4 text-lg font-semibold text-slate-950">Visi Kami</h3>
@@ -67,7 +81,7 @@ $aboutData = [
                 </div>
 
                 {{-- Stats Row --}}
-                <div class="grid grid-cols-3 gap-6 pt-4 border-t border-slate-100">
+                <div class="grid grid-cols-3 gap-6 pt-4 border-t border-slate-200">
                     <div>
                         <p class="text-3xl font-bold text-[#0B5ED7]">980+</p>
                         <p class="text-sm text-slate-500 mt-0.5">Klien Puas</p>
@@ -77,7 +91,7 @@ $aboutData = [
                         <p class="text-sm text-slate-500 mt-0.5">Proyek Selesai</p>
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-[#0B5ED7]">6+</p>
+                        <p class="text-3xl font-bold text-[#F59E0B]">6+</p>
                         <p class="text-sm text-slate-500 mt-0.5">Tahun Aktif</p>
                     </div>
                 </div>
@@ -85,4 +99,3 @@ $aboutData = [
         </div>
     </div>
 </section>
-
