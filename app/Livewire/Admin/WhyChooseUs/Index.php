@@ -14,6 +14,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     public function delete($id)
     {
         $item = WhyChooseUs::findOrFail($id);
@@ -24,7 +26,10 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.why-choose-us.index', [
-            'items' => WhyChooseUs::orderBy('order')->paginate(10),
+            'items' => WhyChooseUs::when($this->search, fn($q) => $q->where('title', 'like', '%'.$this->search.'%'))
+                ->orderBy('sort_order') // ✅ PERBAIKAN: 'order' diganti menjadi 'sort_order'
+                ->orderBy('title')
+                ->paginate(10),
         ]);
     }
 }

@@ -30,7 +30,7 @@
                 'UTAMA' => [
                     ['name' => 'Dashboard', 'route' => 'admin.dashboard', 'icon' => 'grid', 'badge' => null],
                 ],
-                'KELOLA WEBSITE' => [
+'KELOLA WEBSITE' => [
                     ['name' => 'Hero Section', 'route' => 'admin.hero.index', 'icon' => 'layout', 'badge' => null],
                     ['name' => 'Tentang Kami', 'route' => 'admin.about.index', 'icon' => 'info', 'badge' => null],
                     ['name' => 'Layanan', 'route' => 'admin.services.index', 'icon' => 'briefcase', 'badge' => null],
@@ -39,19 +39,15 @@
                     ['name' => 'Testimoni', 'route' => 'admin.testimonials.index', 'icon' => 'message-square', 'badge' => null],
                     ['name' => 'FAQ', 'route' => 'admin.faqs.index', 'icon' => 'help-circle', 'badge' => null],
                 ],
-                'KATALOG & PORTOFOLIO' => [
-                    ['name' => 'Kategori Produk', 'route' => 'admin.product-categories.index', 'icon' => 'tag', 'badge' => null],
+'KATALOG & PORTOFOLIO' => [
                     ['name' => 'Produk', 'route' => 'admin.products.index', 'icon' => 'package', 'badge' => null],
-                    ['name' => 'Kategori Portofolio', 'route' => 'admin.portfolio-categories.index', 'icon' => 'folder', 'badge' => null],
                     ['name' => 'Portofolio', 'route' => 'admin.portfolios.index', 'icon' => 'image', 'badge' => null],
                 ],
                 'OPERASIONAL' => [
                     ['name' => 'Pesanan', 'route' => 'admin.orders.index', 'icon' => 'shopping-bag', 'badge' => null],
-                    ['name' => 'Pesan Masuk', 'route' => 'admin.contact-messages.index', 'icon' => 'mail', 'badge' => null],
                 ],
                 'PENGATURAN' => [
                     ['name' => 'Pengaturan Website', 'route' => 'admin.settings.index', 'icon' => 'settings', 'badge' => null],
-                    ['name' => 'Manajemen Admin', 'route' => '#', 'icon' => 'users', 'badge' => 'Segera Hadir'],
                 ],
                 'AKUN' => [
                     ['name' => 'Keluar', 'route' => 'admin.logout', 'icon' => 'log-out', 'badge' => null, 'is_form' => true],

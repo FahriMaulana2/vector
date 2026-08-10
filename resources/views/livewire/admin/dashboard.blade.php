@@ -33,17 +33,23 @@
             title="Total Pesanan" 
             :value="$stats['total_orders']" 
             color="blue"
-            icon='<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>' />
+icon='<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>' />
             
         <x-admin.stat-card 
-            title="Pesan Masuk" 
-            :value="$stats['total_messages']" 
+            title="Pesanan Selesai"
+            :value="$stats['completed_orders']" 
+            color="green"
+            icon='<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>' />
+            
+        <x-admin.stat-card 
+            title="Total FAQ" 
+            :value="$stats['total_faqs']" 
             color="purple"
-            icon='<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>' />
+            icon='<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>' />
     </div>
 
     <!-- Statistics Summary Row -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <div class="bg-white rounded-xl border border-border p-4 flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
             <div>
@@ -52,7 +58,7 @@
             </div>
         </div>
         <div class="bg-white rounded-xl border border-border p-4 flex items-center gap-3">
-            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
             <div>
                 <p class="text-xs text-text-secondary">Selesai</p>
                 <p class="text-sm font-semibold text-text-primary">{{ $stats['completed_orders'] }} Pesanan</p>
@@ -61,15 +67,8 @@
         <div class="bg-white rounded-xl border border-border p-4 flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-primary"></div>
             <div>
-                <p class="text-xs text-text-secondary">Pesan Masuk</p>
-                <p class="text-sm font-semibold text-text-primary">{{ $stats['total_messages'] }} Pesan</p>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl border border-border p-4 flex items-center gap-3">
-            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-            <div>
-                <p class="text-xs text-text-secondary">Belum Dibaca</p>
-                <p class="text-sm font-semibold text-text-primary">{{ $stats['unread_messages'] }} Pesan</p>
+                <p class="text-xs text-text-secondary">Total Produk</p>
+                <p class="text-sm font-semibold text-text-primary">{{ $stats['total_products'] }} Item</p>
             </div>
         </div>
     </div>
@@ -87,7 +86,7 @@
                     </div>
                     <h3 class="text-base font-semibold text-text-primary admin-heading">Pesanan Terbaru</h3>
                 </div>
-                <a href="#" class="text-sm font-medium text-primary hover:text-primary-dark transition-colors flex items-center gap-1">
+                <a href="{{ route('admin.orders.index') }}" class="text-sm font-medium text-primary hover:text-primary-dark transition-colors flex items-center gap-1">
                     Lihat Semua
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -168,66 +167,61 @@
             </div>
         </div>
 
-        <!-- Recent Messages -->
+        <!-- Quick Actions -->
         <div class="bg-white rounded-2xl border border-border shadow-soft overflow-hidden">
             <div class="px-6 py-5 border-b border-border flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-lg bg-purple-50 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                    <div class="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-base font-semibold text-text-primary admin-heading">Pesan Masuk Terbaru</h3>
+                    <h3 class="text-base font-semibold text-text-primary admin-heading">Aksi Cepat</h3>
                 </div>
-                <a href="#" class="text-sm font-medium text-primary hover:text-primary-dark transition-colors flex items-center gap-1">
-                    Lihat Semua
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
             </div>
             <div class="p-6">
-                @if($recentMessages->isEmpty())
-                    <div class="text-center py-10">
-                        <svg class="mx-auto h-14 w-14 text-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                        </svg>
-                        <p class="mt-4 text-sm font-medium text-text-secondary">Belum ada pesan masuk</p>
-                        <p class="text-xs text-text-secondary/60 mt-1">Pesan dari form kontak akan muncul di sini.</p>
-                    </div>
-                @else
-                    <div class="space-y-3">
-                        @foreach($recentMessages as $message)
-                            <div class="flex items-start gap-3.5 p-4 rounded-xl transition-all duration-200 {{ $message->status === 'unread' ? 'bg-primary/5 border border-primary/10' : 'bg-surface/50 border border-transparent' }} hover:bg-surface">
-                                <div class="flex-shrink-0 mt-0.5">
-                                    @if($message->status === 'unread')
-                                        <span class="flex h-2.5 w-2.5 relative">
-                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
-                                        </span>
-                                    @else
-                                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-                                    @endif
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <p class="text-sm font-semibold {{ $message->status === 'unread' ? 'text-text-primary' : 'text-text-secondary' }} truncate">
-                                            {{ $message->name }}
-                                        </p>
-                                        <p class="text-xs text-text-secondary/60 flex-shrink-0">{{ $message->created_at->diffForHumans() }}</p>
-                                    </div>
-                                    <p class="text-sm text-text-secondary mt-0.5 line-clamp-2">{{ $message->message }}</p>
-                                    <div class="flex items-center gap-2 mt-1.5">
-                                        <span class="text-xs text-text-secondary/50">{{ $message->email }}</span>
-                                        @if($message->phone)
-                                            <span class="text-xs text-text-secondary/50">• {{ $message->phone }}</span>
-                                        @endif
-                                    </div>
-                                </div>
+                <p class="text-sm text-text-secondary mb-6">Kelola konten dan pantau operasional website OMH Vector dengan mudah melalui menu berikut.</p>
+                
+                <div class="space-y-3">
+                    <a href="{{ route('admin.products.index') }}" class="flex items-center justify-between p-4 rounded-xl border border-border bg-surface/50 hover:bg-primary/5 hover:border-primary/20 transition-all duration-200 group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                             </div>
-                        @endforeach
-                    </div>
-                @endif
+                            <div>
+                                <p class="text-sm font-semibold text-text-primary">Kelola Produk</p>
+                                <p class="text-xs text-text-secondary">Tambah, edit, atau hapus katalog produk</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 text-text-secondary/40 group-hover:text-primary group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+
+                    <a href="{{ route('admin.portfolios.index') }}" class="flex items-center justify-between p-4 rounded-xl border border-border bg-surface/50 hover:bg-primary/5 hover:border-primary/20 transition-all duration-200 group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-yellow-50 text-yellow-600 flex items-center justify-center group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-text-primary">Kelola Portofolio</p>
+                                <p class="text-xs text-text-secondary">Tampilkan proyek terbaik Anda</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 text-text-secondary/40 group-hover:text-primary group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+
+                    <a href="{{ route('admin.settings.index') }}" class="flex items-center justify-between p-4 rounded-xl border border-border bg-surface/50 hover:bg-primary/5 hover:border-primary/20 transition-all duration-200 group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-text-primary">Pengaturan Website</p>
+                                <p class="text-xs text-text-secondary">Ubah logo, info perusahaan, dan SEO</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 text-text-secondary/40 group-hover:text-primary group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

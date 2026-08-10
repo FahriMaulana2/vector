@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Standalone Content (No dependencies)
+        // 1. Standalone Content (No dependencies)
         $this->call([
             HeroSectionSeeder::class,
             HeroStatisticSeeder::class, // Depends on HeroSection
@@ -22,18 +22,18 @@ class DatabaseSeeder extends Seeder
             WhyChooseUsSeeder::class,
             WorkflowStepSeeder::class,
             TestimonialSeeder::class,
-            FaqSeeder::class,
+            // FaqSeeder::class, <-- SUDAH DIHAPUS
             SettingSeeder::class,
         ]);
 
-        // Products (Depends on ProductCategory)
+        // 2. Products (Depends on ProductCategory)
         $this->call([
             ProductCategorySeeder::class,
             ProductSeeder::class,
             ProductImageSeeder::class, // Depends on Product
         ]);
 
-        // Portfolios (Depends on PortfolioCategory)
+        // 3. Portfolios (Depends on PortfolioCategory)
         $this->call([
             PortfolioCategorySeeder::class,
             PortfolioSeeder::class,

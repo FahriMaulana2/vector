@@ -113,12 +113,28 @@ class Setting extends Model
         return $logo ? asset('storage/' . $logo) : null;
     }
 
+/**
+     * Get company description from settings.
+     */
+    public static function getDescription(): ?string
+    {
+        return static::get('company_description');
+    }
+
+    /**
+     * Get office hours from settings.
+     */
+    public static function getOfficeHours(): ?string
+    {
+        return static::get('office_hours');
+    }
+
     /**
      * Get WhatsApp number from settings.
      */
     public static function getWhatsAppNumber(): ?string
     {
-        return static::get('whatsapp_number');
+        return static::get('company_whatsapp');
     }
 
     /**
@@ -127,7 +143,14 @@ class Setting extends Model
     public static function getWhatsAppLink(): string
     {
         $number = static::getWhatsAppNumber();
-        return $number ? "https://wa.me/{$number}" : '#';
+        if (!$number) {
+            return '#';
+        }
+
+        // Normalize: strip all non-digit characters (e.g. "+", "-", spaces).
+        $normalized = preg_replace('/\D/', '', $number);
+
+        return $normalized ? "https://wa.me/{$normalized}" : '#';
     }
 
     /**
@@ -135,7 +158,7 @@ class Setting extends Model
      */
     public static function getEmail(): ?string
     {
-        return static::get('email');
+        return static::get('company_email');
     }
 
     /**
@@ -143,7 +166,7 @@ class Setting extends Model
      */
     public static function getPhone(): ?string
     {
-        return static::get('phone');
+        return static::get('company_phone');
     }
 
     /**
@@ -151,15 +174,63 @@ class Setting extends Model
      */
     public static function getAddress(): ?string
     {
-        return static::get('address');
+        return static::get('company_address');
     }
 
     /**
-     * Get Google Maps embed URL from settings.
+     * Get Google Maps embed code from settings.
      */
     public static function getGoogleMaps(): ?string
     {
-        return static::get('google_maps');
+        return static::get('google_maps_embed');
+    }
+
+    /**
+     * Get a single social media URL by platform.
+     */
+    public static function getSocial(string $platform): ?string
+    {
+        return static::get($platform . '_url');
+    }
+
+    /**
+     * Get Facebook URL.
+     */
+    public static function getFacebook(): ?string
+    {
+        return static::getSocial('facebook');
+    }
+
+    /**
+     * Get Instagram URL.
+     */
+    public static function getInstagram(): ?string
+    {
+        return static::getSocial('instagram');
+    }
+
+    /**
+     * Get TikTok URL.
+     */
+    public static function getTikTok(): ?string
+    {
+        return static::getSocial('tiktok');
+    }
+
+    /**
+     * Get YouTube URL.
+     */
+    public static function getYoutube(): ?string
+    {
+        return static::getSocial('youtube');
+    }
+
+    /**
+     * Get LinkedIn URL.
+     */
+    public static function getLinkedin(): ?string
+    {
+        return static::getSocial('linkedin');
     }
 
     /**
@@ -168,12 +239,36 @@ class Setting extends Model
     public static function getSocialMedia(): array
     {
         return [
-            'facebook' => static::get('facebook'),
-            'instagram' => static::get('instagram'),
-            'twitter' => static::get('twitter'),
-            'linkedin' => static::get('linkedin'),
-            'tiktok' => static::get('tiktok'),
+            'facebook' => static::getFacebook(),
+            'instagram' => static::getInstagram(),
+            'tiktok' => static::getTikTok(),
+            'youtube' => static::getYoutube(),
+            'linkedin' => static::getLinkedin(),
         ];
+    }
+
+    /**
+     * Get SEO title from settings.
+     */
+    public static function getSeoTitle(): ?string
+    {
+        return static::get('seo_title');
+    }
+
+    /**
+     * Get SEO description from settings.
+     */
+    public static function getSeoDescription(): ?string
+    {
+        return static::get('seo_description');
+    }
+
+    /**
+     * Get SEO keywords from settings.
+     */
+    public static function getSeoKeywords(): ?string
+    {
+        return static::get('seo_keywords');
     }
 
     /**
@@ -182,10 +277,19 @@ class Setting extends Model
     public static function getSEO(): array
     {
         return [
-            'meta_title' => static::get('meta_title'),
-            'meta_description' => static::get('meta_description'),
-            'meta_keywords' => static::get('meta_keywords'),
+            'meta_title' => static::getSeoTitle(),
+            'meta_description' => static::getSeoDescription(),
+            'meta_keywords' => static::getSeoKeywords(),
             'og_image' => static::get('og_image'),
         ];
+    }
+
+    /**
+     * Get favicon URL from settings.
+     */
+    public static function getFaviconUrl(): ?string
+    {
+        $favicon = static::get('favicon');
+        return $favicon ? asset('storage/' . $favicon) : null;
     }
 }

@@ -6,14 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
- * @property int $product_category_id
  * @property string $name
  * @property string $slug
  * @property string|null $description
@@ -26,7 +24,6 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $is_active
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\ProductCategory $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductImage> $images
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
  */
@@ -40,7 +37,6 @@ class Product extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'product_category_id',
         'name',
         'slug',
         'description',
@@ -59,7 +55,6 @@ class Product extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'product_category_id' => 'integer',
         'price' => 'decimal:2',
         'is_featured' => 'boolean',
         'sort_order' => 'integer',
@@ -87,19 +82,12 @@ class Product extends Model
     }
 
     /**
-     * Get the category that owns the product.
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(ProductCategory::class, 'product_category_id');
-    }
-
-    /**
      * Get the images for the product.
      */
     public function images(): HasMany
     {
-        return $this->hasMany(ProductImage::class)->orderBy('sort_order');
+        return $this->hasMany(ProductImage::class)
+            ->orderBy('sort_order');
     }
 
     /**
@@ -131,15 +119,9 @@ class Product extends Model
      */
     public function scopeOrdered(Builder $query): Builder
     {
-        return $query->orderBy('sort_order')->orderBy('name');
-    }
-
-    /**
-     * Scope a query to filter by category.
-     */
-    public function scopeByCategory(Builder $query, int $categoryId): Builder
-    {
-        return $query->where('product_category_id', $categoryId);
+        return $query
+            ->orderBy('sort_order')
+            ->orderBy('name');
     }
 
     /**
@@ -147,7 +129,9 @@ class Product extends Model
      */
     public function getImageUrlAttribute(): ?string
     {
-        return $this->image ? Storage::disk('public')->url($this->image) : null;
+        return $this->image
+            ? Storage::disk('public')->url($this->image)
+            : null;
     }
 
     /**
@@ -155,7 +139,9 @@ class Product extends Model
      */
     public function getFormattedPriceAttribute(): ?string
     {
-        return $this->price ? 'Rp ' . number_format((float) $this->price, 0, ',', '.') : null;
+        return $this->price
+            ? 'Rp ' . number_format((float) $this->price, 0, ',', '.')
+            : null;
     }
 
     /**
@@ -163,7 +149,9 @@ class Product extends Model
      */
     public function coverImage(): ?ProductImage
     {
-        return $this->images()->where('is_primary', true)->first() 
+        return $this->images()
+            ->where('is_primary', true)
+            ->first()
             ?? $this->images()->first();
     }
 
@@ -172,7 +160,9 @@ class Product extends Model
      */
     public function gallery(): \Illuminate\Database\Eloquent\Collection
     {
-        return $this->images()->where('is_primary', false)->get();
+        return $this->images()
+            ->where('is_primary', false)
+            ->get();
     }
 
     /**

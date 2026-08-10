@@ -26,8 +26,10 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.services.index', [
-            'items' => Service::when($this->search, fn($q) => $q->where('name', 'like', '%'.$this->search.'%'))
-                ->orderBy('name')->paginate(10),
+            'items' => Service::when($this->search, fn($q) => $q->where('title', 'like', '%'.$this->search.'%'))
+                ->orderBy('sort_order')
+                ->orderBy('title')
+                ->paginate(10),
         ]);
     }
 }

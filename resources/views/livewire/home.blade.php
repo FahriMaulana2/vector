@@ -15,5 +15,7 @@
 
     <livewire:testimonials />
 
+    <livewire:faq />
+
     <livewire:contact />
 </div>

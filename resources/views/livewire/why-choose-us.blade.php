@@ -39,83 +39,85 @@ $reasons = [
 ];
 ?>
 
-<section id="why-choose-us" class="relative overflow-hidden py-20 lg:py-24 text-white">
+<section id="why-choose-us" class="relative overflow-hidden bg-navy text-white">
     {{-- Layered dark navy background (z-0, behind content) --}}
-    <div class="absolute inset-0 z-0 bg-gradient-to-br from-[#07182F] via-[#0B1E3D] to-[#0F2646]"></div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-br from-navy-dark via-navy to-navy-deep"></div>
 
     {{-- Depth glows (behind content) --}}
     <div class="absolute inset-0 z-0 pointer-events-none">
-        <div class="absolute top-[-120px] right-[-80px] w-[520px] h-[520px] rounded-full bg-[#0B5ED7]/20 blur-3xl"></div>
-        <div class="absolute bottom-[-140px] left-[-80px] w-[460px] h-[460px] rounded-full bg-[#FBBF24]/10 blur-3xl"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[760px] h-[760px] rounded-full bg-[#2563EB]/8 blur-3xl"></div>
+        <div class="absolute top-[-120px] right-[-80px] w-[520px] h-[520px] rounded-full bg-gold/8 blur-3xl"></div>
+        <div class="absolute bottom-[-140px] left-[-80px] w-[460px] h-[460px] rounded-full bg-gold/6 blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[760px] h-[760px] rounded-full bg-navy-deep/40 blur-3xl"></div>
     </div>
 
-    {{-- Subtle dot pattern (behind content) --}}
+    {{-- Faint gold dot pattern (behind content) --}}
     <div class="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
-         style="background-image: radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0); background-size: 40px 40px;"></div>
+         style="background-image: radial-gradient(circle at 1px 1px, #D6A83D 1px, transparent 0); background-size: 40px 40px;"></div>
 
-    {{-- Thin gold accent line top (behind content) --}}
-    <div class="absolute top-0 left-0 z-0 h-px w-full bg-gradient-to-r from-transparent via-[#FBBF24]/40 to-transparent pointer-events-none"></div>
+    {{-- Thin decorative gold lines (behind content) --}}
+    <div class="absolute inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+        <div class="absolute left-0 top-0 h-40 w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent"></div>
+        <div class="absolute right-0 top-0 h-40 w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent"></div>
+    </div>
 
-    <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-16 items-start">
-            {{-- Left Column --}}
-            <div class="space-y-8 lg:sticky lg:top-28" data-aos="fade-right">
-                <div class="space-y-5">
-                    <span class="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-4 py-1.5 border border-white/10 backdrop-blur-sm">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FBBF24]"></span>
-                        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#FBBF24]">Why Choose Us</span>
-                    </span>
-                    <h2 class="text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight leading-[1.1] text-white">
-                        Why Businesses Trust <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FBBF24] via-[#FCD34D] to-[#F59E0B]">OMH Vector</span>
-                    </h2>
-                    <p class="max-w-xl text-base lg:text-lg leading-relaxed text-white/65">Kami berkomitmen memberikan layanan percetakan dan branding terbaik untuk setiap klien.</p>
+    <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-28 relative z-10">
+        {{-- Section Header (centered) --}}
+        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-4 py-1.5 border border-gold/25 backdrop-blur-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-gold">Mengapa Memilih Kami</span>
+            </span>
+            <h2 class="font-heading mt-6 text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight leading-[1.1] text-cream">Alasan Tepat Memilih OMH Vector sebagai <span class="gradient-text">Partner Kreatif Anda</span></h2>
+            <p class="mt-5 max-w-2xl mx-auto text-base lg:text-lg font-inter leading-relaxed text-white/60">Kami berkomitmen memberikan layanan percetakan dan branding terbaik untuk setiap klien.</p>
+        </div>
+
+        {{-- Advantage Cards Grid (3-col desktop / 2-col tablet / 1-col mobile) --}}
+        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach($reasons as $reason)
+            <div class="group relative flex flex-col rounded-[1.75rem] border border-white/10 bg-white/[0.05] p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.08] hover:border-gold/30 hover:shadow-card-hover"
+                 data-aos="fade-up"
+                 data-aos-delay="{{ $reason['delay'] }}">
+
+                {{-- Icon container --}}
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 border border-gold/20 text-gold transition-all duration-300 group-hover:bg-gold group-hover:text-navy group-hover:scale-105 group-hover:shadow-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="{{ $reason['icon'] }}"/>
+                    </svg>
                 </div>
 
-                {{-- Trust Panel (existing statistics) --}}
-                <div class="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6">
-                    <div class="h-0.5 w-10 rounded-full bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] mb-5"></div>
-                    <div class="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-                        <div>
-                            <p class="text-2xl sm:text-3xl font-bold text-white">980+</p>
-                            <p class="mt-1 text-xs text-white/40 uppercase tracking-wider">Satisfied Clients</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl sm:text-3xl font-bold text-white">1.250+</p>
-                            <p class="mt-1 text-xs text-white/40 uppercase tracking-wider">Completed Projects</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl sm:text-3xl font-bold text-[#FBBF24]">6+</p>
-                            <p class="mt-1 text-xs text-white/40 uppercase tracking-wider">Years Experience</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl sm:text-3xl font-bold text-white">99%</p>
-                            <p class="mt-1 text-xs text-white/40 uppercase tracking-wider">On-time Delivery</p>
-                        </div>
-                    </div>
+                {{-- Content --}}
+                <div class="mt-6 flex-1">
+                    <h3 class="font-heading text-lg font-bold text-cream">{{ $reason['title'] }}</h3>
+                    <p class="mt-2.5 text-sm font-inter leading-relaxed text-white/60">{{ $reason['desc'] }}</p>
                 </div>
+
+                {{-- Gold decorative line (expands on hover) --}}
+                <div class="mt-6 h-0.5 w-10 rounded-full bg-gold/40 transition-all duration-300 group-hover:w-16 group-hover:bg-gold"></div>
             </div>
+            @endforeach
+        </div>
 
-            {{-- Right Column: Feature Cards --}}
-            <div class="grid gap-4 sm:grid-cols-2">
-                @foreach($reasons as $index => $reason)
-                <div class="group relative rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:bg-white/[0.09] hover:shadow-xl {{ $index === 2 ? 'hover:border-[#FBBF24]/30' : 'hover:border-[#0B5ED7]/40' }}"
-                     data-aos="fade-up"
-                     data-aos-delay="{{ $reason['delay'] }}">
-                    <div class="flex items-start gap-4">
-                        @php $isGold = $index === 0 || $index === 3; @endphp
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl {{ $isGold ? 'bg-[#FBBF24]/20 text-[#FBBF24] group-hover:bg-[#FBBF24]' : 'bg-[#0B5ED7]/20 text-white group-hover:bg-[#0B5ED7]' }} transition-all duration-500 group-hover:scale-105 group-hover:shadow-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $reason['icon'] }}"/>
-                            </svg>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="text-lg font-semibold text-white">{{ $reason['title'] }}</h3>
-                            <p class="mt-2 text-sm leading-relaxed text-white/60">{{ $reason['desc'] }}</p>
-                        </div>
-                    </div>
+        {{-- Trust Strip (preserved statistics) --}}
+        <div class="mt-16 rounded-[1.75rem] border border-white/10 bg-white/[0.04] backdrop-blur-sm p-8 lg:p-10" data-aos="fade-up">
+            <div class="h-0.5 w-12 rounded-full bg-gradient-to-r from-gold to-gold-light mb-8"></div>
+            <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+                <div class="text-center sm:text-left">
+                    <p class="font-heading text-2xl sm:text-3xl font-bold text-cream">980+</p>
+                    <p class="mt-1 text-xs font-inter text-white/40 uppercase tracking-wider">Satisfied Clients</p>
                 </div>
-                @endforeach
+                <div class="text-center sm:text-left">
+                    <p class="font-heading text-2xl sm:text-3xl font-bold text-cream">1.250+</p>
+                    <p class="mt-1 text-xs font-inter text-white/40 uppercase tracking-wider">Completed Projects</p>
+                </div>
+                <div class="text-center sm:text-left">
+                    <p class="font-heading text-2xl sm:text-3xl font-bold text-gold">6+</p>
+                    <p class="mt-1 text-xs font-inter text-white/40 uppercase tracking-wider">Years Experience</p>
+                </div>
+                <div class="text-center sm:text-left">
+                    <p class="font-heading text-2xl sm:text-3xl font-bold text-cream">99%</p>
+                    <p class="mt-1 text-xs font-inter text-white/40 uppercase tracking-wider">On-time Delivery</p>
+                </div>
             </div>
         </div>
     </div>

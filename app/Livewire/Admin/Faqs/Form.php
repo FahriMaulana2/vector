@@ -14,7 +14,6 @@ class Form extends Component
     public $itemId = null;
     public $question = '';
     public $answer = '';
-    public $order = 0;
     public $is_active = true;
     public $isEditing = false;
 
@@ -26,7 +25,6 @@ class Form extends Component
             $this->itemId = $item->id;
             $this->question = $item->question;
             $this->answer = $item->answer;
-            $this->order = $item->order;
             $this->is_active = $item->is_active;
         }
     }
@@ -36,15 +34,18 @@ class Form extends Component
         $this->validate([
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
-            'order' => 'integer|min:0',
             'is_active' => 'boolean',
         ]);
 
         $item = $this->isEditing ? Faq::findOrFail($this->itemId) : new Faq();
         $item->question = $this->question;
         $item->answer = $this->answer;
-        $item->order = $this->order;
         $item->is_active = $this->is_active;
+
+        if (!$this->isEditing) {
+            $item->sort_order = (Faq::max('sort_order') ?? 0) + 1;
+        }
+
         $item->save();
 
         session()->flash('success', $this->isEditing ? 'FAQ berhasil diperbarui.' : 'FAQ berhasil ditambahkan.');

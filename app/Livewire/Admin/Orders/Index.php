@@ -15,19 +15,26 @@ class Index extends Component
     use WithPagination;
 
     public $search = '';
-    public $status = '';
+    public $statusFilter = '';
 
     public function render()
     {
+        $query = Order::with('product')->latest();
+
+        if ($this->search) {
+            $query->where(function($q) {
+                $q->where('order_number', 'like', '%'.$this->search.'%')
+                  ->orWhere('customer_name', 'like', '%'.$this->search.'%')
+                  ->orWhere('customer_phone', 'like', '%'.$this->search.'%');
+            });
+        }
+
+        if ($this->statusFilter) {
+            $query->where('status', $this->statusFilter);
+        }
+
         return view('livewire.admin.orders.index', [
-            'items' => Order::with('product')
-                ->when($this->search, fn($q) => $q->where(function($q) {
-                    $q->where('order_number', 'like', '%'.$this->search.'%')
-                      ->orWhere('customer_name', 'like', '%'.$this->search.'%');
-                }))
-                ->when($this->status, fn($q) => $q->where('status', $this->status))
-                ->latest()
-                ->paginate(10),
+            'orders' => $query->paginate(10),
         ]);
     }
 }

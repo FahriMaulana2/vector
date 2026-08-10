@@ -6,14 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
- * @property int $portfolio_category_id
  * @property string $title
  * @property string $slug
  * @property string|null $description
@@ -25,7 +23,6 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $is_active
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\PortfolioCategory $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PortfolioImage> $images
  */
 class Portfolio extends Model
@@ -38,7 +35,6 @@ class Portfolio extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'portfolio_category_id',
         'title',
         'slug',
         'description',
@@ -56,7 +52,6 @@ class Portfolio extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'portfolio_category_id' => 'integer',
         'project_date' => 'date',
         'is_featured' => 'boolean',
         'sort_order' => 'integer',
@@ -84,19 +79,12 @@ class Portfolio extends Model
     }
 
     /**
-     * Get the category that owns the portfolio.
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(PortfolioCategory::class, 'portfolio_category_id');
-    }
-
-    /**
      * Get the images for the portfolio.
      */
     public function images(): HasMany
     {
-        return $this->hasMany(PortfolioImage::class)->orderBy('sort_order');
+        return $this->hasMany(PortfolioImage::class)
+            ->orderBy('sort_order');
     }
 
     /**
@@ -120,15 +108,8 @@ class Portfolio extends Model
      */
     public function scopeOrdered(Builder $query): Builder
     {
-        return $query->orderBy('sort_order')->orderBy('title');
-    }
-
-    /**
-     * Scope a query to filter by category.
-     */
-    public function scopeByCategory(Builder $query, int $categoryId): Builder
-    {
-        return $query->where('portfolio_category_id', $categoryId);
+        return $query->orderBy('sort_order')
+            ->orderBy('title');
     }
 
     /**
@@ -136,7 +117,9 @@ class Portfolio extends Model
      */
     public function getImageUrlAttribute(): ?string
     {
-        return $this->image ? Storage::disk('public')->url($this->image) : null;
+        return $this->image
+            ? Storage::disk('public')->url($this->image)
+            : null;
     }
 
     /**
@@ -152,7 +135,9 @@ class Portfolio extends Model
      */
     public function coverImage(): ?PortfolioImage
     {
-        return $this->images()->where('is_primary', true)->first() 
+        return $this->images()
+            ->where('is_primary', true)
+            ->first()
             ?? $this->images()->first();
     }
 
@@ -161,6 +146,8 @@ class Portfolio extends Model
      */
     public function gallery(): \Illuminate\Database\Eloquent\Collection
     {
-        return $this->images()->where('is_primary', false)->get();
+        return $this->images()
+            ->where('is_primary', false)
+            ->get();
     }
 }

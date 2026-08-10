@@ -6,26 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->text('question');
+            $table->string('question');
             $table->text('answer');
-            $table->unsignedInteger('sort_order')->default(0)->index();
-            $table->boolean('is_active')->default(true)->index();
+            $table->integer('sort_order')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
-
-            $table->index(['sort_order', 'is_active']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('faqs');

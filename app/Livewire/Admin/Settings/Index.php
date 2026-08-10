@@ -7,6 +7,7 @@ use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Storage;
 
 #[Layout('components.layouts.admin')]
 #[Title('Pengaturan Website - Admin OMH Vector')]
@@ -14,74 +15,125 @@ class Index extends Component
 {
     use WithFileUploads;
 
-    public $company_name = '';
-    public $address = '';
-    public $phone = '';
-    public $whatsapp = '';
-    public $email = '';
-    public $facebook = '';
-    public $instagram = '';
-    public $twitter = '';
-    public $meta_title = '';
-    public $meta_description = '';
+    public $settings = [];
     public $logo;
-    public $existing_logo = null;
+    public $favicon;
 
     public function mount()
     {
-        $settings = Setting::pluck('value', 'key')->toArray();
-        $this->company_name = $settings['company_name'] ?? '';
-        $this->address = $settings['address'] ?? '';
-        $this->phone = $settings['phone'] ?? '';
-        $this->whatsapp = $settings['whatsapp'] ?? '';
-        $this->email = $settings['email'] ?? '';
-        $this->facebook = $settings['facebook'] ?? '';
-        $this->instagram = $settings['instagram'] ?? '';
-        $this->twitter = $settings['twitter'] ?? '';
-        $this->meta_title = $settings['meta_title'] ?? '';
-        $this->meta_description = $settings['meta_description'] ?? '';
-        $this->existing_logo = $settings['logo'] ?? null;
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'company_name' => 'required|string|max:255',
-            'address' => 'nullable|string',
-            'phone' => 'nullable|string|max:50',
-            'whatsapp' => 'nullable|string|max:50',
-            'email' => 'nullable|email|max:255',
-            'facebook' => 'nullable|string|max:255',
-            'instagram' => 'nullable|string|max:255',
-            'twitter' => 'nullable|string|max:255',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'logo' => 'nullable|image|max:2048',
-        ]);
-
-        $data = [
-            'company_name' => $this->company_name,
-            'address' => $this->address,
-            'phone' => $this->phone,
-            'whatsapp' => $this->whatsapp,
-            'email' => $this->email,
-            'facebook' => $this->facebook,
-            'instagram' => $this->instagram,
-            'twitter' => $this->twitter,
-            'meta_title' => $this->meta_title,
-            'meta_description' => $this->meta_description,
+        // Muat semua pengaturan ke dalam array asosiatif
+        $this->settings = Setting::all()->pluck('value', 'key')->toArray();
+        
+        // Pastikan key default ada untuk mencegah error undefined array key
+        $defaults = [
+            'company_name' => 'OMH Vector',
+            'company_email' => '',
+            'company_phone' => '',
+            'company_whatsapp' => '',
+            'company_address' => '',
+            'company_description' => '',
+'office_hours' => '',
+            'google_maps_embed' => '',
+            'facebook_url' => '',
+            'instagram_url' => '',
+            'tiktok_url' => '',
+            'youtube_url' => '',
+            'linkedin_url' => '',
+            'seo_title' => '',
+            'seo_description' => '',
+'seo_keywords' => '',
+            // Toggle CTA Produk (1 = ON, 0 = OFF). Default ON.
+            'show_product_cta' => '1',
+            // Toggle CTA Portfolio (1 = ON, 0 = OFF). Default ON.
+            'show_portfolio_cta' => '1',
         ];
 
+        foreach ($defaults as $key => $value) {
+            if (!isset($this->settings[$key])) {
+                $this->settings[$key] = $value;
+            }
+        }
+    }
+
+        public function save()
+    {
+        $this->validate([
+            'settings.company_name' => 'required|string|max:255',
+            'settings.company_email' => 'nullable|email|max:255',
+            'settings.company_phone' => 'nullable|string|max:50',
+            'settings.company_whatsapp' => 'nullable|string|max:50',
+            'settings.company_address' => 'nullable|string',
+            'settings.company_description' => 'nullable|string',
+            'settings.office_hours' => 'nullable|string|max:255',
+            'settings.google_maps_embed' => 'nullable|string',
+            'settings.facebook_url' => 'nullable|url|max:255',
+            'settings.instagram_url' => 'nullable|url|max:255',
+            'settings.tiktok_url' => 'nullable|url|max:255',
+            'settings.youtube_url' => 'nullable|url|max:255',
+            'settings.linkedin_url' => 'nullable|url|max:255',
+            'settings.seo_title' => 'nullable|string|max:255',
+            'settings.seo_description' => 'nullable|string|max:500',
+'settings.seo_keywords' => 'nullable|string|max:500',
+// Toggle CTA Produk
+            'settings.show_product_cta' => 'nullable|in:0,1',
+            // Toggle CTA Portofolio
+            'settings.show_portfolio_cta' => 'nullable|in:0,1',
+            // Mendukung PNG, JPG, JPEG, SVG, WebP (Maks 2MB)
+            'logo' => 'nullable|mimes:png,jpg,jpeg,svg,webp|max:2048', 
+            // Mendukung PNG, ICO, SVG (Maks 1MB)
+            'favicon' => 'nullable|mimes:png,ico,svg,jpg,jpeg|max:1024', 
+        ]);
+        // Simpan pengaturan teks
+        foreach ($this->settings as $key => $value) {
+            Setting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value, 'group' => $this->getGroupForKey($key)]
+            );
+        }
+
+        // Handle Upload Logo
         if ($this->logo) {
-            $data['logo'] = $this->logo->store('settings', 'public');
+            $oldLogo = Setting::where('key', 'logo')->value('value');
+            if ($oldLogo && Storage::disk('public')->exists($oldLogo)) {
+                Storage::disk('public')->delete($oldLogo);
+            }
+            $path = $this->logo->store('settings', 'public');
+            Setting::updateOrCreate(['key' => 'logo'], ['value' => $path, 'group' => 'branding']);
+            $this->logo = null;
         }
 
-        foreach ($data as $key => $value) {
-            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        // Handle Upload Favicon
+        if ($this->favicon) {
+            $oldFavicon = Setting::where('key', 'favicon')->value('value');
+            if ($oldFavicon && Storage::disk('public')->exists($oldFavicon)) {
+                Storage::disk('public')->delete($oldFavicon);
+            }
+            $path = $this->favicon->store('settings', 'public');
+            Setting::updateOrCreate(['key' => 'favicon'], ['value' => $path, 'group' => 'branding']);
+            $this->favicon = null;
         }
 
-        session()->flash('success', 'Pengaturan berhasil disimpan.');
-        $this->redirect(route('admin.settings.index'), navigate: true);
+        // Bersihkan cache agar frontend langsung menggunakan data baru
+        Setting::forgetCache();
+
+        session()->flash('success', 'Pengaturan website berhasil disimpan.');
+    }
+
+    private function getGroupForKey($key)
+    {
+        if (in_array($key, ['company_name', 'company_email', 'company_phone', 'company_whatsapp', 'company_address', 'company_description', 'office_hours', 'google_maps_embed'])) {
+            return 'company';
+        }
+        if (in_array($key, ['logo', 'favicon'])) {
+            return 'branding';
+        }
+        if (str_contains($key, 'url')) {
+            return 'social';
+        }
+        if (str_contains($key, 'seo_')) {
+            return 'seo';
+        }
+        return 'general';
     }
 
     public function render()

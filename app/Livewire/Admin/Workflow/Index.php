@@ -14,6 +14,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     public function delete($id)
     {
         $item = WorkflowStep::findOrFail($id);
@@ -24,7 +26,10 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.workflow.index', [
-            'items' => WorkflowStep::orderBy('step_order')->paginate(10),
+            'items' => WorkflowStep::when($this->search, fn($q) => $q->where('title', 'like', '%'.$this->search.'%'))
+                ->orderBy('sort_order') // ✅ PERBAIKAN: 'step_order' diganti menjadi 'sort_order'
+                ->orderBy('step_number') // Tambahan: urutkan juga berdasarkan nomor langkah
+                ->paginate(10),
         ]);
     }
 }

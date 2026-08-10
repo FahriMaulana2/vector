@@ -5,10 +5,23 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
+    /* Typography */
     --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    /* Warna Brand OMH Vector */
+    /* Warna Brand OMH Vector — Premium Creative Agency */
+    --color-navy: #0B1F2A;
+    --color-navy-deep: #102A38;
+    --color-navy-dark: #07161F;
+    --color-cream: #F5F2EA;
+    --color-light: #F7F8FA;
+    --color-gold: #D6A83D;
+    --color-gold-light: #E5C877;
+    --color-gold-dark: #B8862B;
+    --color-ink: #1B2730;
+    --color-ink-soft: #64707A;
+
+    /* Legacy aliases (admin dashboard uses these) */
     --color-primary: #1E4F91;
     --color-primary-dark: #173B6C;
     --color-primary-light: #2563EB;
@@ -24,11 +37,11 @@
     --color-info: #3B82F6;
 
     /* Premium Shadow System */
-    --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
-    --shadow-card-hover: 0 12px 48px rgba(0, 0, 0, 0.07);
-    --shadow-button: 0 4px 16px rgba(30, 79, 145, 0.15);
-    --shadow-button-hover: 0 8px 32px rgba(30, 79, 145, 0.25);
+    --shadow-soft: 0 2px 16px rgba(11, 31, 42, 0.05);
+    --shadow-card: 0 4px 24px rgba(11, 31, 42, 0.06);
+    --shadow-card-hover: 0 14px 48px rgba(11, 31, 42, 0.10);
+    --shadow-button: 0 6px 20px rgba(214, 168, 61, 0.28);
+    --shadow-button-hover: 0 10px 34px rgba(214, 168, 61, 0.38);
 
     /* Subtle Float Animation (single) */
     --animate-float-subtle: float-subtle 6s ease-in-out infinite;
@@ -43,7 +56,13 @@
     color-scheme: light;
 }
 
+/* Body default: Inter for body text, Poppins reserved for headings */
 body {
+    font-family: var(--font-inter);
+}
+
+/* Poppins heading utility */
+.font-heading {
     font-family: var(--font-sans);
 }
 
@@ -68,21 +87,21 @@ html {
 
 /* Selection */
 ::selection {
-    background-color: rgba(11, 94, 215, 0.2);
-    color: #0F172A;
+    background-color: rgba(214, 168, 61, 0.25);
+    color: #0B1F2A;
 }
 
-/* Gradient Text */
+/* Gradient Text (gold) */
 .gradient-text {
-    background: linear-gradient(135deg, #0B5ED7 0%, #2563EB 50%, #3B82F6 100%);
+    background: linear-gradient(120deg, #E5C877 0%, #D6A83D 45%, #B8862B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-/* Gradient Primary */
+/* Gradient Primary (dark navy) */
 .gradient-primary {
-    background: linear-gradient(135deg, #0B5ED7 0%, #2563EB 100%);
+    background: linear-gradient(135deg, #102A38 0%, #0B1F2A 100%);
 }
 
 /* Glassmorphism */
@@ -99,6 +118,12 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* Avatar image fallback: when an <img> fails, it is hidden and the
+   sibling initials placeholder becomes visible (used in testimonials). */
+.has-avatar-fallback .avatar-fallback {
+    display: flex;
+}
+
 /* Standardized Border Radius Helpers (12, 16, 20, 24) */
 .radius-card {
     border-radius: 24px;
@@ -112,3 +137,27 @@ html {
     border-radius: 9999px;
 }
 
+/* Graceful image fallback for public sections */
+.about-fallback-placeholder {
+    display: none;
+}
+
+.about-fallback .about-fallback-placeholder {
+    display: flex;
+}
+
+.product-fallback {
+    display: none;
+}
+
+.has-fallback .product-fallback {
+    display: flex;
+}
+
+.portfolio-fallback {
+    display: none;
+}
+
+.has-portfolio-fallback .portfolio-fallback {
+    display: flex;
+}

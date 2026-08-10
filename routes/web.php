@@ -5,6 +5,7 @@ use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Hero\Index as HeroIndex;
 use App\Livewire\Admin\Hero\Form as HeroForm;
+use App\Livewire\Admin\Hero\Edit as HeroEdit;
 use App\Livewire\Admin\About\Index as AboutIndex;
 use App\Livewire\Admin\About\Form as AboutForm;
 use App\Livewire\Admin\Services\Index as ServicesIndex;
@@ -17,23 +18,17 @@ use App\Livewire\Admin\Testimonials\Index as TestimonialsIndex;
 use App\Livewire\Admin\Testimonials\Form as TestimonialsForm;
 use App\Livewire\Admin\Faqs\Index as FaqsIndex;
 use App\Livewire\Admin\Faqs\Form as FaqsForm;
-use App\Livewire\Admin\ProductCategories\Index as ProductCategoriesIndex;
-use App\Livewire\Admin\ProductCategories\Form as ProductCategoriesForm;
 use App\Livewire\Admin\Products\Index as ProductsIndex;
 use App\Livewire\Admin\Products\Form as ProductsForm;
-use App\Livewire\Admin\PortfolioCategories\Index as PortfolioCategoriesIndex;
-use App\Livewire\Admin\PortfolioCategories\Form as PortfolioCategoriesForm;
 use App\Livewire\Admin\Portfolios\Index as PortfoliosIndex;
 use App\Livewire\Admin\Portfolios\Form as PortfoliosForm;
 use App\Livewire\Admin\Orders\Index as OrdersIndex;
 use App\Livewire\Admin\Orders\Show as OrdersShow;
-use App\Livewire\Admin\ContactMessages\Index as ContactMessagesIndex;
-use App\Livewire\Admin\ContactMessages\Show as ContactMessagesShow;
 use App\Livewire\Admin\Settings\Index as SettingsIndex;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// Frontend Routes (Tidak diubah)
+// Frontend Routes
 Route::get('/', Home::class)->name('home');
 
 // Admin Authentication Routes (Guest only)
@@ -44,19 +39,19 @@ Route::middleware('guest')->group(function () {
 // Admin Dashboard Routes (Auth required)
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', Dashboard::class)->name('dashboard');
-    
+
     Route::post('/logout', function () {
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return redirect()->route('admin.login');
-    })->name('logout');
+})->name('logout');
 
     // Kelola Website
     Route::prefix('hero')->name('hero.')->group(function () {
         Route::get('/', HeroIndex::class)->name('index');
         Route::get('/create', HeroForm::class)->name('create');
-        Route::get('/{hero}/edit', HeroForm::class)->name('edit');
+        Route::get('/{hero}/edit', HeroEdit::class)->name('edit');
     });
 
     Route::prefix('about')->name('about.')->group(function () {
@@ -96,22 +91,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     });
 
     // Katalog & Portofolio
-    Route::prefix('product-categories')->name('product-categories.')->group(function () {
-        Route::get('/', ProductCategoriesIndex::class)->name('index');
-        Route::get('/create', ProductCategoriesForm::class)->name('create');
-        Route::get('/{category}/edit', ProductCategoriesForm::class)->name('edit');
-    });
-
     Route::prefix('products')->name('products.')->group(function () {
         Route::get('/', ProductsIndex::class)->name('index');
         Route::get('/create', ProductsForm::class)->name('create');
         Route::get('/{product}/edit', ProductsForm::class)->name('edit');
-    });
-
-    Route::prefix('portfolio-categories')->name('portfolio-categories.')->group(function () {
-        Route::get('/', PortfolioCategoriesIndex::class)->name('index');
-        Route::get('/create', PortfolioCategoriesForm::class)->name('create');
-        Route::get('/{category}/edit', PortfolioCategoriesForm::class)->name('edit');
     });
 
     Route::prefix('portfolios')->name('portfolios.')->group(function () {
@@ -124,11 +107,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('orders')->name('orders.')->group(function () {
         Route::get('/', OrdersIndex::class)->name('index');
         Route::get('/{order}', OrdersShow::class)->name('show');
-    });
-
-    Route::prefix('contact-messages')->name('contact-messages.')->group(function () {
-        Route::get('/', ContactMessagesIndex::class)->name('index');
-        Route::get('/{message}', ContactMessagesShow::class)->name('show');
     });
 
     // Pengaturan

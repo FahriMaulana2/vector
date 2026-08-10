@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use App\Models\Product;
 use App\Models\Portfolio;
 use App\Models\Order;
-use App\Models\ContactMessage;
+use App\Models\Faq;
 
 #[Layout('components.layouts.admin')]
 #[Title('Dashboard - Admin OMH Vector')]
@@ -25,8 +25,7 @@ class Dashboard extends Component
             'total_orders' => Order::count(),
             'pending_orders' => Order::where('status', 'pending')->count(),
             'completed_orders' => Order::where('status', 'completed')->count(),
-            'total_messages' => ContactMessage::count(),
-            'unread_messages' => ContactMessage::where('status', 'unread')->count(),
+            'total_faqs' => Faq::count(),
         ];
 
         // Eager loading untuk mencegah N+1 query
@@ -35,10 +34,6 @@ class Dashboard extends Component
             ->take(5)
             ->get();
 
-        $recentMessages = ContactMessage::latest()
-            ->take(5)
-            ->get();
-
-        return view('livewire.admin.dashboard', compact('stats', 'recentOrders', 'recentMessages'));
+        return view('livewire.admin.dashboard', compact('stats', 'recentOrders'));
     }
 }
