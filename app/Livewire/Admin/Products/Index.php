@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Admin\Products;
 
+use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Product;
 
 #[Layout('components.layouts.admin')]
 #[Title('Produk - Admin OMH Vector')]
@@ -14,37 +16,68 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $search = '';
-    public $status = '';
+    public string $search = '';
 
-    public function delete($id)
+    public string $status = '';
+
+    /**
+     * Reset pagination ketika pencarian berubah.
+     */
+    public function updatedSearch(): void
     {
-        Product::findOrFail($id)->delete();
-
-        session()->flash('success', 'Produk berhasil dihapus.');
+        $this->resetPage();
     }
 
+    /**
+     * Reset pagination ketika filter status berubah.
+     */
+    public function updatedStatus(): void
+    {
+        $this->resetPage();
+    }
+
+    /**
+     * Hapus produk.
+     */
+    public function delete(int $id): void
+    {
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        session()->flash(
+            'success',
+            'Produk berhasil dihapus.'
+        );
+    }
+
+    /**
+     * Render halaman admin products.
+     */
     public function render()
     {
-        return view('livewire.admin.products.index', [
-            'items' => Product::query()
-                ->when(
-                    $this->search,
-                    fn ($q) => $q->where(
-                        'name',
-                        'like',
-                        '%' . $this->search . '%'
-                    )
+        $items = Product::query()
+            ->when(
+                $this->search !== '',
+                fn ($query) => $query->where(
+                    'name',
+                    'like',
+                    '%' . $this->search . '%'
                 )
-                ->when(
-                    $this->status,
-                    fn ($q) => $q->where(
-                        'is_active',
-                        $this->status === 'active'
-                    )
+            )
+            ->when(
+                $this->status !== '',
+                fn ($query) => $query->where(
+                    'is_active',
+                    $this->status === 'active'
                 )
-                ->orderBy('created_at', 'desc')
-                ->paginate(10),
-        ]);
+            )
+            ->orderByDesc('created_at')
+            ->paginate(10);
+
+        return view(
+            'livewire.admin.products.index',
+            compact('items')
+        );
     }
 }

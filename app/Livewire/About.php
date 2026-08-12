@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Models\AboutSection;
 use Livewire\Component;
 
 class About extends Component
 {
     public function render()
     {
-        return view('livewire.about');
+        $about = AboutSection::getActive();
+
+        return view('livewire.about', compact('about'));
     }
 }

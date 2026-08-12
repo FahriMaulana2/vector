@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Admin\Portfolios;
 
-use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\Portfolio;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Portfolio;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Portofolio - Admin OMH Vector')]
@@ -14,29 +16,63 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $search = '';
+    public string $search = '';
 
-    public function delete($id)
+    /**
+     * Reset pagination ketika pencarian berubah.
+     */
+    public function updatedSearch(): void
     {
-        Portfolio::findOrFail($id)->delete();
+        $this->resetPage();
+    }
 
-        session()->flash('success', 'Portofolio berhasil dihapus.');
+    /**
+     * Delete portfolio.
+     */
+    public function delete(int $id): void
+    {
+        $portfolio = Portfolio::findOrFail($id);
+
+        $portfolio->delete();
+
+        session()->flash(
+            'success',
+            'Portofolio berhasil dihapus.'
+        );
     }
 
     public function render()
     {
-        return view('livewire.admin.portfolios.index', [
-            'items' => Portfolio::query()
-                ->when(
-                    $this->search,
-                    fn ($q) => $q->where(
-                        'title',
-                        'like',
-                        '%' . $this->search . '%'
-                    )
-                )
-                ->orderBy('created_at', 'desc')
-                ->paginate(10),
-        ]);
+        $items = Portfolio::query()
+            ->with('images')
+            ->when(
+                trim($this->search) !== '',
+                function ($query) {
+                    $query->where(function ($q) {
+                        $q->where(
+                            'title',
+                            'like',
+                            '%' . trim($this->search) . '%'
+                        )
+                        ->orWhere(
+                            'client',
+                            'like',
+                            '%' . trim($this->search) . '%'
+                        )
+                        ->orWhere(
+                            'description',
+                            'like',
+                            '%' . trim($this->search) . '%'
+                        );
+                    });
+                }
+            )
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view(
+            'livewire.admin.portfolios.index',
+            compact('items')
+        );
     }
 }

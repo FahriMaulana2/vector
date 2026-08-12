@@ -6,28 +6,35 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('portfolio_images', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('portfolio_id')
-                  ->constrained('portfolios')
-                  ->cascadeOnDelete();
+                ->constrained('portfolios')
+                ->cascadeOnDelete();
+
             $table->string('image');
-            $table->unsignedInteger('sort_order')->default(0)->index();
-            $table->boolean('is_primary')->default(false)->index();
+
+            $table->string('caption')
+                ->nullable();
+
+            $table->unsignedInteger('sort_order')
+                ->default(0);
+
+            $table->boolean('is_primary')
+                ->default(false);
+
             $table->timestamps();
 
-            $table->index(['portfolio_id', 'sort_order']);
+            $table->index([
+                'portfolio_id',
+                'sort_order'
+            ]);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('portfolio_images');

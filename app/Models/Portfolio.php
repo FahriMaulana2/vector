@@ -10,30 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
-/**
- * @property int $id
- * @property string $title
- * @property string $slug
- * @property string|null $description
- * @property string|null $image
- * @property string|null $client
- * @property \Carbon\Carbon|null $project_date
- * @property bool $is_featured
- * @property int $sort_order
- * @property bool $is_active
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PortfolioImage> $images
- */
 class Portfolio extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'title',
         'slug',
@@ -46,11 +26,6 @@ class Portfolio extends Model
         'is_active',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'project_date' => 'date',
         'is_featured' => 'boolean',
@@ -58,16 +33,13 @@ class Portfolio extends Model
         'is_active' => 'boolean',
     ];
 
-    /**
-     * Boot the model.
-     */
     protected static function boot(): void
     {
         parent::boot();
 
         static::creating(function (Portfolio $portfolio): void {
             if (empty($portfolio->sort_order)) {
-                $portfolio->sort_order = static::max('sort_order') + 1;
+                $portfolio->sort_order = ((int) static::max('sort_order')) + 1;
             }
         });
 
@@ -75,46 +47,41 @@ class Portfolio extends Model
             if ($portfolio->image && Storage::disk('public')->exists($portfolio->image)) {
                 Storage::disk('public')->delete($portfolio->image);
             }
+
+            foreach ($portfolio->images as $image) {
+                if (
+                    $image->image &&
+                    Storage::disk('public')->exists($image->image)
+                ) {
+                    Storage::disk('public')->delete($image->image);
+                }
+            }
         });
     }
 
-    /**
-     * Get the images for the portfolio.
-     */
     public function images(): HasMany
     {
         return $this->hasMany(PortfolioImage::class)
             ->orderBy('sort_order');
     }
 
-    /**
-     * Scope a query to only include active portfolios.
-     */
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);
     }
 
-    /**
-     * Scope a query to only include featured portfolios.
-     */
     public function scopeFeatured(Builder $query): Builder
     {
         return $query->where('is_featured', true);
     }
 
-    /**
-     * Scope a query to order portfolios by sort order.
-     */
     public function scopeOrdered(Builder $query): Builder
     {
-        return $query->orderBy('sort_order')
+        return $query
+            ->orderBy('sort_order')
             ->orderBy('title');
     }
 
-    /**
-     * Get the primary image URL.
-     */
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
@@ -122,17 +89,11 @@ class Portfolio extends Model
             : null;
     }
 
-    /**
-     * Get the formatted project date.
-     */
     public function getFormattedProjectDateAttribute(): ?string
     {
         return $this->project_date?->format('F Y');
     }
 
-    /**
-     * Get the primary image or first gallery image.
-     */
     public function coverImage(): ?PortfolioImage
     {
         return $this->images()
@@ -141,9 +102,6 @@ class Portfolio extends Model
             ?? $this->images()->first();
     }
 
-    /**
-     * Get all gallery images excluding primary.
-     */
     public function gallery(): \Illuminate\Database\Eloquent\Collection
     {
         return $this->images()

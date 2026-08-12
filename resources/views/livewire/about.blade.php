@@ -1,7 +1,15 @@
 <?php
+$about = $about ?? \App\Models\AboutSection::getActive();
+
 $aboutData = [
-    'image' => 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80',
-    'imageAlt' => 'OMH Vector creative team in modern printing studio',
+    'image' => $about?->getImageUrlAttribute() ?? 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80',
+    'imageAlt' => $about?->title ?? 'OMH Vector creative team in modern printing studio',
+    'title' => $about?->title ?? 'Tentang OMH Vector',
+    'subtitle' => $about?->subtitle ?? 'Mitra Digital Printing & Branding Terpercaya',
+    'description' => $about?->description ?? 'Kami adalah creative agency yang fokus pada digital printing, desain grafis, dan branding. Dengan pengalaman lebih dari 6 tahun, kami telah membantu 980+ klien dari UMKM hingga korporasi.',
+    'vision' => $about?->vision ?? 'Menjadi creative printing agency terdepan yang dikenal karena inovasi, kualitas, dan pelayanan prima.',
+    'mission' => $about?->mission ?? 'Memberikan layanan cetak dan branding berkualitas tinggi dengan harga terjangkau dan tepat waktu.',
+    'yearsExperience' => (int) ($about?->years_experience ?? 6),
 ];
 ?>
 
@@ -43,7 +51,7 @@ $aboutData = [
                 {{-- Floating Experience Card --}}
                 <div class="absolute -bottom-8 -left-4 md:-left-8 bg-white rounded-2xl px-6 py-5 shadow-card-hover border border-white/60 z-20 animate-float-subtle">
                     <div class="flex items-center gap-4">
-                        <div class="flex items-center justify-center w-14 h-14 rounded-xl gradient-primary text-white font-heading font-bold text-xl shadow-button">6+</div>
+                        <div class="flex items-center justify-center w-14 h-14 rounded-xl gradient-primary text-white font-heading font-bold text-xl shadow-button">{{ $aboutData['yearsExperience'] }}+</div>
                         <div>
                             <p class="font-heading font-semibold text-navy">Tahun Pengalaman</p>
                             <p class="text-xs font-inter text-ink-soft">Digital Printing &amp; Branding</p>
@@ -63,13 +71,12 @@ $aboutData = [
                 <div class="space-y-4">
                     <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft">
                         <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                        <span class="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-navy">Tentang OMH Vector</span>
+                        <span class="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-navy">{{ $aboutData['title'] }}</span>
                     </span>
                     <h2 class="font-heading text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-navy leading-[1.1]">
-                        Mitra Digital Printing &amp; Branding
-                        <span class="gradient-text">Terpercaya</span>
+                        {{ $aboutData['subtitle'] }}
                     </h2>
-                    <p class="max-w-2xl text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Kami adalah creative agency yang fokus pada digital printing, desain grafis, dan branding. Dengan pengalaman lebih dari 6 tahun, kami telah membantu 980+ klien dari UMKM hingga korporasi.</p>
+                    <p class="max-w-2xl text-base lg:text-lg font-inter leading-relaxed text-ink-soft">{{ $aboutData['description'] }}</p>
                 </div>
 
                 {{-- Mission & Vision Cards --}}
@@ -79,14 +86,14 @@ $aboutData = [
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         </div>
                         <h3 class="mt-4 font-heading text-lg font-semibold text-navy">Misi Kami</h3>
-                        <p class="mt-2 text-sm font-inter leading-relaxed text-ink-soft">Memberikan layanan cetak dan branding berkualitas tinggi dengan harga terjangkau dan tepat waktu.</p>
+                        <p class="mt-2 text-sm font-inter leading-relaxed text-ink-soft">{{ $aboutData['mission'] }}</p>
                     </div>
                     <div class="group rounded-2xl border border-white/70 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
                         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/15 text-gold-dark transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         </div>
                         <h3 class="mt-4 font-heading text-lg font-semibold text-navy">Visi Kami</h3>
-                        <p class="mt-2 text-sm font-inter leading-relaxed text-ink-soft">Menjadi creative printing agency terdepan yang dikenal karena inovasi, kualitas, dan pelayanan prima.</p>
+                        <p class="mt-2 text-sm font-inter leading-relaxed text-ink-soft">{{ $aboutData['vision'] }}</p>
                     </div>
                 </div>
 
