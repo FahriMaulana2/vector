@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Cache;
  * @property string $key
  * @property string|null $value
  * @property string $group
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Setting extends Model
 {
@@ -110,10 +111,11 @@ class Setting extends Model
     public static function getLogoUrl(): ?string
     {
         $logo = static::get('logo');
-        return $logo ? asset('storage/' . $logo) : null;
+
+        return $logo ? asset('storage/'.$logo) : null;
     }
 
-/**
+    /**
      * Get company description from settings.
      */
     public static function getDescription(): ?string
@@ -138,19 +140,45 @@ class Setting extends Model
     }
 
     /**
+     * Normalize a phone number to standard international format (without +).
+     */
+    public static function normalizePhoneNumber(?string $number): ?string
+    {
+        if (! $number) {
+            return null;
+        }
+
+        // Strip all non-digit characters
+        $digits = preg_replace('/\D/', '', $number);
+        if (! $digits) {
+            return null;
+        }
+
+        // Convert leading 0 to 62 for Indonesian numbers
+        if (str_starts_with($digits, '0')) {
+            $digits = '62'.substr($digits, 1);
+        }
+
+        return $digits;
+    }
+
+    /**
      * Get formatted WhatsApp link.
      */
-    public static function getWhatsAppLink(): string
+    public static function getWhatsAppLink(?string $customMessage = null): string
     {
         $number = static::getWhatsAppNumber();
-        if (!$number) {
+        $normalized = static::normalizePhoneNumber($number);
+        if (! $normalized) {
             return '#';
         }
 
-        // Normalize: strip all non-digit characters (e.g. "+", "-", spaces).
-        $normalized = preg_replace('/\D/', '', $number);
+        $url = "https://wa.me/{$normalized}";
+        if ($customMessage !== null && $customMessage !== '') {
+            $url .= '?text='.rawurlencode($customMessage);
+        }
 
-        return $normalized ? "https://wa.me/{$normalized}" : '#';
+        return $url;
     }
 
     /**
@@ -190,7 +218,7 @@ class Setting extends Model
      */
     public static function getSocial(string $platform): ?string
     {
-        return static::get($platform . '_url');
+        return static::get($platform.'_url');
     }
 
     /**
@@ -290,6 +318,7 @@ class Setting extends Model
     public static function getFaviconUrl(): ?string
     {
         $favicon = static::get('favicon');
-        return $favicon ? asset('storage/' . $favicon) : null;
+
+        return $favicon ? asset('storage/'.$favicon) : null;
     }
 }

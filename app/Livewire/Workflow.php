@@ -2,12 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\WorkflowStep;
 use Livewire\Component;
 
 class Workflow extends Component
 {
     public function render()
     {
-        return view('livewire.workflow');
+        $steps = WorkflowStep::active()
+            ->ordered()
+            ->get();
+
+        return view('livewire.workflow', compact('steps'));
     }
 }

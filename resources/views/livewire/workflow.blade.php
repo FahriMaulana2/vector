@@ -1,40 +1,35 @@
-<?php
-$steps = [
-    [
-        'num' => '01',
-        'title' => 'Consultation',
-        'desc' => 'Diskusi kebutuhan, konsep, dan target produksi Anda bersama tim kami untuk memahami visi Anda.',
-        'duration' => '1–2 Hours',
-        'icon' => 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
-        'delay' => 100,
-    ],
-    [
-        'num' => '02',
-        'title' => 'Design',
-        'desc' => 'Pembuatan desain visual siap cetak sesuai brief dan brand guideline dengan sentuhan kreatif.',
-        'duration' => '1–3 Days',
-        'icon' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
-        'delay' => 200,
-    ],
-    [
-        'num' => '03',
-        'title' => 'Production',
-        'desc' => 'Proses cetak dengan mesin modern dan quality control ketat untuk hasil yang sempurna.',
-        'duration' => '3–7 Days',
-        'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-        'delay' => 300,
-    ],
-    [
-        'num' => '04',
-        'title' => 'Delivery',
-        'desc' => 'Pengiriman tepat waktu dengan packaging aman, siap digunakan untuk kebutuhan bisnis Anda.',
-        'duration' => '1–2 Days',
-        'icon' => 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4',
-        'delay' => 400,
-    ],
-];
-?>
+@php
+    $heroicons = config('heroicons.icons', []);
+    $defaultDurations = ['1–2 Hours', '1–3 Days', '3–7 Days', '1–2 Days'];
 
+    $steps = collect($steps ?? [])->map(function ($step, $index) use ($heroicons, $defaultDurations) {
+        $step = is_object($step) ? $step : (object) $step;
+
+        $iconKey = $step->icon ?? null;
+        $iconSvg = null;
+
+        if ($iconKey && isset($heroicons[$iconKey])) {
+            $iconSvg = $heroicons[$iconKey]['svg'];
+        } elseif (is_string($step->icon) && str_starts_with(trim($step->icon), 'M')) {
+            // legacy: stored raw path d string
+            $iconSvg = '<path stroke-linecap="round" stroke-linejoin="round" d="' . e($step->icon) . '" />';
+        } else {
+            // fallback: first default path
+            $iconSvg = '<path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />';
+        }
+
+        return [
+            'num' => str_pad((string) ($step->step_number ?? $index + 1), 2, '0', STR_PAD_LEFT),
+            'title' => $step->title ?? 'Workflow',
+            'desc' => $step->description ?? '',
+            'duration' => $step->duration ?? $defaultDurations[$index] ?? 'Custom',
+            'icon_svg' => $iconSvg,
+            'delay' => 100 + ($index * 100),
+        ];
+    })->values();
+@endphp
+
+@if($steps->isNotEmpty())
 <section id="workflow" class="relative overflow-hidden bg-cream py-20 lg:py-28">
     {{-- Subtle decorative background --}}
     <div class="absolute inset-0 pointer-events-none">
@@ -83,9 +78,7 @@ $steps = [
                         {{-- Icon + duration row --}}
                         <div class="flex items-center justify-between">
                             <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 border border-gold/20 text-navy transition-all duration-300 group-hover:bg-gold/15 group-hover:text-gold-dark">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="{{ $step['icon'] }}" />
-                                </svg>
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">{!! $step['icon_svg'] !!}</svg>
                             </div>
                             <span class="rounded-full bg-cream px-3 py-1 text-[10px] font-heading font-semibold text-ink-soft border border-gold/20">{{ $step['duration'] }}</span>
                         </div>
@@ -122,3 +115,4 @@ $steps = [
         </div>
     </div>
 </section>
+@endif

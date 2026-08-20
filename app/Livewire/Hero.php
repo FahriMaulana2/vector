@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\HeroSection;
 use App\Models\Setting;
+use Livewire\Component;
 
 class Hero extends Component
 {
@@ -28,47 +28,29 @@ class Hero extends Component
             $primaryCtaLink = $hero->button_link ?: '#contact';
         }
 
-        // Slide utama dari database (1 slide hero aktif),
-        // diikuti 2 slide fallback agar slider tetap berjalan seperti desain lama.
-        $slides = [];
-
-        if ($hero && $hero->getImageUrlAttribute()) {
-            $slides[] = [
-                'img' => $hero->getImageUrlAttribute(),
-                'alt' => $hero->title,
-                'label' => $hero->subtitle ?: 'Digital Printing & Branding',
-            ];
+        // Gambar tunggal dari database (HeroSection aktif di admin)
+        $heroImage = null;
+        if ($hero && $hero->image_url) {
+            $heroImage = $hero->image_url;
         } else {
-            $slides[] = [
-                'img' => 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80',
-                'alt' => 'Digital printing equipment in modern office',
-                'label' => 'Offset & Digital Printing',
-            ];
+            $heroImage = 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80';
         }
 
-        // Fallback slide kedua & ketiga (desain lama)
-        $slides[] = [
-            'img' => 'https://images.unsplash.com/photo-1566491561884-8969e5bb19d9?auto=format&fit=crop&w=900&q=80',
-            'alt' => 'Creative studio workspace with design tools',
-            'label' => 'Creative Studio Workspace',
-        ];
-        $slides[] = [
-            'img' => 'https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=900&q=80',
-            'alt' => 'Premium custom packaging products',
-            'label' => 'Premium Packaging',
-        ];
+        $heroImageAlt = $hero?->title ?: 'OMH Vector Digital Printing';
+        $heroBadge = $hero?->subtitle ?: 'Digital Printing & Branding';
 
-        // WhatsApp link dari Settings (STEP 2) untuk CTA
+        // WhatsApp link dari Settings untuk CTA
         $whatsappLink = Setting::getWhatsAppLink();
 
         return view('livewire.hero', [
             'hero' => $hero,
             'statistics' => $statistics,
-            'slides' => $slides,
+            'heroImage' => $heroImage,
+            'heroImageAlt' => $heroImageAlt,
+            'heroBadge' => $heroBadge,
             'primaryCta' => $primaryCta,
             'primaryCtaLink' => $primaryCtaLink,
             'whatsappLink' => $whatsappLink,
         ]);
     }
 }
-

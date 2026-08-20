@@ -36,7 +36,6 @@
                     ['name' => 'Layanan', 'route' => 'admin.services.index', 'icon' => 'briefcase', 'badge' => null],
                     ['name' => 'Mengapa Memilih Kami', 'route' => 'admin.why-choose-us.index', 'icon' => 'star', 'badge' => null],
                     ['name' => 'Alur Kerja', 'route' => 'admin.workflow.index', 'icon' => 'layers', 'badge' => null],
-                    ['name' => 'Testimoni', 'route' => 'admin.testimonials.index', 'icon' => 'message-square', 'badge' => null],
                     ['name' => 'FAQ', 'route' => 'admin.faqs.index', 'icon' => 'help-circle', 'badge' => null],
                 ],
 'KATALOG & PORTOFOLIO' => [

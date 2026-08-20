@@ -1,35 +1,35 @@
 <?php
 
-use App\Livewire\Home;
+use App\Livewire\Admin\About\Form as AboutForm;
+use App\Livewire\Admin\About\Index as AboutIndex;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\Hero\Index as HeroIndex;
-use App\Livewire\Admin\Hero\Form as HeroForm;
-use App\Livewire\Admin\Hero\Edit as HeroEdit;
-use App\Livewire\Admin\About\Index as AboutIndex;
-use App\Livewire\Admin\About\Form as AboutForm;
-use App\Livewire\Admin\Services\Index as ServicesIndex;
-use App\Livewire\Admin\Services\Form as ServicesForm;
-use App\Livewire\Admin\WhyChooseUs\Index as WhyChooseUsIndex;
-use App\Livewire\Admin\WhyChooseUs\Form as WhyChooseUsForm;
-use App\Livewire\Admin\Workflow\Index as WorkflowIndex;
-use App\Livewire\Admin\Workflow\Form as WorkflowForm;
-use App\Livewire\Admin\Testimonials\Index as TestimonialsIndex;
-use App\Livewire\Admin\Testimonials\Form as TestimonialsForm;
-use App\Livewire\Admin\Faqs\Index as FaqsIndex;
 use App\Livewire\Admin\Faqs\Form as FaqsForm;
-use App\Livewire\Admin\Products\Index as ProductsIndex;
-use App\Livewire\Admin\Products\Form as ProductsForm;
-use App\Livewire\Admin\Portfolios\Index as PortfoliosIndex;
-use App\Livewire\Admin\Portfolios\Form as PortfoliosForm;
+use App\Livewire\Admin\Faqs\Index as FaqsIndex;
+use App\Livewire\Admin\Hero\Edit as HeroEdit;
+use App\Livewire\Admin\Hero\Form as HeroForm;
+use App\Livewire\Admin\Hero\Index as HeroIndex;
 use App\Livewire\Admin\Orders\Index as OrdersIndex;
 use App\Livewire\Admin\Orders\Show as OrdersShow;
+use App\Livewire\Admin\Portfolios\Form as PortfoliosForm;
+use App\Livewire\Admin\Portfolios\Index as PortfoliosIndex;
+use App\Livewire\Admin\Products\Form as ProductsForm;
+use App\Livewire\Admin\Products\Index as ProductsIndex;
+use App\Livewire\Admin\Services\Form as ServicesForm;
+use App\Livewire\Admin\Services\Index as ServicesIndex;
 use App\Livewire\Admin\Settings\Index as SettingsIndex;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\WhyChooseUs\Form as WhyChooseUsForm;
+use App\Livewire\Admin\WhyChooseUs\Index as WhyChooseUsIndex;
+use App\Livewire\Admin\Workflow\Form as WorkflowForm;
+use App\Livewire\Admin\Workflow\Index as WorkflowIndex;
+use App\Livewire\Home;
+use App\Livewire\Products;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
 Route::get('/', Home::class)->name('home');
+Route::get('/products', Products::class)->name('products.index');
 
 // Admin Authentication Routes (Guest only)
 Route::middleware('guest')->group(function () {
@@ -44,8 +44,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+
         return redirect()->route('admin.login');
-})->name('logout');
+    })->name('logout');
 
     // Kelola Website
     Route::prefix('hero')->name('hero.')->group(function () {
@@ -76,12 +77,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/', WorkflowIndex::class)->name('index');
         Route::get('/create', WorkflowForm::class)->name('create');
         Route::get('/{workflow}/edit', WorkflowForm::class)->name('edit');
-    });
-
-    Route::prefix('testimonials')->name('testimonials.')->group(function () {
-        Route::get('/', TestimonialsIndex::class)->name('index');
-        Route::get('/create', TestimonialsForm::class)->name('create');
-        Route::get('/{testimonial}/edit', TestimonialsForm::class)->name('edit');
     });
 
     Route::prefix('faqs')->name('faqs.')->group(function () {

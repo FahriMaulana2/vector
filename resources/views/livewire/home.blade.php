@@ -13,8 +13,6 @@
 
     <livewire:workflow />
 
-    <livewire:testimonials />
-
     <livewire:faq />
 
     <livewire:contact />

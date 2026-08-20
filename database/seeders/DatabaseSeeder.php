@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             WhyChooseUsSeeder::class,
             WorkflowStepSeeder::class,
-            TestimonialSeeder::class,
             // FaqSeeder::class, <-- SUDAH DIHAPUS
             SettingSeeder::class,
         ]);

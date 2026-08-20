@@ -26,7 +26,7 @@ $heroDescription = $hero?->description;
         <div class="absolute right-8 top-0 h-40 w-px bg-gradient-to-b from-transparent via-gold/30 to-transparent"></div>
     </div>
 
-    <div class="relative z-10 flex items-center h-full min-h-[640px] pt-[80px] lg:pt-[96px]">
+    <div class="relative z-10 flex items-center h-full min-h-[640px] pt-[80px] pb-16 lg:pt-[96px] lg:pb-20">
         <div class="w-full max-w-7xl mx-auto px-5 md:px-6 lg:px-8">
             <div class="grid lg:grid-cols-[0.5fr_0.5fr] gap-14 lg:gap-16 xl:gap-20 items-center">
                 {{-- Left Content --}}
@@ -73,21 +73,21 @@ $heroDescription = $hero?->description;
 
                     {{-- Statistics (premium compact cards) --}}
                     @if($statistics->isNotEmpty())
-                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-cream/10">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-cream/10">
                         @foreach($statistics as $stat)
-                        <div class="rounded-2xl border border-cream/10 {{ $loop->iteration === 2 ? 'hidden sm:block text-center' : '' }} {{ $loop->iteration === 3 ? 'border-gold/20 bg-gold/[0.06] text-right' : 'bg-cream/[0.04] backdrop-blur-sm' }} px-4 py-3" data-aos="fade-up" data-aos-delay="{{ 200 + ($loop->iteration * 100) }}">
-                            <p class="font-heading text-xl md:text-2xl font-bold {{ $loop->iteration === 2 ? 'text-cream' : 'text-gold' }}">{{ $stat->value }}</p>
+                        <div class="rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm px-3.5 py-3 transition-all duration-300 hover:border-gold/30 hover:bg-cream/[0.07]" data-aos="fade-up" data-aos-delay="{{ 150 + ($loop->iteration * 50) }}">
+                            <p class="font-heading text-xl md:text-2xl font-bold text-gold">{{ $stat->value }}</p>
                             <p class="text-[11px] font-inter text-cream/50 mt-1 uppercase tracking-wider font-medium">{{ $stat->label }}</p>
                         </div>
                         @endforeach
                     </div>
                     @else
-                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-cream/10">
+                    <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-6 border-t border-cream/10">
                         <div class="rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm px-4 py-3" data-aos="fade-up" data-aos-delay="200">
                             <p class="font-heading text-xl md:text-2xl font-bold text-gold">1.250+</p>
                             <p class="text-[11px] font-inter text-cream/50 mt-1 uppercase tracking-wider font-medium">Projects</p>
                         </div>
-                        <div class="hidden sm:block rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm px-4 py-3 text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm px-4 py-3 text-center" data-aos="fade-up" data-aos-delay="300">
                             <p class="font-heading text-xl md:text-2xl font-bold text-cream">980+</p>
                             <p class="text-[11px] font-inter text-cream/50 mt-1 uppercase tracking-wider font-medium">Clients</p>
                         </div>
@@ -99,23 +99,8 @@ $heroDescription = $hero?->description;
                     @endif
                 </div>
 
-                {{-- Right Content --}}
-                <div class="relative z-10 lg:pl-4" data-aos="fade-left" data-aos-delay="200"
-x-data="{
-                        current: 0,
-                        images: {{ json_encode(array_column($slides, 'img')) }},
-                        labels: {{ json_encode(array_column($slides, 'label')) }},
-                        interval: null,
-                        init() { this.start(); },
-                        start() { this.interval = setInterval(() => { this.next(); }, 5000); },
-                        stop() { clearInterval(this.interval); },
-                        next() { this.current = (this.current + 1) % this.images.length; },
-                        prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; },
-                        goTo(i) { this.current = i; }
-                     }"
-                     @mouseenter="stop()"
-                     @mouseleave="start()">
-
+                {{-- Right Content: Single Hero Image from Database/Admin --}}
+                <div class="relative z-10 lg:pl-4" data-aos="fade-left" data-aos-delay="200">
                     {{-- Glow behind image --}}
                     <div class="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-gold/20 to-navy-deep/40 blur-2xl opacity-70 pointer-events-none"></div>
 
@@ -124,28 +109,25 @@ x-data="{
                         {{-- Image Frame --}}
                         <div class="relative rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-gold/20 bg-navy-deep">
                             <div class="relative aspect-[4/5] lg:aspect-[3/4] w-full overflow-hidden">
-                                @foreach($slides as $index => $slide)
-                                <img src="{{ $slide['img'] }}"
-                                     alt="{{ $slide['alt'] }}"
-                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out"
-                                     :class="{ 'opacity-100 scale-100 z-10': current === {{ $index }}, 'opacity-0 scale-105 z-0': current !== {{ $index }} }" />
-                                @endforeach
+                                <img src="{{ $heroImage }}"
+                                     alt="{{ $heroImageAlt }}"
+                                     class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
 
                                 {{-- Bottom gradient overlay --}}
                                 <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy/80 to-transparent z-20"></div>
 
-{{-- Slide label (dynamic via Alpine) --}}
-                                <div class="absolute bottom-5 left-5 z-30">
-                                    <span class="inline-flex items-center gap-2 rounded-full bg-navy/40 backdrop-blur-md px-4 py-1.5 text-[11px] font-heading font-semibold text-cream border border-gold/30">
+                                {{-- Subtitle / Category label --}}
+                                <div class="absolute top-5 left-5 z-30">
+                                    <span class="inline-flex items-center gap-2 rounded-full bg-navy/60 backdrop-blur-md px-4 py-1.5 text-[11px] font-heading font-semibold text-cream border border-gold/30 shadow-md">
                                         <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                                        <span x-text="labels[current]">Digital Printing</span>
+                                        <span>{{ $heroBadge }}</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         {{-- Floating Card: Top Right (Rating) --}}
-                        <div class="absolute -top-5 right-2 lg:-right-4 z-30 hidden sm:flex items-center gap-3 rounded-2xl bg-navy/50 backdrop-blur-lg border border-gold/25 px-4 py-3 shadow-xl animate-float-subtle">
+                        <div class="absolute -top-5 right-2 lg:-right-4 z-30 hidden sm:flex items-center gap-3 rounded-2xl bg-navy/60 backdrop-blur-lg border border-gold/25 px-4 py-3 shadow-xl animate-float-subtle">
                             <div class="flex items-center justify-center w-9 h-9 rounded-xl bg-gold/20 text-gold">
                                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             </div>
@@ -156,7 +138,7 @@ x-data="{
                         </div>
 
                         {{-- Floating Card: Bottom Left (Projects) --}}
-                        <div class="absolute -bottom-6 left-2 lg:-left-4 z-30 hidden sm:flex items-center gap-3 rounded-2xl bg-navy/50 backdrop-blur-lg border border-gold/25 px-4 py-3 shadow-xl">
+                        <div class="absolute -bottom-5 left-2 lg:-left-4 z-30 hidden sm:flex items-center gap-3 rounded-2xl bg-navy/70 backdrop-blur-lg border border-gold/25 px-4 py-3 shadow-xl">
                             <div class="flex items-center justify-center w-9 h-9 rounded-xl bg-gold/25 text-gold">
                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             </div>
@@ -164,31 +146,6 @@ x-data="{
                                 <p class="font-heading text-sm font-bold text-cream leading-none">1.250+</p>
                                 <p class="text-[10px] font-inter text-cream/50 mt-1">Projects Done</p>
                             </div>
-                        </div>
-                    </div>
-
-                    {{-- Slider Controls (relative z-20, above glow + floating cards) --}}
-                    <div class="relative z-20 mt-6 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            @foreach($slides as $index => $slide)
-                            <button @click="goTo({{ $index }})"
-                                    class="h-2 rounded-full transition-all duration-300"
-                                    :class="current === {{ $index }} ? 'w-7 bg-gold' : 'w-2 bg-cream/20 hover:bg-cream/40'"
-                                    :aria-label="'Go to slide {{ $index + 1 }}'">
-                            </button>
-                            @endforeach
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button @click="prev()"
-                                    class="flex items-center justify-center w-9 h-9 rounded-full border border-cream/15 bg-cream/[0.06] text-cream/60 transition-all duration-200 hover:bg-gold hover:text-navy hover:border-gold active:scale-90"
-                                    aria-label="Previous slide">
-                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                            </button>
-                            <button @click="next()"
-                                    class="flex items-center justify-center w-9 h-9 rounded-full border border-cream/15 bg-cream/[0.06] text-cream/60 transition-all duration-200 hover:bg-gold hover:text-navy hover:border-gold active:scale-90"
-                                    aria-label="Next slide">
-                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                            </button>
                         </div>
                     </div>
                 </div>
