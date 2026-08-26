@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Services;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\Service;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Service;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form Layanan - Admin OMH Vector')]
@@ -15,11 +15,17 @@ class Form extends Component
     use WithFileUploads;
 
     public $itemId = null;
+
     public $name = '';
+
     public $description = '';
+
     public $icon;
+
     public $existing_icon = null;
+
     public $is_active = true;
+
     public $isEditing = false;
 
     public function mount($service = null)
@@ -44,7 +50,7 @@ class Form extends Component
             'is_active' => 'boolean',
         ]);
 
-        $item = $this->isEditing ? Service::findOrFail($this->itemId) : new Service();
+        $item = $this->isEditing ? Service::findOrFail($this->itemId) : new Service;
         $item->name = $this->name;
         $item->description = $this->description;
         $item->is_active = $this->is_active;
@@ -56,6 +62,7 @@ class Form extends Component
         $item->save();
 
         session()->flash('success', $this->isEditing ? 'Layanan berhasil diperbarui.' : 'Layanan berhasil ditambahkan.');
+
         return $this->redirect(route('admin.services.index'), navigate: true);
     }
 

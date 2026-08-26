@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\About;
 
-use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\AboutSection;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\AboutSection;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Tentang Kami - Admin OMH Vector')]

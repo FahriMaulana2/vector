@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Livewire\Admin\Products;
 
 use App\Models\Product;
-use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Produk - Admin OMH Vector')]
@@ -62,7 +62,7 @@ class Index extends Component
                 fn ($query) => $query->where(
                     'name',
                     'like',
-                    '%' . $this->search . '%'
+                    '%'.$this->search.'%'
                 )
             )
             ->when(

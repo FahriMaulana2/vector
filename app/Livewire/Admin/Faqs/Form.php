@@ -2,19 +2,23 @@
 
 namespace App\Livewire\Admin\Faqs;
 
-use Livewire\Component;
+use App\Models\Faq;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Faq;
+use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form FAQ - Admin OMH Vector')]
 class Form extends Component
 {
     public $itemId = null;
+
     public $question = '';
+
     public $answer = '';
+
     public $is_active = true;
+
     public $isEditing = false;
 
     public function mount($faq = null)
@@ -37,18 +41,19 @@ class Form extends Component
             'is_active' => 'boolean',
         ]);
 
-        $item = $this->isEditing ? Faq::findOrFail($this->itemId) : new Faq();
+        $item = $this->isEditing ? Faq::findOrFail($this->itemId) : new Faq;
         $item->question = $this->question;
         $item->answer = $this->answer;
         $item->is_active = $this->is_active;
 
-        if (!$this->isEditing) {
+        if (! $this->isEditing) {
             $item->sort_order = (Faq::max('sort_order') ?? 0) + 1;
         }
 
         $item->save();
 
         session()->flash('success', $this->isEditing ? 'FAQ berhasil diperbarui.' : 'FAQ berhasil ditambahkan.');
+
         return $this->redirect(route('admin.faqs.index'), navigate: true);
     }
 

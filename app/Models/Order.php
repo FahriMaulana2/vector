@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 /**
@@ -21,14 +23,14 @@ use Illuminate\Support\Str;
  * @property int $quantity
  * @property string|null $notes
  * @property string|null $attachment_path
- * @property \Carbon\Carbon|null $estimated_completion_date
- * @property \Carbon\Carbon|null $completed_at
+ * @property Carbon|null $estimated_completion_date
+ * @property Carbon|null $completed_at
  * @property string|null $admin_notes
  * @property string $status
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\Product|null $product
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderStatusHistory> $statusHistories
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Product|null $product
+ * @property-read Collection<int, OrderStatusHistory> $statusHistories
  */
 class Order extends Model
 {
@@ -135,7 +137,7 @@ class Order extends Model
     {
         $date = now()->format('Ymd');
         $prefix = 'ORD';
-        
+
         do {
             $random = strtoupper(Str::random(6));
             $orderNumber = "{$prefix}-{$date}-{$random}";
@@ -150,7 +152,7 @@ class Order extends Model
     public function changeStatus(string $newStatus, ?string $notes = null, ?int $userId = null): void
     {
         $oldStatus = $this->status;
-        
+
         $this->update([
             'status' => $newStatus,
             'completed_at' => $newStatus === 'completed' ? now() : $this->completed_at,
@@ -202,7 +204,7 @@ class Order extends Model
      */
     public function getStatusBadgeColorAttribute(): string
     {
-        return match($this->status) {
+        return match ($this->status) {
             'pending' => 'warning',
             'confirmed' => 'info',
             'design_process' => 'primary',

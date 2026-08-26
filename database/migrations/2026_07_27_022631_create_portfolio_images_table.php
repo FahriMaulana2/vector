@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->index([
                 'portfolio_id',
-                'sort_order'
+                'sort_order',
             ]);
         });
     }

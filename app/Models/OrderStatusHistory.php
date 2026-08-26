@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\User;
 
 /**
  * @property int $id
@@ -16,9 +17,9 @@ use App\Models\User;
  * @property string $new_status
  * @property int|null $changed_by
  * @property string|null $notes
- * @property \Carbon\Carbon $created_at
- * @property-read \App\Models\Order $order
- * @property-read \App\Models\User|null $changedByUser
+ * @property Carbon $created_at
+ * @property-read Order $order
+ * @property-read User|null $changedByUser
  */
 class OrderStatusHistory extends Model
 {
@@ -87,7 +88,7 @@ class OrderStatusHistory extends Model
     /**
      * Scope a query to filter by order.
      */
-    public function scopeForOrder(\Illuminate\Database\Eloquent\Builder $query, int $orderId): \Illuminate\Database\Eloquent\Builder
+    public function scopeForOrder(Builder $query, int $orderId): Builder
     {
         return $query->where('order_id', $orderId);
     }
@@ -95,7 +96,7 @@ class OrderStatusHistory extends Model
     /**
      * Scope a query to order by latest.
      */
-    public function scopeLatest(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
+    public function scopeLatest(Builder $query): Builder
     {
         return $query->orderBy('created_at', 'desc');
     }

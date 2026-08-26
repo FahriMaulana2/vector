@@ -3,10 +3,10 @@
 namespace App\Livewire\Admin\Products;
 
 use App\Models\Product;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form Produk - Admin OMH Vector')]
@@ -39,7 +39,7 @@ class Form extends Component
      */
     public function mount($product = null): void
     {
-        if (!$product) {
+        if (! $product) {
             return;
         }
 
@@ -86,7 +86,7 @@ class Form extends Component
 
         $item = $this->isEditing
             ? Product::findOrFail($this->itemId)
-            : new Product();
+            : new Product;
 
         $item->name = $this->name;
 
@@ -123,7 +123,7 @@ class Form extends Component
         |--------------------------------------------------------------------------
         */
 
-        if (!empty($this->gallery)) {
+        if (! empty($this->gallery)) {
             foreach ($this->gallery as $img) {
                 $item->images()->create([
                     'image' => $img->store(

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('hero_statistics', function (Blueprint $table) {
             $table->id();
             $table->foreignId('hero_section_id')
-                  ->constrained('hero_sections')
-                  ->cascadeOnDelete();
+                ->constrained('hero_sections')
+                ->cascadeOnDelete();
             $table->string('label');
             $table->string('value');
             $table->string('icon')->nullable();

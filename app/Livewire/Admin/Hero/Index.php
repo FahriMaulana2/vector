@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Livewire\Admin\Hero;
 
 use App\Models\HeroSection;
-use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Hero Section - Admin OMH Vector')]
@@ -35,7 +35,7 @@ class Index extends Component
                     fn ($q) => $q->where(
                         'title',
                         'like',
-                        '%' . $this->search . '%'
+                        '%'.$this->search.'%'
                     )
                 )
                 ->orderBy('created_at', 'desc')

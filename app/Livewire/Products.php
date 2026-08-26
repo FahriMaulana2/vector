@@ -7,13 +7,17 @@ namespace App\Livewire;
 use App\Models\Product;
 use App\Models\Setting;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
+    use WithPagination;
+
     public function render()
     {
         $totalProducts = Product::active()->count();
         $isCataloguePage = request()->routeIs('products.index');
+        $showProductCta = ! $isCataloguePage && $totalProducts > 6;
 
         // Ambil maksimal 6 produk aktif sesuai urutan yang sudah ditentukan,
         // dengan eager loading images untuk menghindari N+1 query.
@@ -22,7 +26,7 @@ class Products extends Component
             ->with(['images']);
 
         $products = $isCataloguePage
-            ? $productsQuery->get()
+            ? $productsQuery->paginate(9)
             : $productsQuery->take(6)->get();
 
         // Ambil link WhatsApp dari Settings (STEP 2) agar tidak hardcode di Blade.
@@ -32,7 +36,8 @@ class Products extends Component
             'products',
             'whatsappLink',
             'totalProducts',
-            'isCataloguePage'
+            'isCataloguePage',
+            'showProductCta'
         ));
     }
 }

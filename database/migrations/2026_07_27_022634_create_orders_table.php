@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('customer_phone');
             $table->string('customer_email');
             $table->foreignId('product_id')
-                  ->nullable()
-                  ->constrained('products')
-                  ->nullOnDelete();
+                ->nullable()
+                ->constrained('products')
+                ->nullOnDelete();
             $table->unsignedInteger('quantity')->default(1);
             $table->text('notes')->nullable();
             $table->string('attachment_path')->nullable();

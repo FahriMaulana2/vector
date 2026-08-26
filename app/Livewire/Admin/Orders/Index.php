@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Orders;
 
-use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\Order;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Order;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Pesanan - Admin OMH Vector')]
@@ -15,6 +15,7 @@ class Index extends Component
     use WithPagination;
 
     public $search = '';
+
     public $statusFilter = '';
 
     public function render()
@@ -22,10 +23,10 @@ class Index extends Component
         $query = Order::with('product')->latest();
 
         if ($this->search) {
-            $query->where(function($q) {
+            $query->where(function ($q) {
                 $q->where('order_number', 'like', '%'.$this->search.'%')
-                  ->orWhere('customer_name', 'like', '%'.$this->search.'%')
-                  ->orWhere('customer_phone', 'like', '%'.$this->search.'%');
+                    ->orWhere('customer_name', 'like', '%'.$this->search.'%')
+                    ->orWhere('customer_phone', 'like', '%'.$this->search.'%');
             });
         }
 

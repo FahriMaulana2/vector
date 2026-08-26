@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\WhyChooseUs;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\WhyChooseUs;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\WhyChooseUs;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form Mengapa Memilih Kami - Admin OMH Vector')]
@@ -15,12 +15,19 @@ class Form extends Component
     use WithFileUploads;
 
     public $itemId = null;
+
     public $title = '';
+
     public $description = '';
+
     public $icon;
+
     public $existing_icon = null;
+
     public $order = 0;
+
     public $is_active = true;
+
     public $isEditing = false;
 
     public function mount($whyChooseUs = null)
@@ -47,7 +54,7 @@ class Form extends Component
             'is_active' => 'boolean',
         ]);
 
-        $item = $this->isEditing ? WhyChooseUs::findOrFail($this->itemId) : new WhyChooseUs();
+        $item = $this->isEditing ? WhyChooseUs::findOrFail($this->itemId) : new WhyChooseUs;
         $item->title = $this->title;
         $item->description = $this->description;
         $item->order = $this->order;
@@ -60,6 +67,7 @@ class Form extends Component
         $item->save();
 
         session()->flash('success', $this->isEditing ? 'Data berhasil diperbarui.' : 'Data berhasil ditambahkan.');
+
         return $this->redirect(route('admin.why-choose-us.index'), navigate: true);
     }
 

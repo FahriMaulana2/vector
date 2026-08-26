@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Models\Order;
 use App\Models\Setting;
 use Livewire\Component;
 
@@ -33,11 +34,11 @@ class Contact extends Component
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:2|max:100',
-            'phone' => 'required|string|min:8|max:25',
-            'email' => 'required|email|max:100',
-            'service' => 'required|string|max:100',
-            'message' => 'required|string|min:3|max:2000',
+            'name' => 'required|string|min:2|max:255',
+            'phone' => 'required|string|min:8|max:30',
+            'email' => 'required|email|max:255',
+            'service' => 'required|string|max:255',
+            'message' => 'required|string|min:3|max:5000',
         ];
     }
 
@@ -46,17 +47,17 @@ class Contact extends Component
         return [
             'name.required' => 'Nama lengkap wajib diisi.',
             'name.min' => 'Nama lengkap minimal 2 karakter.',
-            'name.max' => 'Nama lengkap maksimal 100 karakter.',
+            'name.max' => 'Nama lengkap maksimal 255 karakter.',
             'phone.required' => 'Nomor WhatsApp wajib diisi.',
             'phone.min' => 'Nomor WhatsApp minimal 8 karakter.',
-            'phone.max' => 'Nomor WhatsApp maksimal 25 karakter.',
+            'phone.max' => 'Nomor WhatsApp maksimal 30 karakter.',
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
-            'email.max' => 'Email maksimal 100 karakter.',
+            'email.max' => 'Email maksimal 255 karakter.',
             'service.required' => 'Silakan pilih jenis layanan.',
             'message.required' => 'Pesan wajib diisi.',
             'message.min' => 'Pesan minimal 3 karakter.',
-            'message.max' => 'Pesan maksimal 2000 karakter.',
+            'message.max' => 'Pesan maksimal 5000 karakter.',
         ];
     }
 
@@ -64,6 +65,18 @@ class Contact extends Component
     {
         $validated = $this->validate();
 
+        // 1. Save contact submission to existing Order system
+        Order::create([
+            'customer_name' => $validated['name'],
+            'customer_phone' => $validated['phone'],
+            'customer_email' => $validated['email'],
+            'product_id' => null,
+            'quantity' => 1,
+            'notes' => "Layanan: {$validated['service']}\n\n{$validated['message']}",
+            'status' => 'pending',
+        ]);
+
+        // 2. Get admin WhatsApp number from Website Settings
         $adminWhatsapp = Setting::getWhatsAppNumber();
         $normalizedAdminPhone = Setting::normalizePhoneNumber($adminWhatsapp);
 
@@ -73,28 +86,35 @@ class Contact extends Component
             return;
         }
 
-        // Format pesan WhatsApp sesuai spesifikasi
-        $whatsappMessage = "Halo Admin OMH Vector 👋\n\n"
+        // 3. Format pesan WhatsApp sesuai spesifikasi
+        $separator = "\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81";
+
+        $whatsappMessage = "Halo Admin OMH Vector \xF0\x9F\x91\x8B\n\n"
             ."Saya ingin menghubungi OMH Vector terkait layanan digital printing.\n\n"
-            ."📋 *DATA KONTAK*\n\n"
-            ."👤 *Nama:* {$validated['name']}\n"
-            ."📱 *No. WhatsApp:* {$validated['phone']}\n"
-            ."📧 *Email:* {$validated['email']}\n"
-            ."🖨️ *Layanan:* {$validated['service']}\n\n"
-            ."💬 *PESAN*\n\n"
+            ."{$separator}\n"
+            ."\xF0\x9F\x93\x8B DATA KONTAK\n"
+            ."{$separator}\n\n"
+            ."\xF0\x9F\x91\xA4 Nama:\n{$validated['name']}\n\n"
+            ."\xF0\x9F\x93\xB1 No. WhatsApp:\n{$validated['phone']}\n\n"
+            ."\xF0\x9F\x93\xA7 Email:\n{$validated['email']}\n\n"
+            ."\xF0\x9F\x96\xA8\xEF\xB8\x8F Layanan:\n{$validated['service']}\n\n"
+            ."{$separator}\n"
+            ."\xF0\x9F\x92\xAC PESAN\n"
+            ."{$separator}\n\n"
             ."{$validated['message']}\n\n"
+            ."{$separator}\n\n"
             ."Mohon informasi dan bantuannya.\n\n"
-            .'Terima kasih 🙏';
+            .'Terima kasih.';
 
         $whatsappUrl = "https://wa.me/{$normalizedAdminPhone}?text=".rawurlencode($whatsappMessage);
 
-        // Reset input form
+        // 4. Reset input form
         $this->reset(['name', 'phone', 'email', 'message']);
         $this->service = 'Banner Printing';
 
-        session()->flash('success', 'Pesan berhasil disiapkan. Membuka WhatsApp...');
+        session()->flash('success', 'Pesan berhasil dikirim! Membuka WhatsApp...');
 
-        // Buka WhatsApp di tab baru secara seamless tanpa me-refresh landing page
+        // 5. Buka WhatsApp di tab baru secara seamless tanpa me-refresh landing page
         $this->js('window.open('.json_encode($whatsappUrl).", '_blank');");
     }
 

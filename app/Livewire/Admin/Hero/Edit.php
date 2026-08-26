@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Livewire\Admin\Hero;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\HeroSection;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use Illuminate\Support\Facades\Storage;
-use App\Models\HeroSection;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Edit Hero Section')]
@@ -20,12 +20,19 @@ class Edit extends Component
     public HeroSection $hero;
 
     public $title = '';
+
     public $subtitle = '';
+
     public $description = '';
+
     public $button_text = '';
+
     public $button_link = '';
+
     public $image;
+
     public $existing_image = null;
+
     public $is_active = true;
 
     public function mount(HeroSection $hero): void

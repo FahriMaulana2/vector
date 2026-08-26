@@ -31,8 +31,8 @@ class ProductSeeder extends Seeder
 
         foreach ($products as $index => $product) {
             Product::create(array_merge($product, [
-                'description' => $product['short_description'] . ' Hubungi kami untuk informasi lebih lanjut mengenai spesifikasi dan pemesanan.',
-                'image' => 'products/' . $product['slug'] . '.jpg',
+                'description' => $product['short_description'].' Hubungi kami untuk informasi lebih lanjut mengenai spesifikasi dan pemesanan.',
+                'image' => 'products/'.$product['slug'].'.jpg',
                 'sort_order' => $index + 1,
                 'is_active' => true,
             ]));

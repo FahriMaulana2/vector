@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -22,10 +24,10 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $is_featured
  * @property int $sort_order
  * @property bool $is_active
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductImage> $images
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, ProductImage> $images
+ * @property-read Collection<int, Order> $orders
  */
 class Product extends Model
 {
@@ -140,7 +142,7 @@ class Product extends Model
     public function getFormattedPriceAttribute(): ?string
     {
         return $this->price
-            ? 'Rp ' . number_format((float) $this->price, 0, ',', '.')
+            ? 'Rp '.number_format((float) $this->price, 0, ',', '.')
             : null;
     }
 
@@ -158,7 +160,7 @@ class Product extends Model
     /**
      * Get all gallery images excluding primary.
      */
-    public function gallery(): \Illuminate\Database\Eloquent\Collection
+    public function gallery(): Collection
     {
         return $this->images()
             ->where('is_primary', false)

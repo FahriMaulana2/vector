@@ -52,18 +52,18 @@ class Index extends Component
                         $q->where(
                             'title',
                             'like',
-                            '%' . trim($this->search) . '%'
+                            '%'.trim($this->search).'%'
                         )
-                        ->orWhere(
-                            'client',
-                            'like',
-                            '%' . trim($this->search) . '%'
-                        )
-                        ->orWhere(
-                            'description',
-                            'like',
-                            '%' . trim($this->search) . '%'
-                        );
+                            ->orWhere(
+                                'client',
+                                'like',
+                                '%'.trim($this->search).'%'
+                            )
+                            ->orWhere(
+                                'description',
+                                'like',
+                                '%'.trim($this->search).'%'
+                            );
                     });
                 }
             )

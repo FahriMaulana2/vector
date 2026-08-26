@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('order_status_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')
-                  ->constrained('orders')
-                  ->cascadeOnDelete();
+                ->constrained('orders')
+                ->cascadeOnDelete();
             $table->string('previous_status')->nullable();
             $table->string('new_status');
             $table->foreignId('changed_by')
-                  ->nullable()
-                  ->constrained('users')
-                  ->nullOnDelete();
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
             $table->text('notes')->nullable();
             $table->timestamp('created_at'); // No updated_at for audit integrity
 

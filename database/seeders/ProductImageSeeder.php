@@ -19,7 +19,7 @@ class ProductImageSeeder extends Seeder
             for ($i = 1; $i <= $imageCount; $i++) {
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'image' => 'products/' . $product->slug . '-' . $i . '.jpg',
+                    'image' => 'products/'.$product->slug.'-'.$i.'.jpg',
                     'sort_order' => $i,
                     'is_primary' => ($i === 1),
                 ]);

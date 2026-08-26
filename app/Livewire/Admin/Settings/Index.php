@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin\Settings;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Pengaturan Website - Admin OMH Vector')]
@@ -16,14 +16,16 @@ class Index extends Component
     use WithFileUploads;
 
     public $settings = [];
+
     public $logo;
+
     public $favicon;
 
     public function mount()
     {
         // Muat semua pengaturan ke dalam array asosiatif
         $this->settings = Setting::all()->pluck('value', 'key')->toArray();
-        
+
         // Pastikan key default ada untuk mencegah error undefined array key
         $defaults = [
             'company_name' => 'OMH Vector',
@@ -32,7 +34,7 @@ class Index extends Component
             'company_whatsapp' => '',
             'company_address' => '',
             'company_description' => '',
-'office_hours' => '',
+            'office_hours' => '',
             'google_maps_embed' => '',
             'facebook_url' => '',
             'instagram_url' => '',
@@ -41,7 +43,7 @@ class Index extends Component
             'linkedin_url' => '',
             'seo_title' => '',
             'seo_description' => '',
-'seo_keywords' => '',
+            'seo_keywords' => '',
             // Toggle CTA Produk (1 = ON, 0 = OFF). Default ON.
             'show_product_cta' => '1',
             // Toggle CTA Portfolio (1 = ON, 0 = OFF). Default ON.
@@ -49,13 +51,13 @@ class Index extends Component
         ];
 
         foreach ($defaults as $key => $value) {
-            if (!isset($this->settings[$key])) {
+            if (! isset($this->settings[$key])) {
                 $this->settings[$key] = $value;
             }
         }
     }
 
-        public function save()
+    public function save()
     {
         $this->validate([
             'settings.company_name' => 'required|string|max:255',
@@ -73,15 +75,15 @@ class Index extends Component
             'settings.linkedin_url' => 'nullable|url|max:255',
             'settings.seo_title' => 'nullable|string|max:255',
             'settings.seo_description' => 'nullable|string|max:500',
-'settings.seo_keywords' => 'nullable|string|max:500',
-// Toggle CTA Produk
+            'settings.seo_keywords' => 'nullable|string|max:500',
+            // Toggle CTA Produk
             'settings.show_product_cta' => 'nullable|in:0,1',
             // Toggle CTA Portofolio
             'settings.show_portfolio_cta' => 'nullable|in:0,1',
             // Mendukung PNG, JPG, JPEG, SVG, WebP (Maks 2MB)
-            'logo' => 'nullable|mimes:png,jpg,jpeg,svg,webp|max:2048', 
+            'logo' => 'nullable|mimes:png,jpg,jpeg,svg,webp|max:2048',
             // Mendukung PNG, ICO, SVG (Maks 1MB)
-            'favicon' => 'nullable|mimes:png,ico,svg,jpg,jpeg|max:1024', 
+            'favicon' => 'nullable|mimes:png,ico,svg,jpg,jpeg|max:1024',
         ]);
         // Simpan pengaturan teks
         foreach ($this->settings as $key => $value) {
@@ -133,6 +135,7 @@ class Index extends Component
         if (str_contains($key, 'seo_')) {
             return 'seo';
         }
+
         return 'general';
     }
 

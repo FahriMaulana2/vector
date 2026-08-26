@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Service;
+use Livewire\Component;
 
 class Services extends Component
 {

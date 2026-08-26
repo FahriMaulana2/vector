@@ -19,7 +19,7 @@ class PortfolioImageSeeder extends Seeder
             for ($i = 1; $i <= $imageCount; $i++) {
                 PortfolioImage::create([
                     'portfolio_id' => $portfolio->id,
-                    'image' => 'portfolios/' . $portfolio->slug . '-' . $i . '.jpg',
+                    'image' => 'portfolios/'.$portfolio->slug.'-'.$i.'.jpg',
                     'sort_order' => $i,
                     'is_primary' => ($i === 1),
                 ]);

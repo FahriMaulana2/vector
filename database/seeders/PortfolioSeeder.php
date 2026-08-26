@@ -39,8 +39,8 @@ class PortfolioSeeder extends Seeder
 
         foreach ($portfolios as $index => $portfolio) {
             Portfolio::create(array_merge($portfolio, [
-                'description' => 'Proyek ' . $portfolio['title'] . ' untuk klien ' . $portfolio['client'] . '. Kami memberikan solusi terbaik sesuai kebutuhan branding mereka.',
-                'image' => 'portfolios/' . $portfolio['slug'] . '.jpg',
+                'description' => 'Proyek '.$portfolio['title'].' untuk klien '.$portfolio['client'].'. Kami memberikan solusi terbaik sesuai kebutuhan branding mereka.',
+                'image' => 'portfolios/'.$portfolio['slug'].'.jpg',
                 'sort_order' => $index + 1,
                 'is_active' => true,
             ]));

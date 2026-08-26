@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property int $id
@@ -15,8 +17,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string|null $description
  * @property int $sort_order
  * @property bool $is_active
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class WhyChooseUs extends Model
 {
@@ -78,7 +80,7 @@ class WhyChooseUs extends Model
     /**
      * Get all active items ordered.
      */
-    public static function getActiveOrdered(): \Illuminate\Database\Eloquent\Collection
+    public static function getActiveOrdered(): Collection
     {
         return static::active()->ordered()->get();
     }

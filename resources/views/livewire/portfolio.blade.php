@@ -17,9 +17,9 @@
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
             <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft mb-6">
                 <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-navy">Portfolio Kami</span>
+                <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-navy">{{ $isPortfolioPage ? 'Semua Portfolio' : 'Portfolio Kami' }}</span>
             </span>
-            <h2 class="font-heading text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-navy leading-[1.1]">Hasil Karya yang Membantu Brand <span class="gradient-text">Tampil Lebih Berkesan</span></h2>
+            <h2 class="font-heading text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-navy leading-[1.1]">{{ $isPortfolioPage ? 'Jelajahi Semua Hasil Karya' : 'Hasil Karya yang Membantu Brand' }} <span class="gradient-text">Tampil Lebih Berkesan</span></h2>
             <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Setiap proyek adalah kebanggaan. Lihat hasil karya percetakan dan branding yang telah kami kerjakan untuk berbagai klien.</p>
         </div>
 
@@ -95,6 +95,12 @@
             </div>
             @endforelse
         </div>
+
+        @if($isPortfolioPage)
+            <div class="mt-10">
+                {{ $portfolios->links() }}
+            </div>
+        @endif
 
 {{-- Bottom CTA (dikontrol admin via setting show_portfolio_cta) --}}
         @if($showPortfolioCta)

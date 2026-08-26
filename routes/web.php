@@ -23,6 +23,8 @@ use App\Livewire\Admin\WhyChooseUs\Index as WhyChooseUsIndex;
 use App\Livewire\Admin\Workflow\Form as WorkflowForm;
 use App\Livewire\Admin\Workflow\Index as WorkflowIndex;
 use App\Livewire\Home;
+use App\Livewire\OrderTracking;
+use App\Livewire\Portfolio as PortfolioPage;
 use App\Livewire\Products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 // Frontend Routes
 Route::get('/', Home::class)->name('home');
 Route::get('/products', Products::class)->name('products.index');
+Route::get('/portfolio', PortfolioPage::class)->name('portfolio.index');
+Route::get('/lacak-pesanan/{order?}', OrderTracking::class)->name('orders.track');
 
 // Admin Authentication Routes (Guest only)
 Route::middleware('guest')->group(function () {

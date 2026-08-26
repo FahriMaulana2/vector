@@ -14,7 +14,9 @@ class HeroStatisticSeeder extends Seeder
     {
         $hero = HeroSection::where('is_active', true)->first();
 
-        if (!$hero) return;
+        if (! $hero) {
+            return;
+        }
 
         $stats = [
             ['label' => 'Klien Puas', 'value' => '500+', 'icon' => 'users'],

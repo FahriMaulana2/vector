@@ -2,29 +2,37 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Portfolio as PortfolioModel;
 use App\Models\Setting;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Portfolio extends Component
 {
+    use WithPagination;
+
     public function render()
     {
-        // Ambil portfolio aktif, urut sesuai sort_order, maksimal 6.
-        // Hanya eager load images karena kategori sudah tidak digunakan di frontend.
-        $portfolios = PortfolioModel::active()
-            ->ordered()
-            ->with(['images'])
-            ->take(6)
-            ->get();
+        $totalPortfolios = PortfolioModel::active()->count();
+        $isPortfolioPage = request()->routeIs('portfolio.index');
 
-        // CTA "Lihat Semua Portofolio" dikontrol admin melalui setting.
-        // Default ON jika setting belum tersedia.
-        $showPortfolioCta = (bool) Setting::get('show_portfolio_cta', true);
+        $portfoliosQuery = PortfolioModel::active()
+            ->ordered()
+            ->with(['images']);
+
+        $portfolios = $isPortfolioPage
+            ? $portfoliosQuery->paginate(9)
+            : $portfoliosQuery->take(6)->get();
+
+        $showPortfolioCta = ! $isPortfolioPage
+            && $totalPortfolios > 6
+            && (bool) Setting::get('show_portfolio_cta', true);
 
         return view('livewire.portfolio', compact(
             'portfolios',
-            'showPortfolioCta'
+            'showPortfolioCta',
+            'totalPortfolios',
+            'isPortfolioPage'
         ));
     }
 }

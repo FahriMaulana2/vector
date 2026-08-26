@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\About;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\AboutSection;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\AboutSection;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form Tentang Kami - Admin OMH Vector')]
@@ -15,15 +15,25 @@ class Form extends Component
     use WithFileUploads;
 
     public $itemId = null;
+
     public $title = '';
+
     public $subtitle = '';
+
     public $description = '';
+
     public $vision = '';
+
     public $mission = '';
+
     public $image;
+
     public $existing_image = null;
+
     public $years_experience = 0;
+
     public $is_active = true;
+
     public $isEditing = false;
 
     public function mount($about = null)
@@ -59,7 +69,7 @@ class Form extends Component
         if ($this->isEditing) {
             $item = AboutSection::findOrFail($this->itemId);
         } else {
-            $item = new AboutSection();
+            $item = new AboutSection;
         }
 
         $item->title = $this->title;
@@ -77,6 +87,7 @@ class Form extends Component
         $item->save();
 
         session()->flash('success', $this->isEditing ? 'Tentang kami berhasil diperbarui.' : 'Tentang kami berhasil ditambahkan.');
+
         return $this->redirect(route('admin.about.index'), navigate: true);
     }
 

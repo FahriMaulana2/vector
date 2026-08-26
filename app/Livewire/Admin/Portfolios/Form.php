@@ -6,10 +6,10 @@ namespace App\Livewire\Admin\Portfolios;
 
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\Storage;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form Portofolio - Admin OMH Vector')]
@@ -20,18 +20,25 @@ class Form extends Component
     public ?int $itemId = null;
 
     public string $title = '';
+
     public string $client = '';
+
     public string $project_date = '';
+
     public string $description = '';
 
     public $image = null;
+
     public ?string $existing_image = null;
 
     public array $gallery = [];
+
     public array $existing_gallery = [];
 
     public bool $is_featured = false;
+
     public int $sort_order = 0;
+
     public bool $is_active = true;
 
     public bool $isEditing = false;
@@ -41,7 +48,7 @@ class Form extends Component
      */
     public function mount($portfolio = null): void
     {
-        if (!$portfolio) {
+        if (! $portfolio) {
             return;
         }
 
@@ -141,7 +148,7 @@ class Form extends Component
         if ($this->isEditing) {
             $item = Portfolio::findOrFail($this->itemId);
         } else {
-            $item = new Portfolio();
+            $item = new Portfolio;
         }
 
         $item->title = $this->title;
@@ -210,7 +217,7 @@ class Form extends Component
      */
     public function removeGalleryImage(string $image): void
     {
-        if (!$this->itemId) {
+        if (! $this->itemId) {
             return;
         }
 
@@ -220,7 +227,7 @@ class Form extends Component
             ->where('image', $image)
             ->first();
 
-        if (!$galleryImage) {
+        if (! $galleryImage) {
             return;
         }
 
@@ -248,7 +255,7 @@ class Form extends Component
      */
     public function removeMainImage(): void
     {
-        if (!$this->itemId) {
+        if (! $this->itemId) {
             return;
         }
 

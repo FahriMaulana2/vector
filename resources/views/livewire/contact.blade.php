@@ -49,7 +49,7 @@ if ($officeHoursRaw) {
 
     <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 relative z-10">
         {{-- Section Header --}}
-        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" wire:ignore.self>
             <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft">
                 <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
                 <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-navy">Hubungi Kami</span>
@@ -60,7 +60,7 @@ if ($officeHoursRaw) {
 
         <div class="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-stretch">
             {{-- Left: Premium Navy Contact Panel --}}
-            <div class="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-navy-dark via-navy to-navy-deep p-8 lg:p-10 text-cream border border-gold/20 shadow-card-hover" data-aos="fade-right">
+            <div class="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-navy-dark via-navy to-navy-deep p-8 lg:p-10 text-cream border border-gold/20 shadow-card-hover" data-aos="fade-right" wire:ignore.self>
                 {{-- Panel decorations --}}
                 <div class="absolute inset-0 pointer-events-none">
                     <div class="absolute top-[-80px] right-[-60px] w-[280px] h-[280px] rounded-full bg-gold/15 blur-3xl"></div>
@@ -169,7 +169,7 @@ if ($officeHoursRaw) {
             </div>
 
             {{-- Right: Premium Warm-White Contact Form --}}
-            <div class="rounded-[1.75rem] border border-gold/20 bg-white p-6 sm:p-8 lg:p-10 shadow-card transition-all duration-300 hover:shadow-card-hover flex flex-col" data-aos="fade-left">
+            <div class="rounded-[1.75rem] border border-gold/20 bg-white p-6 sm:p-8 lg:p-10 shadow-card transition-all duration-300 hover:shadow-card-hover flex flex-col" data-aos="fade-left" wire:ignore.self>
                 <div class="flex items-center gap-3 mb-6">
                     <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 text-navy">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">

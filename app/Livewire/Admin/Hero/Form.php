@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Livewire\Admin\Hero;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\HeroSection;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\HeroSection;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
 #[Title('Form Hero Section - Admin OMH Vector')]
@@ -17,15 +17,25 @@ class Form extends Component
     use WithFileUploads;
 
     public HeroSection $hero;
+
     public $heroId = null;
+
     public $title = '';
+
     public $subtitle = '';
+
     public $description = '';
+
     public $button_text = '';
+
     public $button_link = '';
+
     public $image;
+
     public $existing_image = null;
+
     public $is_active = true;
+
     public $isEditing = false;
 
     public function mount($hero = null)
@@ -42,7 +52,7 @@ class Form extends Component
             $this->existing_image = $this->hero->image;
             $this->is_active = $this->hero->is_active;
         } else {
-            $this->hero = new HeroSection();
+            $this->hero = new HeroSection;
         }
     }
 
@@ -61,7 +71,7 @@ class Form extends Component
         if ($this->isEditing) {
             $hero = $this->hero;
         } else {
-            $hero = new HeroSection();
+            $hero = new HeroSection;
         }
 
         $hero->title = $this->title;

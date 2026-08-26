@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Livewire\Admin;
 
-use Livewire\Component;
+use App\Models\Faq;
+use App\Models\Order;
+use App\Models\Portfolio;
+use App\Models\Product;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Product;
-use App\Models\Portfolio;
-use App\Models\Order;
-use App\Models\Faq;
+use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
 #[Title('Dashboard - Admin OMH Vector')]

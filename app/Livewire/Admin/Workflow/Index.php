@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Workflow;
 
-use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\WorkflowStep;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\WorkflowStep;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Alur Kerja - Admin OMH Vector')]
@@ -26,7 +26,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.workflow.index', [
-            'items' => WorkflowStep::when($this->search, fn($q) => $q->where('title', 'like', '%'.$this->search.'%'))
+            'items' => WorkflowStep::when($this->search, fn ($q) => $q->where('title', 'like', '%'.$this->search.'%'))
                 ->orderBy('sort_order') // ✅ PERBAIKAN: 'step_order' diganti menjadi 'sort_order'
                 ->orderBy('step_number') // Tambahan: urutkan juga berdasarkan nomor langkah
                 ->paginate(10),

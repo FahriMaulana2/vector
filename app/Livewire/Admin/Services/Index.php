@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin\Services;
 
-use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\Service;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-use App\Models\Service;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
 #[Title('Layanan - Admin OMH Vector')]
@@ -26,7 +26,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.services.index', [
-            'items' => Service::when($this->search, fn($q) => $q->where('title', 'like', '%'.$this->search.'%'))
+            'items' => Service::when($this->search, fn ($q) => $q->where('title', 'like', '%'.$this->search.'%'))
                 ->orderBy('sort_order')
                 ->orderBy('title')
                 ->paginate(10),

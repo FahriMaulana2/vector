@@ -2,20 +2,22 @@
 
 namespace App\Livewire\Admin\Orders;
 
-use Livewire\Component;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use App\Models\Order;
 use App\Models\OrderStatusHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
 #[Title('Detail Pesanan - Admin OMH Vector')]
 class Show extends Component
 {
     public Order $order;
+
     public $new_status = '';
+
     public $status_notes = '';
 
     public function mount(Order $order)
@@ -37,7 +39,7 @@ class Show extends Component
 
         DB::transaction(function () {
             $oldStatus = $this->order->status;
-            
+
             $this->order->update([
                 'status' => $this->new_status,
                 'completed_at' => $this->new_status === 'completed' ? now() : $this->order->completed_at,

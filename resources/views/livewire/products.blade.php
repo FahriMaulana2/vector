@@ -17,9 +17,9 @@
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
             <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft">
                 <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-navy">Produk Unggulan</span>
+                <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-navy">{{ $isCataloguePage ? 'Katalog Produk' : 'Produk Unggulan' }}</span>
             </span>
-            <h2 class="font-heading text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-navy leading-[1.1]">Produk Berkualitas untuk Mendukung <span class="gradient-text">Bisnis Anda</span></h2>
+            <h2 class="font-heading text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-navy leading-[1.1]">{{ $isCataloguePage ? 'Semua Produk untuk Mendukung' : 'Produk Berkualitas untuk Mendukung' }} <span class="gradient-text">Bisnis Anda</span></h2>
             <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Dari banner, sticker, undangan, hingga merchandise custom &mdash; semua siap cetak dengan kualitas premium.</p>
         </div>
 
@@ -87,7 +87,7 @@
             <p class="text-center text-sm font-inter text-ink-soft col-span-full">Belum ada produk yang tersedia.</p>
             @endforelse
 
-            @if($totalProducts > 6 && !$isCataloguePage)
+            @if($showProductCta)
             <div class="group relative flex flex-col justify-center overflow-hidden rounded-[1.75rem] border border-white/70 bg-white p-8 text-center shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-gold/40 lg:p-10" data-aos="fade-up">
                 <div class="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-gold via-gold-light to-gold opacity-70 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none">
@@ -105,5 +105,11 @@
             </div>
             @endif
         </div>
+
+        @if($isCataloguePage)
+            <div class="mt-10">
+                {{ $products->links() }}
+            </div>
+        @endif
     </div>
 </section>
