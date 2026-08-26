@@ -14,12 +14,13 @@ $logoUrl = Setting::getLogoUrl();
 $whatsappLink = Setting::getWhatsAppLink();
 $logoLetter = $companyName ? mb_substr($companyName, 0, 1) : 'O';
 $homeUrl = request()->routeIs('home') ? '' : route('home');
+$isTrackingPage = request()->routeIs('orders.track');
 ?>
 
 <nav x-data="{
     mobileOpen: false,
     scrolled: false,
-    activeSection: 'home',
+    activeSection: '{{ request()->routeIs('home') ? 'home' : '' }}',
     init() {
         const onScroll = () => {
             this.scrolled = window.scrollY > 20;
@@ -66,7 +67,7 @@ class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
                     <span>{{ $item['label'] }}</span>
                 </a>
                 @endforeach
-                <a href="{{ route('orders.track') }}" class="px-4 py-2 text-sm font-inter font-medium text-ink-soft transition-all duration-300 rounded-full hover:text-navy hover:bg-white">Lacak Pesanan</a>
+                <a href="{{ route('orders.track') }}" class="px-4 py-2 text-sm font-inter font-medium transition-all duration-300 rounded-full {{ $isTrackingPage ? 'text-cream bg-navy shadow-button' : 'text-ink-soft hover:text-navy hover:bg-white' }}">Lacak Pesanan</a>
             </div>
         </div>
         <div class="hidden lg:flex items-center flex-shrink-0">
@@ -107,11 +108,11 @@ class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
                 {{ $item['label'] }}
             </a>
 @endforeach
-            <a href="{{ route('orders.track') }}"
-               @click="mobileOpen = false"
-               class="block rounded-xl px-4 py-3 text-sm font-inter font-medium text-ink-soft transition-all duration-200 hover:bg-white hover:text-navy">
-                Lacak Pesanan
-            </a>
+<a href="{{ route('orders.track') }}"
+   @click="mobileOpen = false"
+   class="block rounded-xl px-4 py-3 text-sm font-inter font-medium transition-all duration-200 {{ $isTrackingPage ? 'bg-navy text-cream border-l-2 border-gold' : 'text-ink-soft hover:bg-white hover:text-navy' }}">
+    Lacak Pesanan
+</a>
             <div class="pt-3">
                 <a href="{{ $whatsappLink }}" target="_blank"
                    class="flex items-center justify-center gap-2 rounded-full bg-navy px-4 py-3 text-sm font-heading font-semibold text-cream border border-gold/40 transition-all duration-200 hover:bg-navy-deep hover:shadow-lg">
