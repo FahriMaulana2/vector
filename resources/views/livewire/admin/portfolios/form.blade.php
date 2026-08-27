@@ -117,6 +117,23 @@
                                 @enderror
                             </div>
 
+                            {{-- Category --}}
+                            <div>
+                                <label class="mb-2 block text-sm font-semibold text-slate-700">
+                                    Kategori
+                                </label>
+
+                                <select
+                                    wire:model="portfolio_category_id"
+                                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                                >
+                                    <option value="">Pilih kategori</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
 
                             {{-- Project Date --}}
                             <div>

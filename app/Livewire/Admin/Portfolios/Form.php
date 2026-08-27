@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Admin\Portfolios;
 
 use App\Models\Portfolio;
+use App\Models\PortfolioCategory;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -22,6 +23,8 @@ class Form extends Component
     public string $title = '';
 
     public string $client = '';
+
+    public ?int $portfolio_category_id = null;
 
     public string $project_date = '';
 
@@ -59,6 +62,7 @@ class Form extends Component
         $this->itemId = $item->id;
         $this->title = $item->title ?? '';
         $this->client = $item->client ?? '';
+        $this->portfolio_category_id = $item->portfolio_category_id;
         $this->project_date = $item->project_date
             ? $item->project_date->format('Y-m-d')
             : '';
@@ -94,6 +98,12 @@ class Form extends Component
                 'nullable',
                 'string',
                 'max:255',
+            ],
+
+            'portfolio_category_id' => [
+                'nullable',
+                'integer',
+                'exists:portfolio_categories,id',
             ],
 
             'project_date' => [
@@ -154,6 +164,7 @@ class Form extends Component
         $item->title = $this->title;
         $item->description = $this->description ?: null;
         $item->client = $this->client ?: null;
+        $item->portfolio_category_id = $this->portfolio_category_id;
         $item->project_date = $this->project_date ?: null;
         $item->is_featured = $this->is_featured;
         $item->sort_order = $this->sort_order;
@@ -291,7 +302,8 @@ class Form extends Component
     public function render()
     {
         return view(
-            'livewire.admin.portfolios.form'
+            'livewire.admin.portfolios.form',
+            ['categories' => PortfolioCategory::active()->ordered()->get()]
         );
     }
 }

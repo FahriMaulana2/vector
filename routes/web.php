@@ -13,6 +13,7 @@ use App\Livewire\Admin\Orders\Index as OrdersIndex;
 use App\Livewire\Admin\Orders\Show as OrdersShow;
 use App\Livewire\Admin\Portfolios\Form as PortfoliosForm;
 use App\Livewire\Admin\Portfolios\Index as PortfoliosIndex;
+use App\Livewire\Admin\Portfolios\PageContent as PortfolioPageContent;
 use App\Livewire\Admin\Products\Form as ProductsForm;
 use App\Livewire\Admin\Products\Index as ProductsIndex;
 use App\Livewire\Admin\Services\Form as ServicesForm;
@@ -98,6 +99,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('portfolios')->name('portfolios.')->group(function () {
         Route::get('/', PortfoliosIndex::class)->name('index');
+        Route::get('/page-content', PortfolioPageContent::class)->name('page-content');
         Route::get('/create', PortfoliosForm::class)->name('create');
         Route::get('/{portfolio}/edit', PortfoliosForm::class)->name('edit');
     });

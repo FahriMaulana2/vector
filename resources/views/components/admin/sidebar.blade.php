@@ -31,19 +31,20 @@
                     ['name' => 'Dashboard', 'route' => 'admin.dashboard', 'icon' => 'grid', 'badge' => null],
                 ],
 'KELOLA WEBSITE' => [
-                    ['name' => 'Hero Section', 'route' => 'admin.hero.index', 'icon' => 'layout', 'badge' => null],
-                    ['name' => 'Tentang Kami', 'route' => 'admin.about.index', 'icon' => 'info', 'badge' => null],
-                    ['name' => 'Layanan', 'route' => 'admin.services.index', 'icon' => 'briefcase', 'badge' => null],
-                    ['name' => 'Mengapa Memilih Kami', 'route' => 'admin.why-choose-us.index', 'icon' => 'star', 'badge' => null],
-                    ['name' => 'Alur Kerja', 'route' => 'admin.workflow.index', 'icon' => 'layers', 'badge' => null],
-                    ['name' => 'FAQ', 'route' => 'admin.faqs.index', 'icon' => 'help-circle', 'badge' => null],
+                    ['name' => 'Hero Section', 'route' => 'admin.hero.index', 'active_routes' => ['admin.hero.index', 'admin.hero.create', 'admin.hero.edit'], 'icon' => 'layout', 'badge' => null],
+                    ['name' => 'Tentang Kami', 'route' => 'admin.about.index', 'active_routes' => ['admin.about.index', 'admin.about.create', 'admin.about.edit'], 'icon' => 'info', 'badge' => null],
+                    ['name' => 'Layanan', 'route' => 'admin.services.index', 'active_routes' => ['admin.services.index', 'admin.services.create', 'admin.services.edit'], 'icon' => 'briefcase', 'badge' => null],
+                    ['name' => 'Mengapa Memilih Kami', 'route' => 'admin.why-choose-us.index', 'active_routes' => ['admin.why-choose-us.index', 'admin.why-choose-us.create', 'admin.why-choose-us.edit'], 'icon' => 'star', 'badge' => null],
+                    ['name' => 'Alur Kerja', 'route' => 'admin.workflow.index', 'active_routes' => ['admin.workflow.index', 'admin.workflow.create', 'admin.workflow.edit'], 'icon' => 'layers', 'badge' => null],
+                    ['name' => 'FAQ', 'route' => 'admin.faqs.index', 'active_routes' => ['admin.faqs.index', 'admin.faqs.create', 'admin.faqs.edit'], 'icon' => 'help-circle', 'badge' => null],
                 ],
 'KATALOG & PORTOFOLIO' => [
-                    ['name' => 'Produk', 'route' => 'admin.products.index', 'icon' => 'package', 'badge' => null],
-                    ['name' => 'Portofolio', 'route' => 'admin.portfolios.index', 'icon' => 'image', 'badge' => null],
+                    ['name' => 'Produk', 'route' => 'admin.products.index', 'active_routes' => ['admin.products.index', 'admin.products.create', 'admin.products.edit'], 'icon' => 'package', 'badge' => null],
+                    ['name' => 'Portofolio', 'route' => 'admin.portfolios.index', 'active_routes' => ['admin.portfolios.index', 'admin.portfolios.create', 'admin.portfolios.edit'], 'icon' => 'image', 'badge' => null],
+                    ['name' => 'Halaman Portfolio', 'route' => 'admin.portfolios.page-content', 'active_routes' => ['admin.portfolios.page-content'], 'icon' => 'layout', 'badge' => null],
                 ],
                 'OPERASIONAL' => [
-                    ['name' => 'Pesanan', 'route' => 'admin.orders.index', 'icon' => 'shopping-bag', 'badge' => null],
+                    ['name' => 'Pesanan', 'route' => 'admin.orders.index', 'active_routes' => ['admin.orders.index', 'admin.orders.show'], 'icon' => 'shopping-bag', 'badge' => null],
                 ],
                 'PENGATURAN' => [
                     ['name' => 'Pengaturan Website', 'route' => 'admin.settings.index', 'icon' => 'settings', 'badge' => null],
@@ -73,15 +74,9 @@
                 'log-out' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>',
             ];
             
-            function isRouteActive($routeName, $currentRoute) {
+            function isRouteActive($routeName, $currentRoute, $activeRoutes = null) {
                 if ($routeName === '#') return false;
-                // Check if current route starts with the menu route prefix
-                $prefix = explode('.', $routeName);
-                $currentPrefix = explode('.', $currentRoute);
-                if (count($prefix) >= 2 && count($currentPrefix) >= 2) {
-                    return $prefix[0] === $currentPrefix[0] && $prefix[1] === $currentPrefix[1];
-                }
-                return $currentRoute === $routeName;
+                return in_array($currentRoute, $activeRoutes ?? [$routeName], true);
             }
         @endphp
 
@@ -91,7 +86,7 @@
                 <div class="space-y-1">
                     @foreach($items as $item)
                         @php
-                            $isActive = isRouteActive($item['route'], $currentRoute);
+                            $isActive = isRouteActive($item['route'], $currentRoute, $item['active_routes'] ?? null);
                             $isDisabled = $item['badge'] === 'Segera Hadir';
                             $isForm = $item['is_form'] ?? false;
                         @endphp

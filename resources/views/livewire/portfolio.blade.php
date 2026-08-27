@@ -24,17 +24,19 @@
         </div>
 
         {{-- Editorial Mosaic Grid --}}
-        <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px] sm:auto-rows-[300px]">
+        <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px] sm:auto-rows-[300px]" wire:key="portfolio-grid-{{ $isPortfolioPage ? 'page' : 'home' }}">
             @forelse($portfolios as $index => $portfolio)
             @php
                 // Tahun proyek dari project_date (atau null jika kosong).
                 $portfolioYear = $portfolio->project_date?->format('Y');
-                // Blok pertama menjadi card unggulan (featured) di grid.
-                $isFeatured = $index === 0;
-                // Delay animasi dihitung berdasarkan urutan.
+                // Featured card HANYA berlaku di section Home (bukan di halaman /portfolio berpagination),
+                // dan hanya untuk item pertama secara global (bukan per-halaman).
+                $isFeatured = !$isPortfolioPage && $index === 0;
+                // Delay animasi dihitung berdasarkan urutan dalam halaman saat ini (aman, cuma pengaruh visual).
                 $delay = 100 + ($loop->index * 100);
             @endphp
-            <div class="group relative {{ $isFeatured ? 'sm:col-span-2 sm:row-span-2' : '' }} overflow-hidden rounded-[1.75rem] border border-white/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40"
+            <div wire:key="portfolio-{{ $portfolio->id }}"
+                 class="group relative {{ $isFeatured ? 'sm:col-span-2 sm:row-span-2' : '' }} overflow-hidden rounded-[1.75rem] border border-white/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40"
                  data-aos="fade-up"
                  data-aos-delay="{{ $delay }}"
                  @if($isFeatured) data-aos-duration="700" @endif>
