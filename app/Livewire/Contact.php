@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Setting;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Contact extends Component
@@ -59,6 +61,19 @@ class Contact extends Component
             'message.min' => 'Pesan minimal 3 karakter.',
             'message.max' => 'Pesan maksimal 5000 karakter.',
         ];
+    }
+
+    #[On('product-selected')]
+    public function handleProductSelected(string $productName): void
+    {
+        $this->setProductService($productName);
+    }
+
+    public function setProductService(string $productName): void
+    {
+        $this->service = Product::resolveServiceForContact($productName);
+
+        $this->js("document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });");
     }
 
     public function submit(): void

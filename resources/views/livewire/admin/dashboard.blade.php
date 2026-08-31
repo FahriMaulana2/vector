@@ -4,7 +4,7 @@
         <div class="flex items-center justify-between flex-wrap gap-4">
             <div>
                 <h1 class="text-2xl lg:text-3xl font-bold text-text-primary admin-heading">Dashboard</h1>
-                <p class="text-text-secondary mt-1.5 text-sm">Selamat datang kembali. Berikut ringkasan aktivitas OMH Vector.</p>
+                <p class="text-text-secondary mt-1.5 text-sm">Selamat datang kembali. Berikut ringkasan aktivitas OMAH Vector.</p>
             </div>
             <div class="flex items-center gap-2 text-sm text-text-secondary bg-white px-4 py-2 rounded-xl border border-border shadow-soft">
                 <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

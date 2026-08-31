@@ -147,6 +147,49 @@ class Product extends Model
     }
 
     /**
+     * Map product name to contact service used in the homepage ordering flow.
+     */
+    public static function resolveServiceForContact(?string $productName): string
+    {
+        if (blank($productName)) {
+            return 'Lainnya';
+        }
+
+        $normalized = strtolower(trim($productName));
+
+        $mapping = [
+            'undangan' => 'Wedding Invitation',
+            'wedding' => 'Wedding Invitation',
+            'invitation' => 'Wedding Invitation',
+            'tumbler' => 'Custom Tumbler',
+            'mug' => 'Custom Tumbler',
+            'gelas' => 'Custom Tumbler',
+            'payung' => 'Merchandise',
+            'umbrella' => 'Merchandise',
+            'lanyard' => 'Merchandise',
+            'notebook' => 'Merchandise',
+            'paper bag' => 'Merchandise',
+            'merchandise' => 'Merchandise',
+            'roll banner' => 'Banner Printing',
+            'x banner' => 'Banner Printing',
+            'spanduk' => 'Banner Printing',
+            'banner' => 'Banner Printing',
+            'sticker' => 'Sticker Printing',
+            'kartu nama' => 'Business Card',
+            'business card' => 'Business Card',
+            'brosur' => 'Graphic Design',
+        ];
+
+        foreach ($mapping as $keyword => $service) {
+            if (str_contains($normalized, $keyword)) {
+                return $service;
+            }
+        }
+
+        return 'Lainnya';
+    }
+
+    /**
      * Get the primary image or first gallery image.
      */
     public function coverImage(): ?ProductImage

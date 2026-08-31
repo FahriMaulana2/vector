@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach($items as $item)
                             <tr class="border-b border-border/50 hover:bg-surface/50 transition-colors">
-                                <td class="py-4 px-3"><p class="font-medium text-text-primary">{{ $item->name }}</p></td>
+                                <td class="py-4 px-3"><p class="font-medium text-text-primary">{{ $item->title }}</p></td>
                                 <td class="py-4 px-3"><p class="text-xs text-text-secondary line-clamp-2">{{ $item->description }}</p></td>
                                 <td class="py-4 px-3">
                                     <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg {{ $item->is_active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600' }}">

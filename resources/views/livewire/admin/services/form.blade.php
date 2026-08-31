@@ -17,8 +17,8 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-text-primary mb-1.5">Nama Layanan <span class="text-red-500">*</span></label>
-                        <input wire:model="name" type="text" class="w-full px-4 py-2.5 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Nama layanan">
-                        @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        <input wire:model="title" type="text" class="w-full px-4 py-2.5 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Nama layanan">
+                        @error('title') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-text-primary mb-1.5">Deskripsi</label>

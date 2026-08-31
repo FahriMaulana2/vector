@@ -1,6 +1,4 @@
 <?php
-// Map nama icon dari database ke SVG path (stroke) untuk dirender di icon container.
-// Admin menyimpan ikon sebagai nama (printer, pen-tool, dll) atau path gambar.
 $serviceIcons = [
     'printer' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
     'pen-tool' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
@@ -11,26 +9,22 @@ $serviceIcons = [
     'message-circle' => 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
     'package' => 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
 ];
-
-// Fallback icon jika nama icon tidak dikenal atau kosong.
 $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
 ?>
 
 <section id="services" class="relative overflow-hidden bg-light">
-    {{-- Subtle decorative background --}}
+    {{-- Background decorations --}}
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-1/3 left-0 w-[450px] h-[450px] bg-gradient-to-r from-gold/8 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-l from-white/50 to-transparent rounded-full blur-3xl"></div>
     </div>
 
-    {{-- Very subtle dot pattern --}}
     <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
          style="background-image: radial-gradient(circle at 1px 1px, #0B1F2A 1px, transparent 0); background-size: 32px 32px;"></div>
 
-    {{-- Thin gold accent line top --}}
     <div class="absolute top-0 left-0 z-0 h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent pointer-events-none"></div>
 
-<div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
         {{-- Section Header --}}
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
             <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft mb-6">
@@ -41,19 +35,23 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
             <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Dari kebutuhan cetak harian hingga branding korporat, kami siap mewujudkannya dengan hasil terbaik.</p>
         </div>
 
-{{-- Service Cards Grid --}}
-        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {{-- Service Cards Grid --}}
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start" id="services-grid">
             @forelse($services as $service)
             @php
-                // Dukung icon sebagai nama (dari seeder) ATAU path gambar (jika admin upload).
                 $iconIsImage = $service->icon && !isset($serviceIcons[$service->icon]) && (str_contains($service->icon, '/') || str_contains($service->icon, '.'));
                 $iconPath = $serviceIcons[$service->icon] ?? $serviceIcons['default'];
                 $delay = 100 + ($loop->index * 100);
             @endphp
-            <div class="group relative rounded-[1.75rem] border border-white/70 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-gold/40 flex flex-col overflow-hidden"
-                 data-aos="fade-up" data-aos-delay="{{ $delay }}">
-
-                {{-- Top gold accent line on hover --}}
+            
+            <div 
+                wire:key="service-{{ $service->id }}"
+                data-service-id="{{ $service->id }}"
+                class="service-card group relative rounded-[1.75rem] border border-white/70 bg-white p-8 flex flex-col overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:-translate-y-1.5 hover:shadow-card-hover hover:border-gold/40 shadow-card z-10"
+                data-aos="fade-up" 
+                data-aos-delay="{{ $delay }}"
+            >
+                {{-- Top gold accent line --}}
                 <div class="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-gold to-gold-light transition-all duration-500 group-hover:w-full"></div>
 
                 <div class="flex flex-col flex-1">
@@ -68,9 +66,15 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
                         @endif
                     </div>
                     <h3 class="mt-6 font-heading text-lg font-semibold text-navy">{{ $service->title }}</h3>
-                    <p class="mt-2.5 text-sm font-inter leading-relaxed text-ink-soft flex-1">{{ $service->description }}</p>
+                    
+                    {{-- Container deskripsi dengan max-height transition --}}
+                    <div class="service-desc-wrapper mt-2.5 flex-1 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="service-desc text-sm font-inter leading-relaxed text-ink-soft">
+                            {{ $service->description }}
+                        </p>
+                    </div>
 
-                    {{-- Decorative gold detail + link to contact --}}
+                    {{-- CTA --}}
                     <div class="mt-6 flex items-center justify-between">
                         <span class="h-1 w-8 rounded-full bg-gold/30 transition-all duration-300 group-hover:w-12 group-hover:bg-gold"></span>
                         <a href="#contact" class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-navy transition-all duration-300 group-hover:text-gold-dark group-hover:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 rounded-lg">
@@ -88,3 +92,116 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
         </div>
     </div>
 </section>
+
+{{-- JavaScript untuk handle animasi card + expand deskripsi --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.service-card');
+    const SHORT_HEIGHT = 72; // Tinggi deskripsi pendek dalam pixel (sekitar 3 baris)
+    let activeCard = null;
+
+    // Inisialisasi: batasi tinggi semua deskripsi
+    cards.forEach(card => {
+        const wrapper = card.querySelector('.service-desc-wrapper');
+        wrapper.style.maxHeight = SHORT_HEIGHT + 'px';
+    });
+
+    cards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Jika klik pada link "Pelajari Layanan", biarkan default behavior
+            if (e.target.closest('a[href="#contact"]')) {
+                return;
+            }
+
+            const serviceId = this.dataset.serviceId;
+
+            // Jika card yang sama diklik, reset semua
+            if (activeCard === serviceId) {
+                resetAllCards();
+                activeCard = null;
+                return;
+            }
+
+            // Reset semua card dulu
+            resetAllCards();
+
+            // Set card ini sebagai active
+            activeCard = serviceId;
+            
+            // Tambah class active ke card yang diklik
+            this.classList.add('scale-105', 'z-20', 'shadow-2xl', 'border-gold', 'ring-4', 'ring-gold/20');
+            this.classList.remove('hover:-translate-y-1.5', 'hover:shadow-card-hover', 'hover:border-gold/40', 'border-white/70', 'shadow-card', 'z-10');
+            
+            // Expand deskripsi card aktif
+            const activeWrapper = this.querySelector('.service-desc-wrapper');
+            activeWrapper.style.maxHeight = '500px'; // Nilai cukup besar untuk menampung deskripsi full
+            
+            // Kecilkan card lain
+            cards.forEach(otherCard => {
+                if (otherCard !== this) {
+                    otherCard.classList.add('scale-95', 'opacity-40', 'blur-[1px]', 'z-0');
+                    otherCard.classList.remove('z-10');
+                }
+            });
+
+            // Animasi garis atas
+            const accentLine = this.querySelector('.absolute.top-0');
+            if (accentLine) {
+                accentLine.classList.remove('w-0', 'group-hover:w-full');
+                accentLine.classList.add('w-full');
+            }
+        });
+    });
+
+    function resetAllCards() {
+        cards.forEach(card => {
+            card.classList.remove('scale-105', 'z-20', 'shadow-2xl', 'border-gold', 'ring-4', 'ring-gold/20', 'scale-95', 'opacity-40', 'blur-[1px]', 'z-0');
+            card.classList.add('hover:-translate-y-1.5', 'hover:shadow-card-hover', 'hover:border-gold/40', 'border-white/70', 'shadow-card', 'z-10');
+            
+            // Kembalikan deskripsi ke tinggi pendek
+            const wrapper = card.querySelector('.service-desc-wrapper');
+            wrapper.style.maxHeight = SHORT_HEIGHT + 'px';
+            
+            const accentLine = card.querySelector('.absolute.top-0');
+            if (accentLine) {
+                accentLine.classList.remove('w-full');
+                accentLine.classList.add('w-0', 'group-hover:w-full');
+            }
+        });
+    }
+
+    // Reset saat scroll untuk mencegah bug
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            if (activeCard) {
+                resetAllCards();
+                activeCard = null;
+            }
+        }, 150);
+    });
+});
+</script>
+
+<style>
+/* Smooth transition untuk animasi */
+.service-card {
+    transform-origin: top center;
+    will-change: transform, opacity;
+}
+
+/* Pastikan card active selalu di atas */
+.service-card.scale-105 {
+    transform: scale(1.05);
+}
+
+.service-card.scale-95 {
+    transform: scale(0.95);
+}
+
+/* Wrapper deskripsi dengan transition smooth */
+.service-desc-wrapper {
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+</style>

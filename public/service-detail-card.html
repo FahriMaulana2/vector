@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Layanan Omah Vector untuk desain grafis, percetakan, dan branding.">
+    <title>Layanan Kami | Omah Vector</title>
+
+    <!-- Tailwind CSS via CDN agar file bisa langsung dipreview di browser. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF7F2',
+                        ink: '#1A1A1A',
+                        gold: '#C9A24B',
+                        'gold-soft': '#F3E8C8'
+                    },
+                    fontFamily: {
+                        display: ['DM Sans', 'sans-serif'],
+                        body: ['Manrope', 'sans-serif']
+                    },
+                    boxShadow: {
+                        card: '0 10px 30px rgba(64, 48, 20, 0.06)',
+                        'card-hover': '0 16px 36px rgba(64, 48, 20, 0.12)'
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cream font-body text-ink antialiased">
+    <!-- Section utama: latar hangat, padding mobile 16px, dan ruang responsif. -->
+    <main class="relative isolate overflow-hidden px-4 py-16 sm:px-5 md:py-24">
+        <!-- Tekstur titik yang sangat halus untuk memberi kedalaman tanpa mengganggu isi. -->
+        <div class="pointer-events-none absolute inset-0 -z-10 opacity-40" aria-hidden="true" style="background-image: radial-gradient(#C9A24B 0.8px, transparent 0.8px); background-size: 24px 24px;"></div>
+        <div class="pointer-events-none absolute -right-24 top-10 -z-10 h-64 w-64 rounded-full border border-gold/10" aria-hidden="true"></div>
+
+        <div class="mx-auto max-w-6xl">
+            <!-- Header section: badge dekoratif, judul dengan highlight gold, dan deskripsi. -->
+            <header class="mx-auto max-w-2xl text-center">
+                <div class="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+                    <span class="h-px w-7 bg-gold/70" aria-hidden="true"></span>
+                    <span>Layanan Kami</span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+                </div>
+                <h1 class="font-display text-[30px] font-bold leading-[1.08] tracking-tight text-ink sm:text-4xl">
+                    Solusi kreatif untuk <span class="text-gold">Bisnis Anda</span>
+                </h1>
+                <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-stone-500 sm:text-[15px]">
+                    Dari ide pertama hingga siap digunakan, kami membantu menghadirkan karya visual yang berkesan.
+                </p>
+            </header>
+
+            <!-- Grid kartu: satu kolom di mobile, dua kolom mulai breakpoint md. -->
+            <div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:mt-12">
+                <!-- Kartu layanan: seluruh area merupakan satu tautan yang mudah disentuh. -->
+                <a href="#graphic-design" aria-label="Pelajari layanan Graphic Design"
+                    class="group flex min-h-[250px] flex-col rounded-2xl bg-white p-5 shadow-card outline-none transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream active:scale-95">
+                    <!-- Icon layanan dalam lingkaran soft gold. -->
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold transition-colors duration-200 group-hover:bg-gold group-hover:text-white" aria-hidden="true">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 5 4 4M4 20l3.5-.8L18.2 8.5a2.1 2.1 0 0 0-3-3L4.5 16.2 4 20Z" />
+                            <path d="m13.5 6.5 4 4M7.5 16.5h.01" />
+                        </svg>
+                    </div>
+                    <h2 class="mt-5 font-display text-lg font-semibold text-ink">Graphic Design</h2>
+                    <p class="mt-2 text-sm leading-6 text-stone-500">Layanan desain grafis profesional untuk logo, brosur, dan materi promosi.</p>
+                    <!-- CTA visual dengan garis aksen kiri; tetap bagian dari link kartu. -->
+                    <span class="mt-auto flex items-center gap-3 pt-6 text-sm font-semibold text-gold">
+                        <span class="h-5 w-px bg-gold transition-all duration-200 group-hover:h-7" aria-hidden="true"></span>
+                        <span>Pelajari Layanan</span>
+                        <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M4 10h11m-4-4 4 4-4 4" />
+                        </svg>
+                    </span>
+                </a>
+
+                <!-- Kartu layanan percetakan. -->
+                <a href="#percetakan" aria-label="Pelajari layanan Percetakan"
+                    class="group flex min-h-[250px] flex-col rounded-2xl bg-white p-5 shadow-card outline-none transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream active:scale-95">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold transition-colors duration-200 group-hover:bg-gold group-hover:text-white" aria-hidden="true">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                            <path d="M6 14h12v7H6zM18 12h.01" />
+                        </svg>
+                    </div>
+                    <h2 class="mt-5 font-display text-lg font-semibold text-ink">Percetakan</h2>
+                    <p class="mt-2 text-sm leading-6 text-stone-500">Cetak berkualitas tinggi untuk kebutuhan bisnis dan personal.</p>
+                    <span class="mt-auto flex items-center gap-3 pt-6 text-sm font-semibold text-gold">
+                        <span class="h-5 w-px bg-gold transition-all duration-200 group-hover:h-7" aria-hidden="true"></span>
+                        <span>Pelajari Layanan</span>
+                        <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M4 10h11m-4-4 4 4-4 4" />
+                        </svg>
+                    </span>
+                </a>
+
+                <!-- Kartu branding dibuat melebar di tablet agar grid terasa seimbang. -->
+                <a href="#branding" aria-label="Pelajari layanan Branding"
+                    class="group flex min-h-[250px] flex-col rounded-2xl bg-white p-5 shadow-card outline-none transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream active:scale-95 md:col-span-2 md:min-h-[220px]">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold transition-colors duration-200 group-hover:bg-gold group-hover:text-white" aria-hidden="true">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m12 3 2.2 4.5L19 9.1l-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8L5 9.1l4.8-1.6L12 3Z" />
+                            <path d="M19 17v4M17 19h4" />
+                        </svg>
+                    </div>
+                    <h2 class="mt-5 font-display text-lg font-semibold text-ink">Branding</h2>
+                    <p class="mt-2 max-w-xl text-sm leading-6 text-stone-500">Bangun identitas merek yang kuat dan konsisten.</p>
+                    <span class="mt-auto flex items-center gap-3 pt-6 text-sm font-semibold text-gold">
+                        <span class="h-5 w-px bg-gold transition-all duration-200 group-hover:h-7" aria-hidden="true"></span>
+                        <span>Pelajari Layanan</span>
+                        <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M4 10h11m-4-4 4 4-4 4" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
