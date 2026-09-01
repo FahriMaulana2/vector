@@ -11,7 +11,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
-#[Title('Form Hero Section - Admin OMH Vector')]
+#[Title('Form Hero Section - Admin OMAH Vector')]
 class Form extends Component
 {
     use WithFileUploads;

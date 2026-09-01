@@ -12,7 +12,7 @@
     {{-- Thin gold accent line top --}}
     <div class="absolute top-0 left-0 z-0 h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent pointer-events-none"></div>
 
-<div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
         {{-- Section Header --}}
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
             <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft">
@@ -89,19 +89,36 @@
             @endforelse
 
             @if($showProductCta)
-            <div class="group relative flex flex-col justify-center overflow-hidden rounded-[1.75rem] border border-white/70 bg-white p-8 text-center shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-gold/40 lg:p-10" data-aos="fade-up">
+{{-- CTA Card - Full Width (col-span-full) --}}
+<div class="col-span-full group relative flex flex-col justify-center overflow-hidden rounded-[1.75rem] border border-white/70 bg-white p-10 lg:p-14 text-center shadow-card">
                 <div class="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-gold via-gold-light to-gold opacity-70 pointer-events-none"></div>
                 <div class="absolute inset-0 pointer-events-none">
                     <div class="absolute top-[-80px] right-[-60px] w-[260px] h-[260px] rounded-full bg-gold/8 blur-3xl"></div>
                 </div>
+                
+                {{-- Content CTA Card --}}
                 <div class="relative z-10 flex flex-col items-center">
                     <h3 class="font-heading text-xl font-bold text-navy lg:text-2xl">Explore Our Complete Product Catalogue</h3>
-                    <p class="mt-3 text-sm font-inter leading-relaxed text-ink-soft">We provide hundreds of digital printing, promotional, and branding products for businesses, events, and personal needs.</p>
-                    <a href="{{ route('products.index') }}"
-                       class="group/btn mt-6 inline-flex items-center gap-2.5 rounded-full border-2 border-navy bg-transparent px-6 py-3.5 text-sm font-heading font-semibold text-navy transition-all duration-300 hover:bg-gold hover:border-gold hover:text-navy hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50">
-                        <span>Lihat Semua Produk</span>
-                        <svg class="w-4 h-4 text-gold-dark transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
+                    <p class="mt-3 text-sm font-inter leading-relaxed text-ink-soft max-w-md">We provide hundreds of digital printing, promotional, and branding products for businesses, events, and personal needs.</p>
+                    
+                    {{-- CTA Button - FIXED & LARGER --}}
+                    <div class="mt-6 flex justify-center w-full">
+                        <a href="{{ route('products.index') }}"
+                           class="group/btn inline-flex items-center gap-2.5 rounded-full border-2 border-navy bg-transparent px-10 py-4 text-base font-heading font-semibold text-navy min-w-[300px] justify-center transition-all duration-300 hover:bg-gold hover:border-gold hover:text-navy hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50">
+                            
+                            {{-- Icon Kiri (Gallery/Image) --}}
+                            <svg class="w-5 h-5 text-gold-dark transition-transform duration-300 group-hover/btn:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            
+                            <span>Lihat Semua Produk</span>
+                            
+                            {{-- Icon Kanan (Arrow) --}}
+                            <svg class="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
             @endif

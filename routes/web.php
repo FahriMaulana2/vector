@@ -16,6 +16,7 @@ use App\Livewire\Admin\Portfolios\Index as PortfoliosIndex;
 use App\Livewire\Admin\Portfolios\PageContent as PortfolioPageContent;
 use App\Livewire\Admin\Products\Form as ProductsForm;
 use App\Livewire\Admin\Products\Index as ProductsIndex;
+use App\Livewire\Admin\Products\PageContent as ProductsPageContent;
 use App\Livewire\Admin\Services\Form as ServicesForm;
 use App\Livewire\Admin\Services\Index as ServicesIndex;
 use App\Livewire\Admin\Settings\Index as SettingsIndex;
@@ -93,6 +94,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Katalog & Portofolio
     Route::prefix('products')->name('products.')->group(function () {
         Route::get('/', ProductsIndex::class)->name('index');
+        Route::get('/page-content', ProductsPageContent::class)->name('page-content');
         Route::get('/create', ProductsForm::class)->name('create');
         Route::get('/{product}/edit', ProductsForm::class)->name('edit');
     });

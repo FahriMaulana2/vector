@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
-#[Title('Form FAQ - Admin OMH Vector')]
+#[Title('Form FAQ - Admin OMAH Vector')]
 class Form extends Component
 {
     public $itemId = null;

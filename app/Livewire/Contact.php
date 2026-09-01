@@ -22,6 +22,19 @@ class Contact extends Component
 
     public string $message = '';
 
+    public function mount(): void
+    {
+        if ($productSlug = request()->query('product')) {
+            $product = Product::where('slug', $productSlug)->first();
+            if ($product) {
+                $this->service = Product::resolveServiceForContact($product->name);
+                $this->message = 'Halo, saya tertarik untuk memesan produk '.$product->name.'. Mohon informasi lebih lanjut.';
+
+                $this->js("setTimeout(() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 350);");
+            }
+        }
+    }
+
     public array $servicesList = [
         'Banner Printing',
         'Sticker Printing',
@@ -104,8 +117,8 @@ class Contact extends Component
         // 3. Format pesan WhatsApp sesuai spesifikasi
         $separator = "\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81";
 
-        $whatsappMessage = "Halo Admin OMH Vector \xF0\x9F\x91\x8B\n\n"
-            ."Saya ingin menghubungi OMH Vector terkait layanan digital printing.\n\n"
+        $whatsappMessage = "Halo Admin OMAH Vector \xF0\x9F\x91\x8B\n\n"
+            ."Saya ingin menghubungi OMAH Vector terkait layanan digital printing.\n\n"
             ."{$separator}\n"
             ."\xF0\x9F\x93\x8B DATA KONTAK\n"
             ."{$separator}\n\n"

@@ -180,7 +180,7 @@ icon='<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 </div>
             </div>
             <div class="p-6">
-                <p class="text-sm text-text-secondary mb-6">Kelola konten dan pantau operasional website OMH Vector dengan mudah melalui menu berikut.</p>
+                <p class="text-sm text-text-secondary mb-6">Kelola konten dan pantau operasional website OMAH Vector dengan mudah melalui menu berikut.</p>
                 
                 <div class="space-y-3">
                     <a href="{{ route('admin.products.index') }}" class="flex items-center justify-between p-4 rounded-xl border border-border bg-surface/50 hover:bg-primary/5 hover:border-primary/20 transition-all duration-200 group">

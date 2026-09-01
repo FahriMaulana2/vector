@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
-#[Title('Form Tentang Kami - Admin OMH Vector')]
+#[Title('Form Tentang Kami - Admin OMAH Vector')]
 class Form extends Component
 {
     use WithFileUploads;

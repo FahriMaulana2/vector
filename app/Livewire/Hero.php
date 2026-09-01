@@ -36,7 +36,7 @@ class Hero extends Component
             $heroImage = 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80';
         }
 
-        $heroImageAlt = $hero?->title ?: 'OMH Vector Digital Printing';
+        $heroImageAlt = $hero?->title ?: 'OMAH Vector Digital Printing';
         $heroBadge = $hero?->subtitle ?: 'Digital Printing & Branding';
 
         // WhatsApp link dari Settings untuk CTA

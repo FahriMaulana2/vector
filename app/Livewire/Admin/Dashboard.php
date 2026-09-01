@@ -13,7 +13,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
-#[Title('Dashboard - Admin OMH Vector')]
+#[Title('Dashboard - Admin OMAH Vector')]
 class Dashboard extends Component
 {
     public function render()

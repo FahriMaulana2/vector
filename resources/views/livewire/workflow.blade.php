@@ -29,6 +29,7 @@
     })->values();
 @endphp
 
+<div>
 @if($steps->isNotEmpty())
 <section id="workflow" class="relative overflow-hidden bg-cream py-20 lg:py-28">
     {{-- Subtle decorative background --}}
@@ -116,3 +117,4 @@
     </div>
 </section>
 @endif
+</div>

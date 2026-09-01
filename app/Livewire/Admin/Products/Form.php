@@ -3,6 +3,8 @@
 namespace App\Livewire\Admin\Products;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -34,6 +36,9 @@ class Form extends Component
 
     public bool $isEditing = false;
 
+    // Properti untuk kategori
+    public $product_category_id = null;
+
     /**
      * Load product ketika mode edit.
      */
@@ -53,6 +58,7 @@ class Form extends Component
         $this->existing_image = $item->image;
         $this->badge = $item->badge ?? '';
         $this->is_active = (bool) $item->is_active;
+        $this->product_category_id = $item->product_category_id;
 
         $this->existing_gallery = $item->images
             ->pluck('image')
@@ -66,16 +72,12 @@ class Form extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-
             'description' => 'nullable|string',
-
             'image' => 'nullable|image|max:2048',
-
             'badge' => 'nullable|string|max:100',
-
             'is_active' => 'boolean',
-
             'gallery.*' => 'nullable|image|max:2048',
+            'product_category_id' => 'required|exists:product_categories,id',
         ]);
 
         /*
@@ -90,11 +92,13 @@ class Form extends Component
 
         $item->name = $this->name;
 
+        // ✅ FIX: Generate slug otomatis dari nama produk agar tidak error "slug doesn't have a default value"
+        $item->slug = Str::slug($this->name);
+
         $item->description = $this->description;
-
         $item->badge = $this->badge ?: null;
-
         $item->is_active = $this->is_active;
+        $item->product_category_id = $this->product_category_id;
 
         /*
         |--------------------------------------------------------------------------
@@ -103,10 +107,7 @@ class Form extends Component
         */
 
         if ($this->image) {
-            $item->image = $this->image->store(
-                'products',
-                'public'
-            );
+            $item->image = $this->image->store('products', 'public');
         }
 
         /*
@@ -126,10 +127,7 @@ class Form extends Component
         if (! empty($this->gallery)) {
             foreach ($this->gallery as $img) {
                 $item->images()->create([
-                    'image' => $img->store(
-                        'products/gallery',
-                        'public'
-                    ),
+                    'image' => $img->store('products/gallery', 'public'),
                 ]);
             }
         }
@@ -158,6 +156,10 @@ class Form extends Component
      */
     public function render()
     {
-        return view('livewire.admin.products.form');
+        return view('livewire.admin.products.form', [
+            'categories' => ProductCategory::orderBy('sort_order')
+                ->orderBy('name')
+                ->get(),
+        ]);
     }
 }

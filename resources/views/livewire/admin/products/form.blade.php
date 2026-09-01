@@ -97,6 +97,35 @@
                     @enderror
                 </div>
 
+                {{-- Kategori Produk --}}
+                <div>
+                    <label
+                        for="product_category_id"
+                        class="block text-sm font-medium text-text-primary mb-2"
+                    >
+                        Kategori Produk <span class="text-red-500">*</span>
+                    </label>
+
+                    <select
+                        id="product_category_id"
+                        wire:model="product_category_id"
+                        class="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                    >
+                        <option value="">-- Pilih Kategori --</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    @error('product_category_id')
+                        <p class="mt-1.5 text-xs text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
                 {{-- Badge + Status --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -131,22 +160,22 @@
                     {{-- Status --}}
                     <div>
                         <label
-                            for="status"
+                            for="is_active"
                             class="block text-sm font-medium text-text-primary mb-2"
                         >
                             Status <span class="text-red-500">*</span>
                         </label>
 
                         <select
-                            id="status"
-                            wire:model="status"
+                            id="is_active"
+                            wire:model="is_active"
                             class="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
                         >
-                            <option value="active">Aktif</option>
-                            <option value="inactive">Nonaktif</option>
+                            <option value="1">Aktif</option>
+                            <option value="0">Nonaktif</option>
                         </select>
 
-                        @error('status')
+                        @error('is_active')
                             <p class="mt-1.5 text-xs text-red-500">
                                 {{ $message }}
                             </p>

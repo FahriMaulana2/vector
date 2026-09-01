@@ -40,6 +40,7 @@
                 ],
 'KATALOG & PORTOFOLIO' => [
                     ['name' => 'Produk', 'route' => 'admin.products.index', 'active_routes' => ['admin.products.index', 'admin.products.create', 'admin.products.edit'], 'icon' => 'package', 'badge' => null],
+                    ['name' => 'Halaman Produk', 'route' => 'admin.products.page-content', 'active_routes' => ['admin.products.page-content'], 'icon' => 'layout', 'badge' => null],
                     ['name' => 'Portofolio', 'route' => 'admin.portfolios.index', 'active_routes' => ['admin.portfolios.index', 'admin.portfolios.create', 'admin.portfolios.edit'], 'icon' => 'image', 'badge' => null],
                     ['name' => 'Halaman Portfolio', 'route' => 'admin.portfolios.page-content', 'active_routes' => ['admin.portfolios.page-content'], 'icon' => 'layout', 'badge' => null],
                 ],

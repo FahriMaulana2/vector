@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,8 +25,10 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $is_featured
  * @property int $sort_order
  * @property bool $is_active
+ * @property int|null $product_category_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read ProductCategory|null $category
  * @property-read Collection<int, ProductImage> $images
  * @property-read Collection<int, Order> $orders
  */
@@ -49,6 +52,7 @@ class Product extends Model
         'is_featured',
         'sort_order',
         'is_active',
+        'product_category_id',
     ];
 
     /**
@@ -81,6 +85,14 @@ class Product extends Model
                 Storage::disk('public')->delete($product->image);
             }
         });
+    }
+
+    /**
+     * Get the category that owns the product.
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
     /**
