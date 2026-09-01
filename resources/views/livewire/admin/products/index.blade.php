@@ -36,6 +36,16 @@
         </div>
     </div>
 
+    {{-- Flash Message --}}
+    @if(session()->has('success'))
+        <div class="mb-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm flex items-center gap-2">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>{{ session('success') }}</span>
+        </div>
+    @endif
+
     {{-- Product Table --}}
     <div class="bg-white rounded-2xl border border-border shadow-soft overflow-hidden">
         <div class="p-6">
@@ -83,8 +93,32 @@
                         <thead>
                             <tr class="border-b border-border">
 
+                                {{-- ✅ KOLOM ID (dengan sorting) --}}
+                                <th class="text-left py-3.5 px-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">
+                                    <button
+                                        wire:click="setSortBy('id')"
+                                        class="inline-flex items-center gap-1 hover:text-primary transition-colors"
+                                    >
+                                        ID
+                                        @if($sortBy === 'id')
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                @if($sortDirection === 'asc')
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                                @else
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                @endif
+                                            </svg>
+                                        @endif
+                                    </button>
+                                </th>
+
                                 <th class="text-left py-3.5 px-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">
                                     Produk
+                                </th>
+
+                                {{-- ✅ KOLOM KATEGORI --}}
+                                <th class="text-left py-3.5 px-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">
+                                    Kategori
                                 </th>
 
                                 <th class="text-left py-3.5 px-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">
@@ -104,6 +138,13 @@
                             @foreach($items as $item)
 
                                 <tr class="border-b border-border/50 hover:bg-surface/50 transition-colors">
+
+                                    {{-- ✅ KOLOM ID --}}
+                                    <td class="py-4 px-3">
+                                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary text-sm font-bold font-mono">
+                                            #{{ $item->id }}
+                                        </span>
+                                    </td>
 
                                     {{-- Product --}}
                                     <td class="py-4 px-3">
@@ -174,6 +215,17 @@
 
                                         </div>
 
+                                    </td>
+
+                                    {{-- ✅ KOLOM KATEGORI --}}
+                                    <td class="py-4 px-3">
+                                        @if($item->category)
+                                            <span class="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-lg bg-blue-50 text-blue-700">
+                                                {{ $item->category->name }}
+                                            </span>
+                                        @else
+                                            <span class="text-xs text-text-secondary/60">-</span>
+                                        @endif
                                     </td>
 
                                     {{-- Status --}}
