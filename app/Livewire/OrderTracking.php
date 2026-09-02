@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
-#[Title('Lacak Pesanan - OMH Vector')]
+#[Title('Lacak Pesanan - OMAH Vector')]
 class OrderTracking extends Component
 {
     public string $orderNumber = '';

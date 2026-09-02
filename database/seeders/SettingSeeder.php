@@ -13,8 +13,8 @@ class SettingSeeder extends Seeder
     {
         $settings = [
             // Company Info
-            ['key' => 'company_name', 'value' => 'OMH Vector', 'group' => 'company'],
-            ['key' => 'company_email', 'value' => 'info@omhvector.com', 'group' => 'company'],
+            ['key' => 'company_name', 'value' => 'OMAH Vector', 'group' => 'company'],
+            ['key' => 'company_email', 'value' => 'info@OMAHvector.com', 'group' => 'company'],
             ['key' => 'company_phone', 'value' => '+62 21 1234 5678', 'group' => 'company'],
             ['key' => 'company_whatsapp', 'value' => '6281234567890', 'group' => 'company'],
             ['key' => 'company_address', 'value' => 'Jl. Percetakan Negara No. 123, Jakarta Pusat, 10510', 'group' => 'company'],
@@ -27,14 +27,14 @@ class SettingSeeder extends Seeder
             ['key' => 'favicon', 'value' => 'images/favicon.ico', 'group' => 'branding'],
 
             // Social Media
-            ['key' => 'facebook_url', 'value' => 'https://facebook.com/omhvector', 'group' => 'social'],
-            ['key' => 'instagram_url', 'value' => 'https://instagram.com/omhvector', 'group' => 'social'],
-            ['key' => 'tiktok_url', 'value' => 'https://tiktok.com/@omhvector', 'group' => 'social'],
-            ['key' => 'youtube_url', 'value' => 'https://youtube.com/@omhvector', 'group' => 'social'],
-            ['key' => 'linkedin_url', 'value' => 'https://linkedin.com/company/omhvector', 'group' => 'social'],
+            ['key' => 'facebook_url', 'value' => 'https://facebook.com/OMAHvector', 'group' => 'social'],
+            ['key' => 'instagram_url', 'value' => 'https://instagram.com/OMAHvector', 'group' => 'social'],
+            ['key' => 'tiktok_url', 'value' => 'https://tiktok.com/@OMAHvector', 'group' => 'social'],
+            ['key' => 'youtube_url', 'value' => 'https://youtube.com/@OMAHvector', 'group' => 'social'],
+            ['key' => 'linkedin_url', 'value' => 'https://linkedin.com/company/OMAHvector', 'group' => 'social'],
 
             // SEO
-            ['key' => 'seo_title', 'value' => 'OMH Vector - Digital Printing & Branding Agency', 'group' => 'seo'],
+            ['key' => 'seo_title', 'value' => 'OMAH Vector - Digital Printing & Branding Agency', 'group' => 'seo'],
             ['key' => 'seo_description', 'value' => 'Jasa digital printing, packaging, merchandise, dan corporate branding terbaik di Jakarta.', 'group' => 'seo'],
             ['key' => 'seo_keywords', 'value' => 'digital printing, packaging, branding, merchandise, cetak jakarta', 'group' => 'seo'],
         ];

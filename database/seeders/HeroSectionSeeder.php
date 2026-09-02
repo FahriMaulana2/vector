@@ -13,7 +13,7 @@ class HeroSectionSeeder extends Seeder
     {
         HeroSection::create([
             'title' => 'Solusi Cetak & Branding Terpercaya',
-            'subtitle' => 'OMH Vector',
+            'subtitle' => 'OMAH Vector',
             'description' => 'Mitra terbaik untuk kebutuhan digital printing, packaging, dan merchandise perusahaan Anda. Kualitas premium dengan harga kompetitif.',
             'button_text' => 'Lihat Produk Kami',
             'button_link' => '/products',

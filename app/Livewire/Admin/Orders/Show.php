@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
-#[Title('Detail Pesanan - Admin OMH Vector')]
+#[Title('Detail Pesanan - Admin OMAH Vector')]
 class Show extends Component
 {
     public Order $order;

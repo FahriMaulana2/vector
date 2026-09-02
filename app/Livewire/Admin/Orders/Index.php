@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin')]
-#[Title('Pesanan - Admin OMH Vector')]
+#[Title('Pesanan - Admin OMAH Vector')]
 class Index extends Component
 {
     use WithPagination;

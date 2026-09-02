@@ -24,7 +24,7 @@ class Setting extends Model
     /**
      * The cache key for settings.
      */
-    private const CACHE_KEY = 'omh_settings';
+    private const CACHE_KEY = 'OMAH_settings';
 
     /**
      * The attributes that are mass assignable.
@@ -102,7 +102,7 @@ class Setting extends Model
      */
     public static function getCompanyName(): string
     {
-        return static::get('company_name', 'OMH Vector');
+        return static::get('company_name', 'OMAH Vector');
     }
 
     /**

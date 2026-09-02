@@ -56,27 +56,37 @@
             <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Empat langkah sederhana untuk mewujudkan proyek percetakan dan branding Anda dengan hasil maksimal.</p>
         </div>
 
-        {{-- Workflow Timeline --}}
-        <div class="relative mt-16">
-            {{-- Desktop connecting line (lg+) --}}
-            <div class="hidden lg:block absolute top-6 left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-navy/10 via-navy/30 to-gold/40 rounded-full"></div>
+        {{-- Workflow Carousel --}}
+        <div class="relative mt-16" x-data="workflowScroll()">
+            <div class="hidden lg:block absolute -inset-4 border-2 border-dashed border-gold/30 rounded-[2rem] pointer-events-none"></div>
 
-            {{-- Vertical connecting line (mobile/tablet) --}}
-            <div class="lg:hidden absolute left-[27px] top-2 bottom-10 w-0.5 bg-gradient-to-b from-navy/10 via-navy/30 to-gold/40 rounded-full"></div>
+            <div class="pointer-events-none absolute inset-y-0 left-0 z-20 hidden w-20 bg-gradient-to-r from-cream to-transparent lg:block" x-show="canScrollLeft" x-transition></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 z-20 hidden w-20 bg-gradient-to-l from-cream to-transparent lg:block" x-show="canScrollRight" x-transition></div>
 
-            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 items-start">
+            <div class="absolute right-4 top-0 z-30 hidden lg:block" x-show="showHint" x-transition>
+                <span class="inline-flex items-center rounded-full border border-gold/30 bg-white/80 px-3 py-1.5 text-[10px] font-heading font-semibold uppercase tracking-[0.2em] text-navy shadow-soft backdrop-blur-sm">Geser untuk melihat</span>
+            </div>
+
+            <div class="absolute inset-y-0 left-0 z-30 hidden items-center lg:flex">
+                <button type="button" x-show="canScrollLeft" x-transition aria-label="Geser ke kiri" @click="scroll(-420)" class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-white/90 text-navy shadow-soft transition-all duration-300 hover:bg-gold hover:text-navy hover:shadow-button">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+            </div>
+
+            <div class="absolute inset-y-0 right-0 z-30 hidden items-center lg:flex">
+                <button type="button" x-show="canScrollRight" x-transition aria-label="Geser ke kanan" @click="scroll(420)" class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-white/90 text-navy shadow-soft transition-all duration-300 hover:bg-gold hover:text-navy hover:shadow-button">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+
+            <div x-ref="scrollContainer" @scroll="updateScrollState()" class="flex gap-6 overflow-x-auto overflow-y-hidden pb-8 pt-6 px-4 lg:px-8 scroll-smooth snap-x snap-mandatory" style="scrollbar-width: thin; scrollbar-color: #D4AF37 transparent;">
                 @foreach($steps as $index => $step)
-                <div class="group relative flex flex-col items-start justify-start w-full" data-aos="fade-up" data-aos-delay="{{ $step['delay'] }}">
-                    {{-- Timeline indicator (step number) --}}
-                    <div class="relative z-10 mb-5 flex items-center justify-center">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-cream text-gold shadow-soft transition-all duration-300 group-hover:bg-gold group-hover:text-navy group-hover:border-gold group-hover:shadow-button group-hover:scale-105">
-                            <span class="font-heading text-sm font-bold tracking-wide">{{ $step['num'] }}</span>
-                        </div>
+                <div class="group relative flex-shrink-0 w-[280px] sm:w-[320px] snap-center flex flex-col items-start justify-start" data-aos="fade-up" data-aos-delay="{{ $step['delay'] }}">
+                    <div class="absolute -top-4 -right-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 bg-cream text-gold shadow-soft transition-all duration-300 group-hover:bg-gold group-hover:text-navy group-hover:border-gold group-hover:shadow-button group-hover:scale-105">
+                        <span class="font-heading text-sm font-bold tracking-wide">{{ $step['num'] }}</span>
                     </div>
 
-                    {{-- Step card --}}
-                    <div class="relative flex h-full w-full flex-col rounded-[1.75rem] border border-white/70 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-card-hover">
-                        {{-- Icon + duration row --}}
+                    <div class="relative mt-4 flex h-full w-full flex-col rounded-[1.75rem] border border-white/70 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-card-hover">
                         <div class="flex items-center justify-between">
                             <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 border border-gold/20 text-navy transition-all duration-300 group-hover:bg-gold/15 group-hover:text-gold-dark">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">{!! $step['icon_svg'] !!}</svg>
@@ -84,13 +94,11 @@
                             <span class="rounded-full bg-cream px-3 py-1 text-[10px] font-heading font-semibold text-ink-soft border border-gold/20">{{ $step['duration'] }}</span>
                         </div>
 
-                        {{-- Content --}}
                         <div class="mt-5 flex-1">
                             <h3 class="font-heading text-lg font-bold text-navy">{{ $step['title'] }}</h3>
                             <p class="mt-2 text-sm font-inter leading-relaxed text-ink-soft">{{ $step['desc'] }}</p>
                         </div>
 
-                        {{-- Gold decorative line --}}
                         <div class="mt-5 h-0.5 w-10 rounded-full bg-gold/40 transition-all duration-300 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-gold group-hover:to-gold-light"></div>
                     </div>
                 </div>
@@ -118,3 +126,56 @@
 </section>
 @endif
 </div>
+
+@script
+<script>
+    function workflowScroll() {
+        return {
+            canScrollLeft: false,
+            canScrollRight: false,
+            showHint: true,
+
+            init() {
+                this.updateScrollState();
+
+                this.$nextTick(() => {
+                    this.updateScrollState();
+                });
+
+                setTimeout(() => {
+                    this.showHint = false;
+                }, 4000);
+            },
+
+            updateScrollState() {
+                const container = this.$refs.scrollContainer;
+
+                if (!container) {
+                    this.canScrollLeft = false;
+                    this.canScrollRight = false;
+                    return;
+                }
+
+                const maxScroll = Math.max(container.scrollWidth - container.clientWidth, 0);
+                this.canScrollLeft = container.scrollLeft > 8;
+                this.canScrollRight = container.scrollLeft < maxScroll - 8;
+            },
+
+            scroll(amount) {
+                const container = this.$refs.scrollContainer;
+
+                if (!container) {
+                    return;
+                }
+
+                container.scrollBy({
+                    left: amount,
+                    behavior: 'smooth'
+                });
+
+                requestAnimationFrame(() => this.updateScrollState());
+            }
+        }
+    }
+</script>
+@endscript

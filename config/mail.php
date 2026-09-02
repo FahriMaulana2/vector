@@ -31,7 +31,7 @@ return [
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
     |            "postmark", "resend", "log", "array",
-    |            "failover", "roundrobin"
+    |            "failover", "roundrobin", "brevo"
     |
     */
 
@@ -55,10 +55,6 @@ return [
 
         'postmark' => [
             'transport' => 'postmark',
-            // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
         ],
 
         'resend' => [
@@ -95,6 +91,11 @@ return [
                 'postmark',
             ],
             'retry_after' => 60,
+        ],
+
+        // <-- TAMBAHKAN KONFIGURASI BREVO DI SINI
+        'brevo' => [
+            'transport' => 'brevo',
         ],
 
     ],

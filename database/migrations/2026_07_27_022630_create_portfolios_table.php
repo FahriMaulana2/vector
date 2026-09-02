@@ -13,6 +13,12 @@ return new class extends Migration
 
             $table->string('title');
 
+            $table->foreignId('portfolio_category_id')
+                ->nullable()
+                ->constrained('portfolio_categories')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+
             $table->string('slug')
                 ->unique();
 

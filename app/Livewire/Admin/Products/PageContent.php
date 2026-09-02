@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
-#[Title('Halaman Produk - Admin OMH Vector')]
+#[Title('Halaman Produk - Admin OMAH Vector')]
 class PageContent extends Component
 {
     public string $hero_badge_text = '';

@@ -10,7 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin')]
-#[Title('Pengaturan Website - Admin OMH Vector')]
+#[Title('Pengaturan Website - Admin OMAH Vector')]
 class Index extends Component
 {
     use WithFileUploads;
@@ -28,7 +28,7 @@ class Index extends Component
 
         // Pastikan key default ada untuk mencegah error undefined array key
         $defaults = [
-            'company_name' => 'OMH Vector',
+            'company_name' => 'OMAH Vector',
             'company_email' => '',
             'company_phone' => '',
             'company_whatsapp' => '',

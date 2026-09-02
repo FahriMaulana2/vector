@@ -7,8 +7,11 @@ use App\Observers\OrderObserver;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail; // <-- TAMBAHKAN INI
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Symfony\Component\Mailer\Bridge\Brevo\Transport\BrevoTransportFactory; // <-- TAMBAHKAN INI
+use Symfony\Component\Mailer\Transport\Dsn; // <-- TAMBAHKAN INI
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +30,17 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureDefaults();
         Order::observe(OrderObserver::class);
+
+        // <-- TAMBAHKAN BLOCK INI UNTUK MENDAFTARKAN BREVO MAILER
+        Mail::extend('brevo', function () {
+            return (new BrevoTransportFactory)->create(
+                new Dsn(
+                    'brevo+api',
+                    'default',
+                    config('services.brevo.key')
+                )
+            );
+        });
     }
 
     /**

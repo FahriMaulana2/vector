@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    // <-- TAMBAHKAN BAGIAN INI DI SINI
+    'brevo' => [
+        'key' => env('BREVO_API_KEY'),
+    ],
+
 ];
