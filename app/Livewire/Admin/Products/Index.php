@@ -18,10 +18,12 @@ class Index extends Component
     use WithPagination;
 
     public string $search = '';
+
     public string $status = '';
-    
+
     // Properti untuk sorting
     public string $sortBy = 'id';
+
     public string $sortDirection = 'desc'; // Default: ID terbesar (terbaru) di atas
 
     /**

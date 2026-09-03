@@ -57,7 +57,7 @@ class Form extends Component
         ]);
 
         $item = $this->isEditing ? Service::findOrFail($this->itemId) : new Service;
-        
+
         $item->title = $this->title; // ✅ UBAH dari $item->name
         $item->description = $this->description;
         $item->is_active = $this->is_active;
@@ -66,7 +66,7 @@ class Form extends Component
         if ($this->icon) {
             // Hapus icon lama jika ada
             if ($this->isEditing && $this->existing_icon) {
-                $oldPath = storage_path('app/public/' . $this->existing_icon);
+                $oldPath = storage_path('app/public/'.$this->existing_icon);
                 if (file_exists($oldPath)) {
                     unlink($oldPath);
                 }

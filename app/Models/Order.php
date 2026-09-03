@@ -133,17 +133,17 @@ class Order extends Model
     /**
      * Generate unique order number.
      */
-   public static function generateOrderNumber(): string
-{
-    $prefix = 'ORD';
+    public static function generateOrderNumber(): string
+    {
+        $prefix = 'ORD';
 
-    do {
-        $random = strtoupper(Str::random(5));
-        $orderNumber = "{$prefix}-{$random}";
-    } while (static::where('order_number', $orderNumber)->exists());
+        do {
+            $random = strtoupper(Str::random(5));
+            $orderNumber = "{$prefix}-{$random}";
+        } while (static::where('order_number', $orderNumber)->exists());
 
-    return $orderNumber;
-}
+        return $orderNumber;
+    }
 
     /**
      * Change the order status and record history.

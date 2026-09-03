@@ -18,9 +18,9 @@ class Services extends Component
     public function render()
     {
         $services = Service::getActiveOrdered();
-        
+
         return view('livewire.services', [
-            'services' => $services
+            'services' => $services,
         ]);
     }
 }

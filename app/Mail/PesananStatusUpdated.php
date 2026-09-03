@@ -23,7 +23,7 @@ class PesananStatusUpdated extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Pembaruan Status Pesanan ' . $this->order->order_number,
+            subject: 'Pembaruan Status Pesanan '.$this->order->order_number,
         );
     }
 
