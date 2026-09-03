@@ -1,8 +1,8 @@
-<section id="portfolio" class="relative overflow-hidden bg-light">
+<section id="portfolio" class="relative overflow-hidden bg-white">
     {{-- Subtle decorative background --}}
     <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-1/4 left-1/4 w-[420px] h-[420px] bg-gradient-to-br from-navy/4 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 w-[380px] h-[380px] bg-gradient-to-l from-gold/8 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 left-1/4 w-[280px] h-[280px] md:w-[420px] md:h-[420px] bg-gradient-to-br from-navy/4 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-[280px] h-[280px] md:w-[380px] md:h-[380px] bg-gradient-to-l from-gold/8 to-transparent rounded-full blur-3xl"></div>
     </div>
 
     {{-- Faint navy geometric dot pattern --}}
@@ -12,19 +12,19 @@
     {{-- Thin gold accent line top --}}
     <div class="absolute top-0 left-0 z-0 h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent pointer-events-none"></div>
 
-<div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
+<div class="mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-20 lg:py-24 relative z-10 md:max-w-7xl">
         {{-- Section Header --}}
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
-            <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 border border-gold/30 shadow-soft mb-6">
-                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                <span class="font-heading text-xs font-semibold uppercase tracking-[0.22em] text-navy">{{ $isPortfolioPage ? 'Semua Portfolio' : 'Portfolio Kami' }}</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 md:px-4 md:py-1.5 border border-gold/30 shadow-soft mb-4 md:mb-6">
+                <span class="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-gold"></span>
+                <span class="font-heading text-[10px] md:text-xs font-semibold uppercase tracking-[0.15em] md:tracking-[0.22em] text-navy">{{ $isPortfolioPage ? 'Semua Portfolio' : 'Portfolio Kami' }}</span>
             </span>
-            <h2 class="font-heading text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-navy leading-[1.1]">{{ $isPortfolioPage ? 'Jelajahi Semua Hasil Karya' : 'Hasil Karya yang Membantu Brand' }} <span class="gradient-text">Tampil Lebih Berkesan</span></h2>
-            <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Setiap proyek adalah kebanggaan. Lihat hasil karya percetakan dan branding yang telah kami kerjakan untuk berbagai klien.</p>
+            <h2 class="font-heading text-xl md:text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-tight md:leading-[1.1]">{{ $isPortfolioPage ? 'Jelajahi Semua Hasil Karya' : 'Hasil Karya yang Membantu Brand' }} <span class="gradient-text">Tampil Lebih Berkesan</span></h2>
+            <p class="mt-3 md:mt-4 max-w-2xl mx-auto text-sm md:text-base lg:text-lg font-inter leading-relaxed text-ink-soft">Setiap proyek adalah kebanggaan. Lihat hasil karya percetakan dan branding yang telah kami kerjakan untuk berbagai klien.</p>
         </div>
 
         {{-- Editorial Mosaic Grid --}}
-        <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px] sm:auto-rows-[300px]" wire:key="portfolio-grid-{{ $isPortfolioPage ? 'page' : 'home' }}">
+        <div class="mt-8 md:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 auto-rows-[200px] md:auto-rows-[280px] sm:auto-rows-[240px] lg:auto-rows-[300px]" wire:key="portfolio-grid-{{ $isPortfolioPage ? 'page' : 'home' }}">
             @forelse($portfolios as $index => $portfolio)
             @php
                 // Tahun proyek dari project_date (atau null jika kosong).
