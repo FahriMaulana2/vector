@@ -1,0 +1,2107 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method App\\Livewire\\About\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/About.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$mission\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$subtitle\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$vision\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:\$years_experience\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Form\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Form\:\:mount\(\) has parameter \$about with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$existing_image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$isEditing has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$itemId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$mission has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$subtitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$vision has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\About\\Form\:\:\$years_experience has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/About/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\AboutSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\AboutSection\>\:\:delete\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/About/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Index\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/About/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Index\:\:delete\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/About/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\About\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/About/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Auth\\Login\:\:messages\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Auth/Login.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Auth\\Login\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Auth/Login.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Auth\\Login\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Auth/Login.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Dashboard\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Dashboard.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:\$answer\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:\$question\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:\$sort_order\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Form\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Form\:\:mount\(\) has parameter \$faq with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Faqs\\Form\:\:\$answer has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Faqs\\Form\:\:\$isEditing has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Faqs\\Form\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Faqs\\Form\:\:\$itemId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Faqs\\Form\:\:\$question has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Faqs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:delete\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Faq\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Faq\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Index\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Index\:\:delete\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Index\:\:toggleActive\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Faqs\\Index\:\:toggleActive\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Faqs\\Index\:\:\$search has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Faqs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Edit\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$button_link has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$button_text has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$existing_image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$subtitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Edit\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Edit.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Form\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Form\:\:mount\(\) has parameter \$hero with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$button_link has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$button_text has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$existing_image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$hero \(App\\Models\\HeroSection\) does not accept App\\Models\\HeroSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\HeroSection\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$heroId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$isEditing has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$subtitle has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Form\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\HeroSection\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\HeroSection\>\:\:delete\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Hero/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Index\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Hero/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Index\:\:delete\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Hero/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Hero\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Hero/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Hero\\Index\:\:\$search has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Hero/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Orders\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Orders/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Orders\\Index\:\:\$search has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Orders/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Orders\\Index\:\:\$statusFilter has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Orders/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Orders\\Show\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Orders/Show.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Orders\\Show\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Orders/Show.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Orders\\Show\:\:updateStatus\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Orders/Show.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Orders\\Show\:\:\$new_status has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Orders/Show.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Orders\\Show\:\:\$status_notes has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Orders/Show.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$images\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$is_featured\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$portfolio_category_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$project_date\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Portfolio\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Portfolio\>\:\:\$sort_order\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Portfolios\\Form\:\:mount\(\) has parameter \$portfolio with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Portfolios\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Portfolios\\Form\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Portfolios\\Form\:\:\$existing_gallery type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Portfolios\\Form\:\:\$gallery type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Portfolios\\Form\:\:\$image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Property App\\Models\\Portfolio\:\:\$portfolio_category_id \(int\<0, max\>\|null\) does not accept int\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Property App\\Models\\Portfolio\:\:\$project_date \(Carbon\\CarbonImmutable\|null\) does not accept string\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Portfolios\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Portfolios/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Portfolios\\PageContent\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Portfolios/PageContent.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$badge\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$images\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$product_category_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:images\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Products\\Form\:\:mount\(\) has parameter \$product with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Products\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Products\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$badge has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$existing_gallery has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$existing_image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$gallery has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$image has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$itemId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Products\\Form\:\:\$product_category_id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Products/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Products\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Products/Index.php
+
+		-
+			message: '#^Parameter \#2 \$direction of method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Product\>\:\:orderBy\(\) expects ''asc''\|''desc''\|SortDirection, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Admin/Products/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Products\\PageContent\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Products/PageContent.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:\$icon\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:\$sort_order\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Form\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Form\:\:mount\(\) has parameter \$service with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$existing_icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$isEditing has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$itemId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$sort_order has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Form\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\Service\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Service\>\:\:delete\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Services/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Index\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Services/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Index\:\:delete\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Services/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Services\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Services/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Services\\Index\:\:\$search has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Services/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Settings\\Index\:\:getGroupForKey\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Settings\\Index\:\:getGroupForKey\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Settings\\Index\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Settings\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Settings\\Index\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Settings\\Index\:\:\$favicon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Settings\\Index\:\:\$logo has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Settings\\Index\:\:\$settings has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Settings/Index.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:\$icon\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:\$order\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:mount\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:mount\(\) has parameter \$whyChooseUs with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$existing_icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$isEditing has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$itemId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$order has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Form\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\WhyChooseUs\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WhyChooseUs\>\:\:delete\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Index\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Index\:\:delete\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\WhyChooseUs\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\WhyChooseUs\\Index\:\:\$search has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/WhyChooseUs/Index.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$icon\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$sort_order\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$step_number\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:save\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Form\:\:mount\(\) has parameter \$workflow with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Form\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Form\:\:resolveIcons\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Form\:\:save\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$icon has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$icons type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$is_active has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$itemId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$sort_order has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$step_number has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Form\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Form.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\WorkflowStep\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\WorkflowStep\>\:\:delete\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Admin/Workflow/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Index\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Workflow/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Index\:\:delete\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Admin/Workflow/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Admin\\Workflow\\Index\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Admin/Workflow/Index.php
+
+		-
+			message: '#^Property App\\Livewire\\Admin\\Workflow\\Index\:\:\$search has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Admin/Workflow/Index.php
+
+		-
+			message: '#^Method App\\Livewire\\Contact\:\:messages\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Contact.php
+
+		-
+			message: '#^Method App\\Livewire\\Contact\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Contact.php
+
+		-
+			message: '#^Method App\\Livewire\\Contact\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Contact.php
+
+		-
+			message: '#^Property App\\Livewire\\Contact\:\:\$servicesList type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Livewire/Contact.php
+
+		-
+			message: '#^Method App\\Livewire\\Faq\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Faq.php
+
+		-
+			message: '#^Method App\\Livewire\\Footer\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Footer.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\HasMany\:\:active\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Hero.php
+
+		-
+			message: '#^Method App\\Livewire\\Hero\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Hero.php
+
+		-
+			message: '#^Method App\\Livewire\\Home\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Home.php
+
+		-
+			message: '#^Method App\\Livewire\\Navbar\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Navbar.php
+
+		-
+			message: '#^Method App\\Livewire\\OrderTracking\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/OrderTracking.php
+
+		-
+			message: '#^Method App\\Livewire\\Portfolio\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Portfolio.php
+
+		-
+			message: '#^Method App\\Livewire\\Products\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Products.php
+
+		-
+			message: '#^Method App\\Livewire\\Services\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Services.php
+
+		-
+			message: '#^Method App\\Livewire\\Services\:\:toggleCard\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Services.php
+
+		-
+			message: '#^Method App\\Livewire\\Services\:\:toggleCard\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Livewire/Services.php
+
+		-
+			message: '#^Property App\\Livewire\\Services\:\:\$activeCardId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Livewire/Services.php
+
+		-
+			message: '#^Method App\\Livewire\\WhyChooseUs\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/WhyChooseUs.php
+
+		-
+			message: '#^Method App\\Livewire\\Workflow\:\:render\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Livewire/Workflow.php
+
+		-
+			message: '#^Class App\\Models\\AboutSection uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/AboutSection.php
+
+		-
+			message: '#^Method App\\Models\\AboutSection\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/AboutSection.php
+
+		-
+			message: '#^Method App\\Models\\AboutSection\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/AboutSection.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\AboutSection\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/AboutSection.php
+
+		-
+			message: '#^Method App\\Models\\Faq\:\:scopeActive\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/Faq.php
+
+		-
+			message: '#^Method App\\Models\\Faq\:\:scopeActive\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/Faq.php
+
+		-
+			message: '#^Class App\\Models\\HeroSection uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroSection.php
+
+		-
+			message: '#^Method App\\Models\\HeroSection\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroSection.php
+
+		-
+			message: '#^Method App\\Models\\HeroSection\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroSection.php
+
+		-
+			message: '#^Method App\\Models\\HeroSection\:\:statistics\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroSection.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\HeroSection\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/HeroSection.php
+
+		-
+			message: '#^Class App\\Models\\HeroStatistic uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^Method App\\Models\\HeroStatistic\:\:heroSection\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^Method App\\Models\\HeroStatistic\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^Method App\\Models\\HeroStatistic\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^Method App\\Models\\HeroStatistic\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^Method App\\Models\\HeroStatistic\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\HeroStatistic\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/HeroStatistic.php
+
+		-
+			message: '#^Class App\\Models\\Order uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:product\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeByStatus\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeByStatus\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeCompleted\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeCompleted\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeLatest\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeLatest\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopePending\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopePending\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:statusHistories\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\Order\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Class App\\Models\\OrderStatusHistory uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Method App\\Models\\OrderStatusHistory\:\:changedByUser\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Method App\\Models\\OrderStatusHistory\:\:order\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Method App\\Models\\OrderStatusHistory\:\:scopeForOrder\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Method App\\Models\\OrderStatusHistory\:\:scopeForOrder\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Method App\\Models\\OrderStatusHistory\:\:scopeLatest\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Method App\\Models\\OrderStatusHistory\:\:scopeLatest\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\OrderStatusHistory\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Property App\\Models\\OrderStatusHistory\:\:\$created_at \(Carbon\\Carbon\) does not accept Carbon\\CarbonImmutable\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Models/OrderStatusHistory.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Class App\\Models\\Portfolio uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:category\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:coverImage\(\) should return App\\Models\\PortfolioImage\|null but returns Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:gallery\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:images\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:scopeFeatured\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:scopeFeatured\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Method App\\Models\\Portfolio\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Portfolio.php
+
+		-
+			message: '#^Class App\\Models\\PortfolioCategory uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioCategory.php
+
+		-
+			message: '#^Method App\\Models\\PortfolioCategory\:\:portfolios\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioCategory.php
+
+		-
+			message: '#^Method App\\Models\\PortfolioCategory\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioCategory.php
+
+		-
+			message: '#^Method App\\Models\\PortfolioCategory\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioCategory.php
+
+		-
+			message: '#^Method App\\Models\\PortfolioCategory\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioCategory.php
+
+		-
+			message: '#^Method App\\Models\\PortfolioCategory\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioCategory.php
+
+		-
+			message: '#^Class App\\Models\\PortfolioImage uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioImage.php
+
+		-
+			message: '#^Method App\\Models\\PortfolioImage\:\:portfolio\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PortfolioImage.php
+
+		-
+			message: '#^Class App\\Models\\Product uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:category\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:coverImage\(\) should return App\\Models\\ProductImage\|null but returns Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:gallery\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:images\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:orders\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeFeatured\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeFeatured\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\Product\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Class App\\Models\\ProductCategory uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^Method App\\Models\\ProductCategory\:\:products\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^Method App\\Models\\ProductCategory\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^Method App\\Models\\ProductCategory\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^Method App\\Models\\ProductCategory\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^Method App\\Models\\ProductCategory\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\ProductCategory\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/ProductCategory.php
+
+		-
+			message: '#^Class App\\Models\\ProductImage uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductImage.php
+
+		-
+			message: '#^Method App\\Models\\ProductImage\:\:product\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductImage.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\ProductImage\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/ProductImage.php
+
+		-
+			message: '#^Class App\\Models\\Service uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^Method App\\Models\\Service\:\:getActiveOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^Method App\\Models\\Service\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^Method App\\Models\\Service\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^Method App\\Models\\Service\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^Method App\\Models\\Service\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\Service\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/Service.php
+
+		-
+			message: '#^Class App\\Models\\Setting uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Setting.php
+
+		-
+			message: '#^Method App\\Models\\Setting\:\:getGroup\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/Setting.php
+
+		-
+			message: '#^Method App\\Models\\Setting\:\:getSEO\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/Setting.php
+
+		-
+			message: '#^Method App\\Models\\Setting\:\:getSocialMedia\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/Setting.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\Setting\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/Setting.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:orderStatusHistories\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Class App\\Models\\WhyChooseUs uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^Method App\\Models\\WhyChooseUs\:\:getActiveOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^Method App\\Models\\WhyChooseUs\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^Method App\\Models\\WhyChooseUs\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^Method App\\Models\\WhyChooseUs\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^Method App\\Models\\WhyChooseUs\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\WhyChooseUs\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/WhyChooseUs.php
+
+		-
+			message: '#^Class App\\Models\\WorkflowStep uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WorkflowStep.php
+
+		-
+			message: '#^Method App\\Models\\WorkflowStep\:\:getActiveOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WorkflowStep.php
+
+		-
+			message: '#^Method App\\Models\\WorkflowStep\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WorkflowStep.php
+
+		-
+			message: '#^Method App\\Models\\WorkflowStep\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WorkflowStep.php
+
+		-
+			message: '#^Method App\\Models\\WorkflowStep\:\:scopeOrdered\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WorkflowStep.php
+
+		-
+			message: '#^Method App\\Models\\WorkflowStep\:\:scopeOrdered\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WorkflowStep.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\WorkflowStep\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/WorkflowStep.php
