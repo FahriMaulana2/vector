@@ -82,11 +82,6 @@
                     {{-- Gold accent line + View project link (preserved destination #contact) --}}
                     <div class="mt-3 flex items-center justify-between gap-3">
                         <span class="h-0.5 w-8 rounded-full bg-gold opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <a href="#contact"
-                           class="inline-flex items-center gap-2 rounded-full bg-gold text-navy px-4 py-2 text-xs font-heading font-semibold transition-all duration-300 hover:bg-gold-light hover:shadow-button opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60">
-                            Lihat Proyek
-                            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
                     </div>
                 </div>
             </div>
