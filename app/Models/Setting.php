@@ -59,6 +59,7 @@ class Setting extends Model
     public static function forgetCache(): void
     {
         Cache::forget(self::CACHE_KEY);
+        Cache::forget('settings.all');
     }
 
     /**

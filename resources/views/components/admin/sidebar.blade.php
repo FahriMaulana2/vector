@@ -6,7 +6,7 @@
     <div class="flex items-center h-[72px] px-4 border-b border-white/10 flex-shrink-0">
         <div class="flex items-center gap-3 overflow-hidden">
             <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-accent rounded-xl text-[#173B6C] font-bold text-sm shadow-lg shadow-accent/20">
-                OMH
+                OMAH
             </div>
             <div x-show="!sidebarCollapsed" class="whitespace-nowrap">
                 <p class="text-sm font-bold text-white tracking-wide">OMH Vector</p>

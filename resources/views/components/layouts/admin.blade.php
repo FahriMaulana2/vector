@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'Admin Dashboard - OMH Vector' }}</title>
+    <title>{{ $title ?? 'Admin Dashboard - OMAH Vector' }}</title>
     <meta name="description" content="OMH Vector Admin Dashboard - Digital Printing & Branding Solution">
     
     <link rel="preconnect" href="https://fonts.bunny.net">
