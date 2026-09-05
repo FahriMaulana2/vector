@@ -9,6 +9,7 @@ use App\Livewire\Admin\Faqs\Index as FaqsIndex;
 use App\Livewire\Admin\Hero\Edit as HeroEdit;
 use App\Livewire\Admin\Hero\Form as HeroForm;
 use App\Livewire\Admin\Hero\Index as HeroIndex;
+use App\Livewire\Admin\Marketplaces\Index as MarketplacesIndex;
 use App\Livewire\Admin\Orders\Index as OrdersIndex;
 use App\Livewire\Admin\Orders\Show as OrdersShow;
 use App\Livewire\Admin\Portfolios\Form as PortfoliosForm;
@@ -115,5 +116,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Pengaturan
     Route::prefix('settings')->name('settings.')->group(function () {
         Route::get('/', SettingsIndex::class)->name('index');
+    });
+
+    // Marketplace management routes
+    Route::prefix('marketplaces')->name('marketplaces.')->group(function () {
+        Route::get('/', MarketplacesIndex::class)->name('index');
+        Route::get('/create', \App\Livewire\Admin\Marketplaces\Create::class)->name('create');
+        Route::get('/{marketplace}/edit', \App\Livewire\Admin\Marketplaces\Edit::class)->name('edit');
     });
 });

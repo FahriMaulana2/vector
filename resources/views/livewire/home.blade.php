@@ -17,6 +17,10 @@
 
     <livewire:contact />
 
+    <livewire:marketplaces />
+
+    <livewire:welcome-popup />
+
     {{-- Mobile Bottom Navigation (only visible on mobile) --}}
     <nav class="fixed bottom-0 left-0 right-0 md:hidden bg-white border-t border-gray-200 shadow-lg z-50 safe-area-inset-bottom" role="navigation" aria-label="Mobile Navigation">
         <div class="flex items-stretch">

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\BusinessSetting;
 use App\Models\Marketplace;
 use App\Models\PopupCampaign;
 use App\Models\Setting;
@@ -60,9 +59,7 @@ it('returns correct cta_final_url for all cta_type options in PopupCampaign', fu
         'store_url' => 'https://shopee.co.id/my-store',
     ]);
 
-    BusinessSetting::create([
-        'primary_whatsapp' => '08123456789',
-    ]);
+    Setting::set('company_whatsapp', '08123456789', 'contact');
 
     $mpCampaign = PopupCampaign::create([
         'template_type' => 'code_welcome',
@@ -99,9 +96,7 @@ it('returns correct cta_final_url for all cta_type options in PopupCampaign', fu
 });
 
 it('falls back marketplace CTA to WhatsApp URL when marketplace is inactive or maintenance (Smart Sync)', function () {
-    BusinessSetting::create([
-        'primary_whatsapp' => '08123456789',
-    ]);
+    Setting::set('company_whatsapp', '08123456789', 'contact');
 
     $inactiveMarketplace = Marketplace::create([
         'platform' => 'shopee',
@@ -125,9 +120,7 @@ it('falls back marketplace CTA to WhatsApp URL when marketplace is inactive or m
 });
 
 it('falls back marketplace CTA to WhatsApp URL when marketplace_id is null', function () {
-    BusinessSetting::create([
-        'primary_whatsapp' => '08123456789',
-    ]);
+    Setting::set('company_whatsapp', '08123456789', 'contact');
 
     $campaign = PopupCampaign::create([
         'template_type' => 'code_welcome',
@@ -175,7 +168,7 @@ it('evaluates is_cta_fallback_active correctly for active marketplaces and non-m
 });
 
 it('runs data migration correctly when legacy flat columns exist and gracefully handles absent data', function () {
-    expect(Schema::hasTable('business_settings'))->toBeTrue()
+    expect(Schema::hasTable('business_settings'))->toBeFalse()
         ->and(Schema::hasTable('marketplaces'))->toBeTrue()
         ->and(Schema::hasTable('popup_campaigns'))->toBeTrue();
 

@@ -3,17 +3,15 @@
 use App\Models\BusinessSetting;
 use App\Models\Marketplace;
 use App\Models\PopupCampaign;
+use App\Models\Setting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 
 uses(RefreshDatabase::class);
 
-it('adds business_settings, marketplaces, and popup_campaigns schema', function () {
-    expect(Schema::hasTable('business_settings'))->toBeTrue()
-        ->and(Schema::hasColumns('business_settings', [
-            'primary_whatsapp', 'secondary_phone', 'fallback_email',
-        ]))->toBeTrue()
+it('adds marketplaces and popup_campaigns schema while confirming business_settings is dropped', function () {
+    expect(Schema::hasTable('business_settings'))->toBeFalse()
         ->and(Schema::hasTable('marketplaces'))->toBeTrue()
         ->and(Schema::hasColumns('marketplaces', [
             'platform', 'store_name', 'store_url', 'logo_url', 'is_active', 'maintenance_message', 'display_order',
@@ -26,11 +24,11 @@ it('adds business_settings, marketplaces, and popup_campaigns schema', function 
         ]))->toBeTrue();
 });
 
-it('resolves fallback contacts in priority order via BusinessSetting', function () {
-    $businessSetting = new BusinessSetting([
-        'secondary_phone' => '08123456789',
-        'fallback_email' => 'hello@example.com',
-    ]);
+it('resolves fallback contacts in priority order via BusinessSetting wrapper', function () {
+    Setting::set('company_phone', '08123456789', 'company');
+    Setting::set('company_email', 'hello@example.com', 'company');
+
+    $businessSetting = BusinessSetting::getCached();
 
     expect($businessSetting->getFallbackContact())->toBe([
         'type' => 'phone',

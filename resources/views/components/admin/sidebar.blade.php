@@ -43,6 +43,7 @@
                     ['name' => 'Halaman Produk', 'route' => 'admin.products.page-content', 'active_routes' => ['admin.products.page-content'], 'icon' => 'layout', 'badge' => null],
                     ['name' => 'Portofolio', 'route' => 'admin.portfolios.index', 'active_routes' => ['admin.portfolios.index', 'admin.portfolios.create', 'admin.portfolios.edit'], 'icon' => 'image', 'badge' => null],
                     ['name' => 'Halaman Portfolio', 'route' => 'admin.portfolios.page-content', 'active_routes' => ['admin.portfolios.page-content'], 'icon' => 'layout', 'badge' => null],
+                    ['name' => 'Marketplace', 'route' => 'admin.marketplaces.index', 'active_routes' => ['admin.marketplaces.index'], 'icon' => 'shopping-bag', 'badge' => null],
                 ],
                 'OPERASIONAL' => [
                     ['name' => 'Pesanan', 'route' => 'admin.orders.index', 'active_routes' => ['admin.orders.index', 'admin.orders.show'], 'icon' => 'shopping-bag', 'badge' => null],

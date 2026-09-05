@@ -55,7 +55,13 @@ class Marketplace extends Model
 
     protected static function booted(): void
     {
-        static::saved(fn () => Cache::forget('marketplaces.active_ordered'));
-        static::deleted(fn () => Cache::forget('marketplaces.active_ordered'));
+        static::saved(function () {
+            Cache::forget('marketplaces.active_ordered');
+            Cache::forget('marketplaces.frontend_ordered');
+        });
+        static::deleted(function () {
+            Cache::forget('marketplaces.active_ordered');
+            Cache::forget('marketplaces.frontend_ordered');
+        });
     }
 }
