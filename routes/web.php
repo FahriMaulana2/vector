@@ -9,6 +9,8 @@ use App\Livewire\Admin\Faqs\Index as FaqsIndex;
 use App\Livewire\Admin\Hero\Edit as HeroEdit;
 use App\Livewire\Admin\Hero\Form as HeroForm;
 use App\Livewire\Admin\Hero\Index as HeroIndex;
+use App\Livewire\Admin\Marketplaces\Create;
+use App\Livewire\Admin\Marketplaces\Edit;
 use App\Livewire\Admin\Marketplaces\Index as MarketplacesIndex;
 use App\Livewire\Admin\Orders\Index as OrdersIndex;
 use App\Livewire\Admin\Orders\Show as OrdersShow;
@@ -26,6 +28,7 @@ use App\Livewire\Admin\WhyChooseUs\Index as WhyChooseUsIndex;
 use App\Livewire\Admin\Workflow\Form as WorkflowForm;
 use App\Livewire\Admin\Workflow\Index as WorkflowIndex;
 use App\Livewire\Home;
+use App\Livewire\OrderReceipt;
 use App\Livewire\OrderTracking;
 use App\Livewire\Portfolio as PortfolioPage;
 use App\Livewire\Products;
@@ -37,6 +40,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/products', Products::class)->name('products.index');
 Route::get('/portfolio', PortfolioPage::class)->name('portfolio.index');
 Route::get('/lacak-pesanan/{order?}', OrderTracking::class)->name('orders.track');
+Route::get('/order/{orderNumber}', OrderReceipt::class)->name('order.receipt');
 
 // Admin Authentication Routes (Guest only)
 Route::middleware('guest')->group(function () {
@@ -121,7 +125,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Marketplace management routes
     Route::prefix('marketplaces')->name('marketplaces.')->group(function () {
         Route::get('/', MarketplacesIndex::class)->name('index');
-        Route::get('/create', \App\Livewire\Admin\Marketplaces\Create::class)->name('create');
-        Route::get('/{marketplace}/edit', \App\Livewire\Admin\Marketplaces\Edit::class)->name('edit');
+        Route::get('/create', Create::class)->name('create');
+        Route::get('/{marketplace}/edit', Edit::class)->name('edit');
     });
 });
