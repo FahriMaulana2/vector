@@ -28,10 +28,29 @@ class Show extends Component
 
     public function updateStatus()
     {
+        $allowedStatuses = [
+            'terkonfirmasi',
+            'pending',
+            'confirmed',
+            'design_process',
+            'printing',
+            'ready_for_pickup',
+            'completed',
+            'cancelled',
+        ];
+
         $this->validate([
-            'new_status' => 'required|string',
+            'new_status' => ['required', 'string', 'in:'.implode(',', $allowedStatuses)],
             'status_notes' => 'nullable|string|max:500',
+        ], [
+            'new_status.in' => 'Status yang dipilih tidak diizinkan untuk diubah secara manual.',
         ]);
+
+        if (in_array($this->new_status, ['menunggu_konfirmasi', 'kedaluwarsa'], true)) {
+            $this->addError('new_status', 'Status transien/sistem tidak dapat dipilih secara manual.');
+
+            return;
+        }
 
         if ($this->new_status === $this->order->status) {
             return;

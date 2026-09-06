@@ -24,7 +24,7 @@ class Dashboard extends Component
             'total_portfolios' => Portfolio::count(),
             'total_orders' => Order::where('status', '!=', 'kedaluwarsa')->count(),
             'pending_orders' => Order::whereIn('status', ['pending', 'menunggu_konfirmasi'])->count(),
-            'completed_orders' => Order::whereIn('status', ['completed', 'selesai'])->count(),
+            'completed_orders' => Order::where('status', 'completed')->count(),
             'total_faqs' => Faq::count(),
         ];
 
