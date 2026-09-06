@@ -48,6 +48,13 @@ class Product extends Model
         'short_description',
         'image',
         'price',
+        'pricing_mode',
+        'base_price_unit',
+        'requires_area_calculation',
+        'supports_2_sisi',
+        'available_widths_note',
+        'min_qty',
+        'qty_increment',
         'badge',
         'is_featured',
         'sort_order',
@@ -62,6 +69,10 @@ class Product extends Model
      */
     protected $casts = [
         'price' => 'decimal:2',
+        'requires_area_calculation' => 'boolean',
+        'supports_2_sisi' => 'boolean',
+        'min_qty' => 'integer',
+        'qty_increment' => 'integer',
         'is_featured' => 'boolean',
         'sort_order' => 'integer',
         'is_active' => 'boolean',
@@ -102,6 +113,30 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class)
             ->orderBy('sort_order');
+    }
+
+    /**
+     * Get the option groups for the product.
+     */
+    public function optionGroups(): HasMany
+    {
+        return $this->hasMany(ProductOptionGroup::class)->orderBy('sort_order');
+    }
+
+    /**
+     * Get the quantity price tiers for the product.
+     */
+    public function qtyPriceTiers(): HasMany
+    {
+        return $this->hasMany(ProductQtyPriceTier::class)->orderBy('min_qty');
+    }
+
+    /**
+     * Get the order items for this product.
+     */
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 
     /**

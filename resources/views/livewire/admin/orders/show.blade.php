@@ -57,31 +57,95 @@
                         <p class="text-slate-500 mb-1">Tanggal Pesanan</p>
                         <p class="font-medium text-[#182B3A]">{{ $order->created_at->format('d F Y, H:i') }}</p>
                     </div>
+                    @if($order->shipping_address)
+                    <div class="md:col-span-2">
+                        <p class="text-slate-500 mb-1">Alamat Pengiriman</p>
+                        <p class="font-medium text-[#182B3A] bg-slate-50 p-3 rounded-lg border border-slate-100">{{ $order->shipping_address }}</p>
+                    </div>
+                    @endif
+                    @if($order->design_file_status)
+                    <div>
+                        <p class="text-slate-500 mb-1">Status File Desain</p>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold {{ $order->design_file_status === 'ready' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200' }}">
+                            {{ $order->design_file_status === 'ready' ? 'File Sudah Siap' : 'Belum Ada File / Minta Bantuan Desain' }}
+                        </span>
+                    </div>
+                    @endif
                 </div>
             </div>
 
             <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6">
                 <h3 class="text-base font-semibold text-[#182B3A] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5 text-[#0F2747]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    Detail Produk
+                    Detail Item Pesanan
                 </h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-start pb-4 border-b border-slate-100">
-                        <div>
-                            <p class="font-medium text-[#182B3A]">{{ $order->product ? $order->product->name : 'Permintaan Umum / Custom' }}</p>
-                            <p class="text-sm text-slate-500 mt-1">{{ $order->product ? 'Kategori: ' . $order->product->category->name : 'Tidak spesifik' }}</p>
+
+                @if($order->orderItems && $order->orderItems->isNotEmpty())
+                    <div class="divide-y divide-slate-100 space-y-4">
+                        @foreach($order->orderItems as $item)
+                        <div class="pt-4 first:pt-0 space-y-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-semibold text-[#182B3A] text-sm sm:text-base">{{ $item->product_name }}</p>
+                                    <div class="flex flex-wrap gap-1.5 mt-1.5">
+                                        @if($item->side_mode)
+                                            <span class="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-700 font-medium">
+                                                {{ $item->side_mode === '2_muka' ? '2 Sisi (Bolak-balik)' : '1 Sisi' }}
+                                            </span>
+                                        @endif
+                                        @if($item->length_m && $item->width_m)
+                                            <span class="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-700 font-medium">
+                                                {{ $item->length_m }}m x {{ $item->width_m }}m
+                                            </span>
+                                        @endif
+                                        @if(!empty($item->selected_options) && is_array($item->selected_options))
+                                            @foreach($item->selected_options as $opt)
+                                                <span class="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-700 font-medium">
+                                                    {{ $opt['group_name'] ?? '' }}: {{ $opt['option_name'] ?? '' }}
+                                                </span>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <p class="font-semibold text-[#182B3A] text-sm sm:text-base">Rp {{ number_format((float)$item->line_subtotal, 0, ',', '.') }}</p>
+                                    <p class="text-xs text-slate-500 mt-0.5">{{ $item->qty }} x Rp {{ number_format((float)$item->unit_price, 0, ',', '.') }}</p>
+                                </div>
+                            </div>
+                            @if($item->manual_quote_flag)
+                                <div class="rounded-lg bg-amber-50 border border-amber-200 p-2.5 text-xs text-amber-800">
+                                    <span class="font-semibold">Catatan Manual Quote:</span> {{ $item->manual_quote_note ?: 'Perlu konfirmasi harga admin.' }}
+                                </div>
+                            @endif
                         </div>
-                        <div class="text-right">
-                            <p class="font-medium text-[#182B3A]">Qty: {{ $order->quantity }}</p>
+                        @endforeach
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center">
+                        <span class="font-semibold text-sm sm:text-base text-[#182B3A]">Total Subtotal Pesanan:</span>
+                        <span class="font-bold text-lg sm:text-xl text-[#0F2747]">Rp {{ number_format((float)$order->subtotal, 0, ',', '.') }}</span>
+                    </div>
+                @else
+                    {{-- Fallback untuk order lama --}}
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start pb-4 border-b border-slate-100">
+                            <div>
+                                <p class="font-medium text-[#182B3A]">{{ $order->product ? $order->product->name : 'Permintaan Umum / Custom' }}</p>
+                                <p class="text-sm text-slate-500 mt-1">{{ $order->product ? 'Kategori: ' . $order->product->category->name : 'Tidak spesifik' }}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-[#182B3A]">Qty: {{ $order->quantity ?? 1 }}</p>
+                            </div>
                         </div>
                     </div>
-                    @if($order->notes)
-                        <div>
-                            <p class="text-sm font-medium text-slate-700 mb-1">Catatan Pelanggan:</p>
-                            <p class="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100">{{ $order->notes }}</p>
-                        </div>
-                    @endif
-                </div>
+                @endif
+
+                @if($order->notes)
+                    <div class="mt-4 pt-4 border-t border-slate-100">
+                        <p class="text-sm font-medium text-slate-700 mb-1">Catatan Pelanggan:</p>
+                        <p class="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100">{{ $order->notes }}</p>
+                    </div>
+                @endif
             </div>
 
             <!-- Riwayat Status -->

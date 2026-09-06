@@ -70,8 +70,23 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="text-sm text-slate-600">{{ $order->product ? $order->product->name : 'Umum / Custom' }}</span>
-                                <span class="text-xs text-slate-400 block">Qty: {{ $order->quantity }}</span>
+                                @if($order->orderItems && $order->orderItems->isNotEmpty())
+                                    @php
+                                        $count = $order->orderItems->count();
+                                        $first = $order->orderItems->first();
+                                        $summary = $first->product_name . ' (x' . $first->qty . ')';
+                                        if ($count > 1) {
+                                            $summary .= ' +' . ($count - 1) . ' produk';
+                                        }
+                                    @endphp
+                                    <span class="text-sm font-medium text-[#182B3A] block">{{ $summary }}</span>
+                                    <span class="text-xs text-slate-400 block">{{ $count }} item &bull; Rp {{ number_format((float)$order->subtotal, 0, ',', '.') }}</span>
+                                @else
+                                    <span class="text-sm text-slate-600 block">{{ $order->product ? $order->product->name : ($order->notes ? Str::limit($order->notes, 30) : 'Umum / Custom') }}</span>
+                                    @if($order->quantity)
+                                        <span class="text-xs text-slate-400 block">Qty: {{ $order->quantity }}</span>
+                                    @endif
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-center">
                                 @php

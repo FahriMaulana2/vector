@@ -200,6 +200,17 @@
 
                                                     @endif
 
+                                                    {{-- Pricing Mode Badge --}}
+                                                    @if(($item->pricing_mode ?? 'standard') === 'qty_tiered')
+                                                        <span class="px-1.5 py-0.5 text-[10px] font-medium rounded bg-purple-100 text-purple-700">
+                                                            Qty Tiered
+                                                        </span>
+                                                    @else
+                                                        <span class="px-1.5 py-0.5 text-[10px] font-medium rounded bg-sky-100 text-sky-700">
+                                                            Standard
+                                                        </span>
+                                                    @endif
+
                                                 </div>
 
                                                 {{-- Short Description --}}

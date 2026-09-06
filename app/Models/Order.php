@@ -46,6 +46,10 @@ class Order extends Model
         'customer_name',
         'customer_phone',
         'customer_email',
+        'shipping_address',
+        'design_file_status',
+        'subtotal',
+        'has_manual_quote_item',
         'product_id',
         'quantity',
         'notes',
@@ -64,6 +68,8 @@ class Order extends Model
     protected $casts = [
         'product_id' => 'integer',
         'quantity' => 'integer',
+        'subtotal' => 'decimal:2',
+        'has_manual_quote_item' => 'boolean',
         'estimated_completion_date' => 'date',
         'completed_at' => 'datetime',
     ];
@@ -88,6 +94,14 @@ class Order extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Get the order items for this order.
+     */
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 
     /**

@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Services\CartService;
+use App\Services\PricingEngine;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -18,33 +23,25 @@ class Contact extends Component
 
     public string $email = '';
 
-    public string $service = 'Banner Printing';
+    public string $shipping_address = '';
 
-    public string $message = '';
+    public string $design_file_status = 'ready';
 
-    public function mount(): void
+    public string $notes = '';
+
+    public bool $isSubmitting = false;
+
+    #[On('cart-updated')]
+    public function refreshCart(): void
     {
-        if ($productSlug = request()->query('product')) {
-            $product = Product::where('slug', $productSlug)->first();
-            if ($product) {
-                $this->service = Product::resolveServiceForContact($product->name);
-                $this->message = 'Halo, saya tertarik untuk memesan produk '.$product->name.'. Mohon informasi lebih lanjut.';
-
-                $this->js("setTimeout(() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 350);");
-            }
-        }
+        // Triggers re-render to reflect updated cart items from session
     }
 
-    public array $servicesList = [
-        'Banner Printing',
-        'Sticker Printing',
-        'Wedding Invitation',
-        'Business Card',
-        'Custom Tumbler',
-        'Merchandise',
-        'Graphic Design',
-        'Lainnya',
-    ];
+    public function removeItem(string $uuid, CartService $cartService): void
+    {
+        $cartService->removeItem($uuid);
+        $this->dispatch('cart-updated');
+    }
 
     public function rules(): array
     {
@@ -52,8 +49,9 @@ class Contact extends Component
             'name' => 'required|string|min:2|max:255',
             'phone' => 'required|string|min:8|max:30',
             'email' => 'required|email|max:255',
-            'service' => 'required|string|max:255',
-            'message' => 'required|string|min:3|max:5000',
+            'shipping_address' => 'required|string|min:5|max:1000',
+            'design_file_status' => 'required|in:ready,need_design_help',
+            'notes' => 'nullable|string|max:5000',
         ];
     }
 
@@ -62,92 +60,210 @@ class Contact extends Component
         return [
             'name.required' => 'Nama lengkap wajib diisi.',
             'name.min' => 'Nama lengkap minimal 2 karakter.',
-            'name.max' => 'Nama lengkap maksimal 255 karakter.',
             'phone.required' => 'Nomor WhatsApp wajib diisi.',
             'phone.min' => 'Nomor WhatsApp minimal 8 karakter.',
-            'phone.max' => 'Nomor WhatsApp maksimal 30 karakter.',
-            'email.required' => 'Email wajib diisi.',
+            'email.required' => 'Alamat email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
-            'email.max' => 'Email maksimal 255 karakter.',
-            'service.required' => 'Silakan pilih jenis layanan.',
-            'message.required' => 'Pesan wajib diisi.',
-            'message.min' => 'Pesan minimal 3 karakter.',
-            'message.max' => 'Pesan maksimal 5000 karakter.',
+            'shipping_address.required' => 'Alamat lengkap pengiriman wajib diisi.',
+            'shipping_address.min' => 'Alamat pengiriman minimal 5 karakter.',
+            'design_file_status.required' => 'Pilih status kesiapan file desain.',
+            'design_file_status.in' => 'Status file desain tidak valid.',
         ];
     }
 
-    #[On('product-selected')]
-    public function handleProductSelected(string $productName): void
+    public function submit(CartService $cartService, PricingEngine $pricingEngine): void
     {
-        $this->setProductService($productName);
-    }
+        if ($this->isSubmitting) {
+            return;
+        }
 
-    public function setProductService(string $productName): void
-    {
-        $this->service = Product::resolveServiceForContact($productName);
-
-        $this->js("document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });");
-    }
-
-    public function submit(): void
-    {
-        $validated = $this->validate();
-
-        // 1. Save contact submission to existing Order system
-        Order::create([
-            'customer_name' => $validated['name'],
-            'customer_phone' => $validated['phone'],
-            'customer_email' => $validated['email'],
-            'product_id' => null,
-            'quantity' => 1,
-            'notes' => "Layanan: {$validated['service']}\n\n{$validated['message']}",
-            'status' => 'pending',
-        ]);
-
-        // 2. Get admin WhatsApp number from Website Settings
-        $adminWhatsapp = Setting::getWhatsAppNumber();
-        $normalizedAdminPhone = Setting::normalizePhoneNumber($adminWhatsapp);
-
-        if (! $normalizedAdminPhone) {
-            $this->addError('general', 'Nomor WhatsApp admin belum dikonfigurasi di Pengaturan Website.');
+        $cartItems = $cartService->getItems();
+        if (empty($cartItems)) {
+            $this->addError('cart', 'Keranjang pesanan masih kosong. Silakan pilih produk dari katalog terlebih dahulu.');
 
             return;
         }
 
-        // 3. Format pesan WhatsApp sesuai spesifikasi
-        $separator = "\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81";
+        $validated = $this->validate();
+        $this->isSubmitting = true;
 
-        $whatsappMessage = "Halo Admin OMAH Vector \xF0\x9F\x91\x8B\n\n"
-            ."Saya ingin menghubungi OMAH Vector terkait layanan digital printing.\n\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x93\x8B DATA KONTAK\n"
-            ."{$separator}\n\n"
-            ."\xF0\x9F\x91\xA4 Nama:\n{$validated['name']}\n\n"
-            ."\xF0\x9F\x93\xB1 No. WhatsApp:\n{$validated['phone']}\n\n"
-            ."\xF0\x9F\x93\xA7 Email:\n{$validated['email']}\n\n"
-            ."\xF0\x9F\x96\xA8\xEF\xB8\x8F Layanan:\n{$validated['service']}\n\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x92\xAC PESAN\n"
-            ."{$separator}\n\n"
-            ."{$validated['message']}\n\n"
-            ."{$separator}\n\n"
-            ."Mohon informasi dan bantuannya.\n\n"
-            .'Terima kasih.';
+        try {
+            /** @var Order $order */
+            $order = DB::transaction(function () use ($cartItems, $pricingEngine, $validated) {
+                $recalculatedItems = [];
+                $orderSubtotal = 0.0;
+                $hasManualQuote = false;
 
-        $whatsappUrl = "https://wa.me/{$normalizedAdminPhone}?text=".rawurlencode($whatsappMessage);
+                foreach ($cartItems as $item) {
+                    $productId = (int) $item['product_id'];
+                    $qty = (int) ($item['qty'] ?? 1);
+                    $sideMode = (string) ($item['side_mode'] ?? '1_muka');
+                    $lengthM = isset($item['length_m']) ? (float) $item['length_m'] : null;
+                    $widthM = isset($item['width_m']) ? (float) $item['width_m'] : null;
 
-        // 4. Reset input form
-        $this->reset(['name', 'phone', 'email', 'message']);
-        $this->service = 'Banner Printing';
+                    // Extract selected option IDs
+                    $selectedOptionIds = [];
+                    if (! empty($item['selected_options']) && is_array($item['selected_options'])) {
+                        foreach ($item['selected_options'] as $opt) {
+                            if (isset($opt['group_id'], $opt['option_id'])) {
+                                $selectedOptionIds[(int) $opt['group_id']] = (int) $opt['option_id'];
+                            }
+                        }
+                    }
 
-        session()->flash('success', 'Pesan berhasil dikirim! Membuka WhatsApp...');
+                    $product = Product::findOrFail($productId);
+                    $freshCalculated = $pricingEngine->calculate(
+                        $product,
+                        $qty,
+                        $selectedOptionIds,
+                        $sideMode,
+                        $lengthM,
+                        $widthM
+                    );
 
-        // 5. Buka WhatsApp di tab baru secara seamless tanpa me-refresh landing page
-        $this->js('window.open('.json_encode($whatsappUrl).", '_blank');");
+                    // Price verification log
+                    if (isset($item['line_subtotal']) && abs((float) $item['line_subtotal'] - (float) $freshCalculated['line_subtotal']) > 0.01) {
+                        Log::warning("Order cart price mismatch detected for product {$product->id}. Session: {$item['line_subtotal']}, Fresh: {$freshCalculated['line_subtotal']}. Using recalculated price.");
+                    }
+
+                    $orderSubtotal += (float) $freshCalculated['line_subtotal'];
+                    if (! empty($freshCalculated['manual_quote_flag'])) {
+                        $hasManualQuote = true;
+                    }
+
+                    $recalculatedItems[] = $freshCalculated;
+                }
+
+                // 1. Create Order row (product_id and quantity are kept null for all new orders)
+                $order = Order::create([
+                    'customer_name' => $validated['name'],
+                    'customer_phone' => $validated['phone'],
+                    'customer_email' => $validated['email'],
+                    'shipping_address' => $validated['shipping_address'],
+                    'design_file_status' => $validated['design_file_status'],
+                    'subtotal' => $orderSubtotal,
+                    'has_manual_quote_item' => $hasManualQuote,
+                    'notes' => $validated['notes'] ?: null,
+                    'status' => 'pending',
+                    'product_id' => null,
+                    'quantity' => null,
+                ]);
+
+                // 2. Insert OrderItem rows
+                foreach ($recalculatedItems as $recalc) {
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => $recalc['product_id'],
+                        'product_name' => $recalc['product_name'],
+                        'base_price_snapshot' => $recalc['base_price_snapshot'],
+                        'selected_options' => $recalc['selected_options'],
+                        'options_total' => $recalc['options_total'],
+                        'unit_price' => $recalc['unit_price'],
+                        'qty' => $recalc['qty'],
+                        'line_subtotal' => $recalc['line_subtotal'],
+                        'side_mode' => $recalc['side_mode'] ?? null,
+                        'length_m' => $recalc['length_m'] ?? null,
+                        'width_m' => $recalc['width_m'] ?? null,
+                        'manual_quote_flag' => (bool) ($recalc['manual_quote_flag'] ?? false),
+                        'manual_quote_note' => $recalc['manual_quote_note'] ?? null,
+                        'manual_quote_amount' => null,
+                    ]);
+                }
+
+                return $order;
+            });
+
+            // 3. Clear Cart Session
+            $cartService->clear();
+
+            // 4. Build WhatsApp URL
+            $adminWhatsapp = Setting::getWhatsAppNumber();
+            $normalizedAdminPhone = Setting::normalizePhoneNumber($adminWhatsapp);
+
+            if ($normalizedAdminPhone) {
+                $whatsappMessage = $this->buildWhatsAppMessage($order);
+                $whatsappUrl = 'https://wa.me/'.$normalizedAdminPhone.'?text='.rawurlencode($whatsappMessage);
+                $this->js('window.open('.json_encode($whatsappUrl).", '_blank');");
+            }
+
+            // 5. Reset Form State
+            $this->reset(['name', 'phone', 'email', 'shipping_address', 'notes']);
+            $this->design_file_status = 'ready';
+            $this->dispatch('cart-updated');
+
+            session()->flash('success', "Pesanan {$order->order_number} berhasil dibuat! Mengalihkan ke WhatsApp...");
+        } catch (\Throwable $e) {
+            Log::error('Order checkout error: '.$e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            $this->addError('general', 'Terjadi kendala saat memproses pesanan: '.$e->getMessage());
+        } finally {
+            $this->isSubmitting = false;
+        }
     }
 
-    public function render()
+    protected function buildWhatsAppMessage(Order $order): string
     {
-        return view('livewire.contact');
+        $separator = "\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81";
+        $designStatusLabel = $order->design_file_status === 'ready' ? 'File Sudah Siap' : 'Belum Ada File / Minta Bantuan Desain';
+
+        $itemsSummary = '';
+        foreach ($order->orderItems as $idx => $item) {
+            $num = $idx + 1;
+            $itemsSummary .= "{$num}. *{$item->product_name}* (Qty: {$item->qty})\n";
+
+            if ($item->side_mode) {
+                $sideLabel = $item->side_mode === '2_muka' ? '2 Muka (Bolak-balik)' : '1 Muka';
+                $itemsSummary .= "   - Sisi: {$sideLabel}\n";
+            }
+
+            if ($item->length_m && $item->width_m) {
+                $itemsSummary .= "   - Ukuran: {$item->length_m}m x {$item->width_m}m\n";
+            }
+
+            if (! empty($item->selected_options) && is_array($item->selected_options)) {
+                $opts = array_map(fn ($o) => ($o['group_name'] ?? '').': '.($o['option_name'] ?? ''), $item->selected_options);
+                $itemsSummary .= '   - Opsi: '.implode(', ', $opts)."\n";
+            }
+
+            $itemsSummary .= '   - Subtotal: Rp '.number_format((float) $item->line_subtotal, 0, ',', '.')."\n\n";
+        }
+
+        $manualQuoteNotice = $order->has_manual_quote_item
+            ? "\n\xE2\x9A\xA0\xEF\xB8\x8F *Catatan*: Terdapat item dengan opsi yang memerlukan konfirmasi harga tambahan dari admin.\n"
+            : '';
+
+        $notesBlock = $order->notes
+            ? "{$separator}\n\xF0\x9F\x92\xAC *CATATAN TAMBAHAN*\n{$order->notes}\n\n"
+            : '';
+
+        return "Halo Admin OMAH Vector \xF0\x9F\x91\x8B\n\n"
+            ."Saya ingin memesan cetak dengan nomor pesanan: *{$order->order_number}*\n\n"
+            ."{$separator}\n"
+            ."\xF0\x9F\x93\x8B *DATA PEMESAN*\n"
+            ."{$separator}\n"
+            ."\xF0\x9F\x91\xA4 Nama: {$order->customer_name}\n"
+            ."\xF0\x9F\x93\xB1 No. WA: {$order->customer_phone}\n"
+            ."\xF0\x9F\x93\xA7 Email: {$order->customer_email}\n"
+            ."\xF0\x9F\x93\x8D Alamat Pengiriman:\n{$order->shipping_address}\n"
+            ."\xF0\x9F\x93\x81 Status File: {$designStatusLabel}\n\n"
+            ."{$separator}\n"
+            ."\xF0\x9F\x9B\x92 *RINCIAN ITEM PESANAN*\n"
+            ."{$separator}\n"
+            .trim($itemsSummary)."\n\n"
+            .'*TOTAL ESTIMASI SUBTOTAL*: Rp '.number_format((float) $order->subtotal, 0, ',', '.')."\n"
+            .$manualQuoteNotice
+            .$notesBlock
+            ."{$separator}\n"
+            ."Mohon dicek dan diinformasikan kelanjutannya.\n"
+            .'Terima kasih!';
+    }
+
+    public function render(CartService $cartService)
+    {
+        return view('livewire.contact', [
+            'cartItems' => $cartService->getItems(),
+            'cartSubtotal' => $cartService->getSubtotal(),
+            'hasManualQuote' => $cartService->hasManualQuoteItem(),
+            'cartCount' => $cartService->count(),
+        ]);
     }
 }

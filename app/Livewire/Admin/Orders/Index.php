@@ -20,7 +20,7 @@ class Index extends Component
 
     public function render()
     {
-        $query = Order::with('product')->latest();
+        $query = Order::with(['orderItems.product', 'product'])->latest();
 
         if ($this->search) {
             $query->where(function ($q) {

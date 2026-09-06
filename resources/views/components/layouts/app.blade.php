@@ -35,6 +35,7 @@
         </main>
         <livewire:footer />
     </div>
+    <livewire:product-configurator-modal />
     @livewireScripts
 </body>
 </html>
