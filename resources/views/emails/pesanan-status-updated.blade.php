@@ -14,7 +14,13 @@
                         <td style="padding: 32px;">
                             <p style="margin: 0 0 24px; color: #c34d2c; font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">OMH Vector</p>
                             <h1 style="margin: 0 0 16px; color: #252525; font-size: 26px; line-height: 1.25;">Status pesanan Anda diperbarui</h1>
-                            <p style="margin: 0 0 24px; color: #5f5a53; font-size: 16px; line-height: 1.6;">Halo, {{ $order->customer_name }}. Berikut adalah informasi terbaru untuk pesanan Anda.</p>
+                            <p style="margin: 0 0 24px; color: #5f5a53; font-size: 16px; line-height: 1.6;">
+                                @if ($order->status === 'terkonfirmasi')
+                                    Terima kasih! Pesanan Anda dengan nomor <strong>{{ $order->order_number }}</strong> telah kami terima dan sedang menunggu konfirmasi lebih lanjut dari admin kami via WhatsApp.
+                                @else
+                                    Halo, {{ $order->customer_name }}. Berikut adalah informasi terbaru untuk pesanan Anda.
+                                @endif
+                            </p>
 
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px; border-collapse: collapse;">
                                 <tr>
@@ -23,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 12px 0; color: #77716a; font-size: 14px;">Status terbaru</td>
-                                    <td align="right" style="padding: 12px 0; color: #c34d2c; font-size: 14px; font-weight: bold;">{{ $order->status }}</td>
+                                    <td align="right" style="padding: 12px 0; color: #c34d2c; font-size: 14px; font-weight: bold;">{{ $order->status_label }}</td>
                                 </tr>
                             </table>
 

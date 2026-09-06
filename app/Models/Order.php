@@ -219,13 +219,38 @@ class Order extends Model
     {
         return match ($this->status) {
             'pending' => 'warning',
+            'menunggu_konfirmasi' => 'warning',
             'confirmed' => 'info',
+            'terkonfirmasi' => 'success',
             'design_process' => 'primary',
             'printing' => 'secondary',
             'ready_for_pickup' => 'success',
             'completed' => 'success',
             'cancelled' => 'danger',
+            'kedaluwarsa' => 'danger',
             default => 'secondary',
+        };
+    }
+
+    /**
+     * Get human-friendly status label.
+     */
+    public function getStatusLabelAttribute(): string
+    {
+        return match ($this->status) {
+            'menunggu_konfirmasi' => 'Menunggu Konfirmasi',
+            'terkonfirmasi' => 'Pesanan Dikonfirmasi',
+            'pending' => 'Menunggu Konfirmasi',
+            'confirmed' => 'Pesanan Dikonfirmasi',
+            'diproses' => 'Sedang Diproses',
+            'design_process' => 'Proses Desain',
+            'printing', 'produksi' => 'Dalam Produksi',
+            'ready_for_pickup' => 'Siap Diambil / Dikirim',
+            'dikirim' => 'Sedang Dikirim',
+            'completed', 'selesai' => 'Selesai',
+            'cancelled', 'dibatalkan' => 'Dibatalkan',
+            'kedaluwarsa' => 'Kedaluwarsa',
+            default => ucwords(str_replace('_', ' ', (string) $this->status)),
         };
     }
 }
