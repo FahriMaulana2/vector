@@ -26,7 +26,9 @@ use Illuminate\Support\Str;
  * @property Carbon|null $estimated_completion_date
  * @property Carbon|null $completed_at
  * @property string|null $admin_notes
- * @property string $status
+ * @property string $status Catatan: Terdapat 2 vocabulary status yang berdampingan (Alur baru: menunggu_konfirmasi, terkonfirmasi, kedaluwarsa; Operasional admin: pending, confirmed, design_process, printing, ready_for_pickup, completed, cancelled). Gunakan $order->status_label untuk representasi tampilan.
+ * @property-read string $status_label
+ * @property-read string $status_badge_color
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Product|null $product
@@ -234,6 +236,25 @@ class Order extends Model
 
     /**
      * Get human-friendly status label.
+     *
+     * Catatan Vocabulary Status Pesanan:
+     * Terdapat 2 vocabulary status yang hidup berdampingan di sistem ini:
+     * 1. Status Alur Pelanggan Baru (Bahasa Indonesia):
+     *    - 'menunggu_konfirmasi' : Order dibuat pelanggan, belum klik tombol WhatsApp di struk digital.
+     *    - 'terkonfirmasi'       : Pelanggan telah mengklik tombol WhatsApp di struk digital.
+     *    - 'kedaluwarsa'         : Order menunggu_konfirmasi didiamkan >30 menit dan diredaksi (tombstone).
+     * 2. Status Operasional Admin & Tracking Existing (Bahasa Inggris):
+     *    - 'pending'             : Status awal sistem lama (legacy).
+     *    - 'confirmed'           : Dikonfirmasi manual oleh admin (legacy).
+     *    - 'design_process'      : Pesanan sedang dalam tahap pembuatan/revisi desain.
+     *    - 'printing'            : Pesanan sedang dalam proses cetak / produksi.
+     *    - 'ready_for_pickup'    : Pesanan siap diambil di workshop atau siap dikirim.
+     *    - 'completed'           : Pesanan telah selesai dan diserahkan ke pelanggan.
+     *    - 'cancelled'           : Pesanan dibatalkan.
+     *
+     * PENTING: Jangan gunakan string status mentah di UI/email pelanggan.
+     * Selalu gunakan accessor `$order->status_label` sebagai satu-satunya sumber kebenaran (single source of truth)
+     * untuk menampilkan status yang ramah kepada pengguna.
      */
     public function getStatusLabelAttribute(): string
     {

@@ -205,8 +205,10 @@
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1.5">Status Saat Ini</label>
                         <select wire:model.live="new_status" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-[#182B3A] focus:outline-none focus:ring-2 focus:ring-[#0F2747]/20 focus:border-[#0F2747] bg-slate-50/50">
-                            <option value="pending">Pending</option>
-                            <option value="confirmed">Confirmed</option>
+                            <option value="menunggu_konfirmasi">Menunggu Konfirmasi</option>
+                            <option value="terkonfirmasi">Pesanan Dikonfirmasi</option>
+                            <option value="pending">Pending (Legacy)</option>
+                            <option value="confirmed">Confirmed (Legacy)</option>
                             <option value="design_process">Design Process</option>
                             <option value="printing">Printing</option>
                             <option value="ready_for_pickup">Ready for Pickup</option>

@@ -27,6 +27,8 @@
             <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 <select wire:model.live="statusFilter" class="block w-full sm:w-48 px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-[#182B3A] focus:outline-none focus:ring-2 focus:ring-[#0F2747]/20 focus:border-[#0F2747] bg-slate-50/50">
                     <option value="">Semua Status</option>
+                    <option value="menunggu_konfirmasi">Menunggu Konfirmasi</option>
+                    <option value="terkonfirmasi">Pesanan Dikonfirmasi</option>
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
                     <option value="design_process">Design Process</option>
@@ -91,6 +93,8 @@
                             <td class="px-6 py-4 text-center">
                                 @php
                                     $statusColors = [
+                                        'menunggu_konfirmasi' => 'bg-amber-50 text-amber-700 border-amber-200',
+                                        'terkonfirmasi' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
                                         'pending' => 'bg-yellow-50 text-yellow-700 border-yellow-100',
                                         'confirmed' => 'bg-blue-50 text-blue-700 border-blue-100',
                                         'design_process' => 'bg-purple-50 text-purple-700 border-purple-100',
@@ -98,11 +102,12 @@
                                         'ready_for_pickup' => 'bg-orange-50 text-orange-700 border-orange-100',
                                         'completed' => 'bg-green-50 text-green-700 border-green-100',
                                         'cancelled' => 'bg-red-50 text-red-700 border-red-100',
+                                        'kedaluwarsa' => 'bg-rose-50 text-rose-700 border-rose-200',
                                     ];
                                     $colorClass = $statusColors[$order->status] ?? 'bg-slate-50 text-slate-700 border-slate-100';
                                 @endphp
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border {{ $colorClass }}">
-                                    {{ ucfirst(str_replace('_', ' ', $order->status)) }}
+                                    {{ $order->status_label }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 text-center text-sm text-slate-500">
