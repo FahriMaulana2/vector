@@ -7,7 +7,6 @@ namespace App\Livewire;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\Setting;
 use App\Services\CartService;
 use App\Services\PricingEngine;
 use Illuminate\Support\Facades\DB;
@@ -144,7 +143,7 @@ class Contact extends Component
                     'subtotal' => $orderSubtotal,
                     'has_manual_quote_item' => $hasManualQuote,
                     'notes' => $validated['notes'] ?: null,
-                    'status' => 'pending',
+                    'status' => 'menunggu_konfirmasi',
                     'product_id' => null,
                     'quantity' => null,
                 ]);
@@ -176,85 +175,22 @@ class Contact extends Component
             // 3. Clear Cart Session
             $cartService->clear();
 
-            // 4. Build WhatsApp URL
-            $adminWhatsapp = Setting::getWhatsAppNumber();
-            $normalizedAdminPhone = Setting::normalizePhoneNumber($adminWhatsapp);
+            // Redirect to digital receipt page
+            $this->redirect(route('order.receipt', ['orderNumber' => $order->order_number]), navigate: true);
 
-            if ($normalizedAdminPhone) {
-                $whatsappMessage = $this->buildWhatsAppMessage($order);
-                $whatsappUrl = 'https://wa.me/'.$normalizedAdminPhone.'?text='.rawurlencode($whatsappMessage);
-                $this->js('window.open('.json_encode($whatsappUrl).", '_blank');");
-            }
+            return;
 
             // 5. Reset Form State
             $this->reset(['name', 'phone', 'email', 'shipping_address', 'notes']);
             $this->design_file_status = 'ready';
             $this->dispatch('cart-updated');
 
-            session()->flash('success', "Pesanan {$order->order_number} berhasil dibuat! Mengalihkan ke WhatsApp...");
         } catch (\Throwable $e) {
             Log::error('Order checkout error: '.$e->getMessage(), ['trace' => $e->getTraceAsString()]);
             $this->addError('general', 'Terjadi kendala saat memproses pesanan: '.$e->getMessage());
         } finally {
             $this->isSubmitting = false;
         }
-    }
-
-    protected function buildWhatsAppMessage(Order $order): string
-    {
-        $separator = "\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81";
-        $designStatusLabel = $order->design_file_status === 'ready' ? 'File Sudah Siap' : 'Belum Ada File / Minta Bantuan Desain';
-
-        $itemsSummary = '';
-        foreach ($order->orderItems as $idx => $item) {
-            $num = $idx + 1;
-            $itemsSummary .= "{$num}. *{$item->product_name}* (Qty: {$item->qty})\n";
-
-            if ($item->side_mode) {
-                $sideLabel = $item->side_mode === '2_muka' ? '2 Muka (Bolak-balik)' : '1 Muka';
-                $itemsSummary .= "   - Sisi: {$sideLabel}\n";
-            }
-
-            if ($item->length_m && $item->width_m) {
-                $itemsSummary .= "   - Ukuran: {$item->length_m}m x {$item->width_m}m\n";
-            }
-
-            if (! empty($item->selected_options) && is_array($item->selected_options)) {
-                $opts = array_map(fn ($o) => ($o['group_name'] ?? '').': '.($o['option_name'] ?? ''), $item->selected_options);
-                $itemsSummary .= '   - Opsi: '.implode(', ', $opts)."\n";
-            }
-
-            $itemsSummary .= '   - Subtotal: Rp '.number_format((float) $item->line_subtotal, 0, ',', '.')."\n\n";
-        }
-
-        $manualQuoteNotice = $order->has_manual_quote_item
-            ? "\n\xE2\x9A\xA0\xEF\xB8\x8F *Catatan*: Terdapat item dengan opsi yang memerlukan konfirmasi harga tambahan dari admin.\n"
-            : '';
-
-        $notesBlock = $order->notes
-            ? "{$separator}\n\xF0\x9F\x92\xAC *CATATAN TAMBAHAN*\n{$order->notes}\n\n"
-            : '';
-
-        return "Halo Admin OMAH Vector \xF0\x9F\x91\x8B\n\n"
-            ."Saya ingin memesan cetak dengan nomor pesanan: *{$order->order_number}*\n\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x93\x8B *DATA PEMESAN*\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x91\xA4 Nama: {$order->customer_name}\n"
-            ."\xF0\x9F\x93\xB1 No. WA: {$order->customer_phone}\n"
-            ."\xF0\x9F\x93\xA7 Email: {$order->customer_email}\n"
-            ."\xF0\x9F\x93\x8D Alamat Pengiriman:\n{$order->shipping_address}\n"
-            ."\xF0\x9F\x93\x81 Status File: {$designStatusLabel}\n\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x9B\x92 *RINCIAN ITEM PESANAN*\n"
-            ."{$separator}\n"
-            .trim($itemsSummary)."\n\n"
-            .'*TOTAL ESTIMASI SUBTOTAL*: Rp '.number_format((float) $order->subtotal, 0, ',', '.')."\n"
-            .$manualQuoteNotice
-            .$notesBlock
-            ."{$separator}\n"
-            ."Mohon dicek dan diinformasikan kelanjutannya.\n"
-            .'Terima kasih!';
     }
 
     public function render(CartService $cartService)
