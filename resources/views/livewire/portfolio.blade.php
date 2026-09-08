@@ -79,7 +79,7 @@
                         <p class="mt-1.5 text-xs sm:text-sm font-inter text-white/70 leading-relaxed line-clamp-2 {{ $isFeatured ? 'hidden sm:block' : '' }}">{{ $portfolio->description }}</p>
                     </div>
 
-                    {{-- Gold accent line + View project link (preserved destination #contact) --}}
+                    {{-- Gold accent line --}}
                     <div class="mt-3 flex items-center justify-between gap-3">
                         <span class="h-0.5 w-8 rounded-full bg-gold opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0"></span>
                     </div>

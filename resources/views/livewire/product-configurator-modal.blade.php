@@ -8,14 +8,6 @@
         }
     }"
     x-on:show-toast.window="showToast($event.detail.message)"
-    x-on:scroll-to-order-form.window="
-        requestAnimationFrame(() => {
-            const el = document.getElementById('contact');
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    "
     class="relative z-50">
 
     {{-- Toast Notification --}}
