@@ -41,7 +41,7 @@ Route::get('/products', Products::class)->name('products.index');
 Route::get('/portfolio', PortfolioPage::class)->name('portfolio.index');
 Route::get('/lacak-pesanan/{order?}', OrderTracking::class)->name('orders.track');
 Route::get('/order/{orderNumber}', OrderReceipt::class)->name('order.receipt');
-
+Route::get('/tentang', \App\Livewire\About::class)->name('about');
 // Admin Authentication Routes (Guest only)
 Route::middleware('guest')->group(function () {
     Route::get('/admin/login', Login::class)->name('admin.login');
