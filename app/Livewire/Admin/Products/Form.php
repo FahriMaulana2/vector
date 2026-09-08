@@ -295,7 +295,6 @@ class Form extends Component
             return;
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | Create / Update Product
