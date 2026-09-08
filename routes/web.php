@@ -31,6 +31,7 @@ use App\Livewire\Admin\Workflow\Index as WorkflowIndex;
 use App\Livewire\Home;
 use App\Livewire\OrderReceipt;
 use App\Livewire\OrderTracking;
+use App\Livewire\Pemesanan;
 use App\Livewire\Portfolio as PortfolioPage;
 use App\Livewire\Products;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ Route::get('/portfolio', PortfolioPage::class)->name('portfolio.index');
 Route::get('/lacak-pesanan/{order?}', OrderTracking::class)->name('orders.track');
 Route::get('/order/{orderNumber}', OrderReceipt::class)->name('order.receipt');
 Route::get('/tentang', About::class)->name('about');
+Route::get('/pemesanan', Pemesanan::class)->name('pemesanan');
 // Admin Authentication Routes (Guest only)
 Route::middleware('guest')->group(function () {
     Route::get('/admin/login', Login::class)->name('admin.login');

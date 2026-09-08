@@ -13,7 +13,7 @@ $aboutData = [
 ];
 ?>
 
-<section id="about" class="relative overflow-hidden bg-white">
+<section id="tentang" class="relative overflow-hidden bg-white">
     {{-- Subtle layered background --}}
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-0 right-0 w-[280px] h-[280px] md:w-[450px] md:h-[450px] bg-gradient-to-bl from-gold/8 to-transparent rounded-full blur-3xl"></div>
@@ -97,21 +97,15 @@ $aboutData = [
                     </div>
                 </div>
 
-                {{-- Stats Row --}}
-                <div class="grid grid-cols-3 gap-3 md:gap-6 pt-4 md:pt-4 border-t border-white/80">
-                    <div>
-                        <p class="font-heading text-lg md:text-3xl font-bold text-navy">980+</p>
-                        <p class="text-xs md:text-sm font-inter text-ink-soft mt-0.5">Klien Puas</p>
-                    </div>
-                    <div>
-                        <p class="font-heading text-lg md:text-3xl font-bold text-navy">1.250+</p>
-                        <p class="text-xs md:text-sm font-inter text-ink-soft mt-0.5">Proyek Selesai</p>
-                    </div>
-                    <div>
-                        <p class="font-heading text-lg md:text-3xl font-bold text-gold-dark">6+</p>
-                        <p class="text-xs md:text-sm font-inter text-ink-soft mt-0.5">Tahun Aktif</p>
-                    </div>
+                {{-- CTA ke halaman Tentang --}}
+                <div class="pt-2 md:pt-4 border-t border-white/80">
+                    <a href="{{ route('about') }}" wire:navigate
+                       class="group inline-flex items-center gap-2 rounded-full bg-navy px-5 py-3 text-xs md:text-sm font-heading font-semibold text-cream border border-gold/40 shadow-button transition-all duration-300 hover:bg-navy-deep hover:border-gold hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0">
+                        <span>Lihat Selengkapnya</span>
+                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-gold transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
                 </div>
+
             </div>
         </div>
     </div>

@@ -77,7 +77,7 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
                     {{-- CTA --}}
                     <div class="mt-3 md:mt-6 flex items-center justify-between gap-2">
                         <span class="h-1 w-6 md:w-8 rounded-full bg-gold/30 transition-all duration-300 group-hover:w-10 md:group-hover:w-12 group-hover:bg-gold"></span>
-                        <a href="#contact" class="inline-flex items-center gap-1 md:gap-2 text-xs md:text-sm font-heading font-semibold text-navy transition-all duration-300 group-hover:text-gold-dark group-hover:gap-2 md:group-hover:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 rounded-lg whitespace-nowrap">
+                        <a href="{{ route('home') }}#kontak" class="inline-flex items-center gap-1 md:gap-2 text-xs md:text-sm font-heading font-semibold text-navy transition-all duration-300 group-hover:text-gold-dark group-hover:gap-2 md:group-hover:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 rounded-lg whitespace-nowrap">
                             <span class="hidden md:inline">Pelajari Layanan</span>
                             <span class="md:hidden">Pelajari</span>
                             <span class="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full bg-gold/10 transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cards.forEach(card => {
         card.addEventListener('click', function(e) {
             // Jika klik pada link "Pelajari Layanan", biarkan default behavior
-            if (e.target.closest('a[href="#contact"]')) {
+            if (e.target.closest('a[href*="#kontak"]')) {
                 return;
             }
 

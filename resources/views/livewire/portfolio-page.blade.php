@@ -54,7 +54,7 @@
                 </div>
                 <div class="flex flex-wrap gap-3">
                     <a href="{{ $whatsappLink }}" target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-gold px-5 py-3 text-xs font-semibold text-navy transition hover:bg-gold-light hover:shadow-button">{{ $content['cta_button_primary_text'] }}<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
-                    <a href="#contact" class="inline-flex items-center rounded-full border border-white/25 px-5 py-3 text-xs font-semibold text-white transition hover:border-gold hover:text-gold">{{ $content['cta_button_secondary_text'] }}</a>
+                    <a href="{{ route('home') }}#kontak" class="inline-flex items-center rounded-full border border-white/25 px-5 py-3 text-xs font-semibold text-white transition hover:border-gold hover:text-gold">{{ $content['cta_button_secondary_text'] }}</a>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Contact;
+use App\Livewire\Pemesanan;
 use App\Livewire\ProductConfiguratorModal;
 use App\Models\Order;
 use App\Models\Product;
@@ -207,8 +207,8 @@ it('adds 2 different products to cart via Tambah & Pilih Produk Lain and success
     // Product 1: 50,000 * 2 = 100,000. Product 2: 1,500 * 100 = 150,000. Total = 250,000.
     expect($cartService->getSubtotal())->toBe(250000.0);
 
-    // 3. Submit from Contact form
-    Livewire::test(Contact::class)
+    // 3. Submit from Pemesanan form
+    Livewire::test(Pemesanan::class)
         ->assertViewHas('cartCount', 2)
         ->assertViewHas('cartSubtotal', 250000.0)
         ->set('name', 'Budi Pratama')

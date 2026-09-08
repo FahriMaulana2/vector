@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Contact;
+use App\Livewire\Pemesanan;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Services\CartService;
@@ -14,7 +14,7 @@ beforeEach(function () {
 });
 
 it('disables submission and shows error when cart is empty', function () {
-    Livewire::test(Contact::class)
+    Livewire::test(Pemesanan::class)
         ->set('name', 'Budi')
         ->set('phone', '0812345678')
         ->set('email', 'budi@test.com')
@@ -42,7 +42,7 @@ it('validates required checkout fields', function () {
     $itemData = app(PricingEngine::class)->calculate($product, 1);
     $cartService->addItem($itemData);
 
-    Livewire::test(Contact::class)
+    Livewire::test(Pemesanan::class)
         ->set('name', '')
         ->set('phone', '')
         ->set('email', 'bukan-email')

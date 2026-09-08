@@ -54,14 +54,14 @@ $heroDescription = $hero?->description;
 
 {{-- CTAs (mobile: stacked full-width, desktop: flex wrap) --}}
                     <div class="relative z-20 flex flex-col md:flex-wrap md:gap-3 gap-2.5 pt-2 md:pt-0">
-                        <a href="{{ $primaryCtaLink ?: '#contact' }}"
+                        <a href="{{ $primaryCtaLink ?: route('products.index') }}"
                            class="group inline-flex items-center justify-center rounded-xl md:rounded-full bg-gold w-full md:w-auto px-5 py-3 md:px-7 md:py-3.5 text-sm font-heading font-bold text-navy shadow-button transition-all duration-300 hover:bg-gold-light hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0">
                             <span class="flex items-center gap-2">
                                 {{ $primaryCta ?: 'Lihat Produk Kami' }}
                                 <svg class="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </span>
                         </a>
-                        <a href="#portfolio"
+                        <a href="{{ route('portfolio.index') }}" wire:navigate
                            class="group inline-flex items-center justify-center rounded-xl md:rounded-full border border-cream/30 bg-cream/[0.08] backdrop-blur-sm w-full md:w-auto px-5 py-3 md:px-7 md:py-3.5 text-sm font-heading font-semibold text-cream transition-all duration-300 hover:border-gold/40 hover:bg-cream/[0.12] hover:shadow-soft hover:-translate-y-0.5 active:translate-y-0">
                             <span class="flex items-center gap-2">
                                 <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-gold" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5h-1.5l-1.707-1.707A1 1 0 0015.172 3H8.828a1 1 0 00-.707.293L6.5 5H5a3 3 0 00-3 3v9a3 3 0 003 3h14a3 3 0 003-3V8a3 3 0 00-3-3zm-7 12a5 5 0 110-10 5 5 0 010 10zm0-8a3 3 0 100 6 3 3 0 000-6z"/></svg>

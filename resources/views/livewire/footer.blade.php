@@ -80,27 +80,27 @@ $social = Setting::getSocialMedia();
             <div>
                 <p class="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-gold">Quick Links</p>
                 <div class="mt-5 space-y-3 text-sm font-inter">
-                    <a href="#home" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('home') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Home</span>
                     </a>
-                    <a href="#about" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('about') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Tentang</span>
                     </a>
-                    <a href="#services" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('home') }}#services" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Layanan</span>
                     </a>
-                    <a href="#products" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('products.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Produk</span>
                     </a>
-                    <a href="#portfolio" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('portfolio.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Portofolio</span>
                     </a>
-                    <a href="#contact" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('home') }}#kontak" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Kontak</span>
                     </a>
@@ -111,23 +111,23 @@ $social = Setting::getSocialMedia();
             <div>
                 <p class="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-gold">Layanan</p>
                 <div class="mt-5 space-y-3 text-sm font-inter">
-                    <a href="#products" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('products.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Banner Printing</span>
                     </a>
-                    <a href="#products" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('products.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Sticker Printing</span>
                     </a>
-                    <a href="#products" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('products.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Business Card</span>
                     </a>
-                    <a href="#products" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('products.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Custom Tumbler</span>
                     </a>
-                    <a href="#products" class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
+                    <a href="{{ route('products.index') }}" wire:navigate class="group flex items-center gap-2 text-cream/60 transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">
                         <span class="w-1 h-1 rounded-full bg-gold"></span>
                         <span class="transition-transform duration-200 group-hover:translate-x-1">Merchandise</span>
                     </a>
