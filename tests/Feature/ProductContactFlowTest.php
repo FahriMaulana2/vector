@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Contact;
+use App\Livewire\Pemesanan;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Services\CartService;
@@ -13,15 +13,9 @@ beforeEach(function () {
     app(CartService::class)->clear();
 });
 
-it('disables submission and shows error when cart is empty', function () {
-    Livewire::test(Contact::class)
-        ->set('name', 'Budi')
-        ->set('phone', '0812345678')
-        ->set('email', 'budi@test.com')
-        ->set('shipping_address', 'Jl. Test No 1')
-        ->set('design_file_status', 'ready')
-        ->call('submit')
-        ->assertHasErrors(['cart']);
+it('redirects to products index when cart is empty on mount', function () {
+    Livewire::test(Pemesanan::class)
+        ->assertRedirect(route('products.index'));
 });
 
 it('validates required checkout fields', function () {
@@ -42,7 +36,7 @@ it('validates required checkout fields', function () {
     $itemData = app(PricingEngine::class)->calculate($product, 1);
     $cartService->addItem($itemData);
 
-    Livewire::test(Contact::class)
+    Livewire::test(Pemesanan::class)
         ->set('name', '')
         ->set('phone', '')
         ->set('email', 'bukan-email')

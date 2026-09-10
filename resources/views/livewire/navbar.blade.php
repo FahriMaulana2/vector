@@ -1,44 +1,29 @@
 <?php
 use App\Models\Setting;
+
 $navItems = [
-    ['label' => 'Home', 'id' => 'home'],
-    ['label' => 'Tentang', 'id' => 'about'],
-    ['label' => 'Layanan', 'id' => 'services'],
-    ['label' => 'Produk', 'id' => 'products'],
-    ['label' => 'Portofolio', 'id' => 'portfolio'],
-    ['label' => 'Kontak', 'id' => 'contact'],
+    ['label' => 'Home', 'route' => 'home', 'url' => route('home')],
+    ['label' => 'Tentang', 'route' => 'about', 'url' => route('about')],
+    ['label' => 'Produk', 'route' => 'products.*', 'url' => route('products.index')],
+    ['label' => 'Portofolio', 'route' => 'portfolio.*', 'url' => route('portfolio.index')],
+    ['label' => 'Lacak Pesanan', 'route' => 'orders.track', 'url' => route('orders.track')],
 ];
+
 $companyName = Setting::getCompanyName();
 $companyTagline = Setting::getDescription() ?: 'Digital Printing & Branding';
 $logoUrl = Setting::getLogoUrl();
-$whatsappLink = Setting::getWhatsAppLink();
 $logoLetter = $companyName ? mb_substr($companyName, 0, 1) : 'O';
-$homeUrl = request()->routeIs('home') ? '' : route('home');
-$isTrackingPage = request()->routeIs('orders.track');
 ?>
 
 <nav x-data="{
     mobileOpen: false,
     scrolled: false,
-    activeSection: '{{ request()->routeIs('home') ? 'home' : '' }}',
     init() {
         const onScroll = () => {
             this.scrolled = window.scrollY > 20;
         };
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.activeSection = entry.target.id;
-                }
-            });
-        }, { rootMargin: '-50% 0px -50% 0px' });
-        ['home','about','services','products','portfolio','contact'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) observer.observe(el);
-        });
     }
 }"
 class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
@@ -46,7 +31,7 @@ class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
     <div class="flex items-center justify-between h-full max-w-7xl mx-auto px-5 md:px-6 lg:px-8">
         
         {{-- Logo --}}
-        <a href="{{ $homeUrl }}#home" class="inline-flex items-center gap-2.5 group flex-shrink-0">
+        <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5 group flex-shrink-0">
             @if($logoUrl)
                 <div class="flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden bg-navy text-gold border border-gold/30 shadow-button transition-all duration-300 group-hover:shadow-button-hover group-hover:-translate-y-0.5">
                     <img src="{{ $logoUrl }}" alt="{{ $companyName }}" class="h-full w-full object-contain">
@@ -58,11 +43,9 @@ class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
             @endif
             
             <div class="leading-tight">
-                {{-- PERUBAHAN: Nama perusahaan diperbesar sedikit (text-sm mobile, text-base desktop) --}}
                 <p class="font-heading text-sm md:text-base font-bold uppercase tracking-[0.15em] text-navy">
                     {{ $companyName }}
                 </p>
-                {{-- Tagline tetap kecil agar tidak penuh --}}
                 <p class="text-[10px] font-inter text-ink-soft font-medium mt-0.5">
                     {{ $companyTagline }}
                 </p>
@@ -73,19 +56,21 @@ class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
         <div class="hidden lg:flex items-center justify-center flex-1">
             <div class="flex items-center gap-0.5 bg-cream/80 rounded-full px-2 py-1.5 border border-navy/10 shadow-soft">
                 @foreach($navItems as $item)
-                <a href="{{ $homeUrl }}#{{ $item['id'] }}" @click="mobileOpen = false" class="group relative px-4 py-2 text-sm font-inter font-medium transition-all duration-300 rounded-full" :class="activeSection === '{{ $item['id'] }}' ? 'text-cream bg-navy shadow-button' : 'bg-transparent text-ink-soft hover:text-navy hover:bg-white'">
+                @php
+                    $isActive = request()->routeIs($item['route']);
+                @endphp
+                <a href="{{ $item['url'] }}" class="group relative px-4 py-2 text-sm font-inter font-medium transition-all duration-300 rounded-full {{ $isActive ? 'text-cream bg-navy shadow-button' : 'bg-transparent text-ink-soft hover:text-navy hover:bg-white' }}">
                     <span>{{ $item['label'] }}</span>
                 </a>
                 @endforeach
-                <a href="{{ route('orders.track') }}" class="px-4 py-2 text-sm font-inter font-medium transition-all duration-300 rounded-full {{ $isTrackingPage ? 'text-cream bg-navy shadow-button' : 'text-ink-soft hover:text-navy hover:bg-white' }}">Lacak Pesanan</a>
             </div>
         </div>
 
         {{-- Desktop CTA --}}
         <div class="hidden lg:flex items-center flex-shrink-0">
-            <a href="#contact" class="inline-flex items-center gap-2.5 rounded-full bg-navy px-5 py-2.5 text-sm font-heading font-semibold text-cream border border-gold/40 transition-all duration-300 hover:bg-navy-deep hover:border-gold hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0">
+            <a href="{{ route('products.index') }}" class="inline-flex items-center gap-2.5 rounded-full bg-navy px-5 py-2.5 text-sm font-heading font-semibold text-cream border border-gold/40 transition-all duration-300 hover:bg-navy-deep hover:border-gold hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                 </svg>
                 <span>Pesan Sekarang</span>
             </a>
@@ -116,22 +101,19 @@ class="fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-300"
          @click.outside="mobileOpen = false">
         <div class="max-w-7xl mx-auto px-5 py-5 space-y-1">
             @foreach($navItems as $item)
-            <a href="{{ $homeUrl }}#{{ $item['id'] }}"
+            @php
+                $isActive = request()->routeIs($item['route']);
+            @endphp
+            <a href="{{ $item['url'] }}"
                @click="mobileOpen = false"
-               class="block rounded-xl px-4 py-3 text-sm font-inter font-medium transition-all duration-200"
-               :class="activeSection === '{{ $item['id'] }}' ? 'bg-navy text-cream border-l-2 border-gold' : 'text-ink-soft hover:bg-white hover:text-navy'">
+               class="block rounded-xl px-4 py-3 text-sm font-inter font-medium transition-all duration-200 {{ $isActive ? 'bg-navy text-cream border-l-2 border-gold' : 'text-ink-soft hover:bg-white hover:text-navy' }}">
                 {{ $item['label'] }}
             </a>
             @endforeach
-            <a href="{{ route('orders.track') }}"
-               @click="mobileOpen = false"
-               class="block rounded-xl px-4 py-3 text-sm font-inter font-medium transition-all duration-200 {{ $isTrackingPage ? 'bg-navy text-cream border-l-2 border-gold' : 'text-ink-soft hover:bg-white hover:text-navy' }}">
-                Lacak Pesanan
-            </a>
             <div class="pt-3">
-                <a href="#contact" @click="mobileOpen = false" class="flex items-center justify-center gap-2 rounded-full bg-navy px-4 py-3 text-sm font-heading font-semibold text-cream border border-gold/40 transition-all duration-200 hover:bg-navy-deep hover:shadow-lg">
+                <a href="{{ route('products.index') }}" @click="mobileOpen = false" class="flex items-center justify-center gap-2 rounded-full bg-navy px-4 py-3 text-sm font-heading font-semibold text-cream border border-gold/40 transition-all duration-200 hover:bg-navy-deep hover:shadow-lg">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                     </svg>
                     <span>Pesan Sekarang</span>
                 </a>

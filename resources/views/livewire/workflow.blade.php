@@ -115,7 +115,7 @@
             <div class="mt-6 md:mt-8">
                 <p class="text-sm md:text-lg font-heading font-semibold text-navy">Need a Custom Printing Solution?</p>
                 <p class="mt-1 md:mt-2 text-xs md:text-sm font-inter text-ink-soft">Kami siap membantu mewujudkan proyek cetak dan branding Anda.</p>
-                <a href="#contact"
+                <a href="#kontak"
                    class="mt-3 md:mt-5 inline-flex items-center gap-1.5 md:gap-2 rounded-full bg-navy px-4 md:px-8 py-2.5 md:py-3.5 text-xs md:text-sm font-heading font-semibold text-white shadow-button transition-all duration-300 hover:bg-gold hover:text-navy hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 group">
                     Start Your Project
                     <svg class="w-3 h-3 md:w-4 md:h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>

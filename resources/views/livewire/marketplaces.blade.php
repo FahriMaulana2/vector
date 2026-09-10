@@ -108,6 +108,12 @@
                                             <span>Toko Sedang Maintenance</span>
                                         </button>
                                         
+                                        <a href="{{ $whatsappUrl ?: '#' }}" 
+                                           target="_blank" 
+                                           rel="noopener noreferrer" 
+                                           class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-semibold rounded-full transition-all duration-300 shadow-button">
+                                            <span>Order via WhatsApp</span>
+                                        </a>
                                         <a href="{{ route('products.index') }}" 
                                            class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold rounded-full transition-all duration-300">
                                             <span>Lihat Produk di Website</span>
@@ -217,6 +223,12 @@
                                                 <span>Toko Maintenance</span>
                                             </button>
                                             
+                                            <a href="{{ $whatsappUrl ?: '#' }}" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               class="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-semibold text-sm rounded-full transition-all duration-300">
+                                                <span>Order via WhatsApp</span>
+                                            </a>
                                             <a href="{{ route('products.index') }}" 
                                                class="flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold text-sm rounded-full transition-all duration-300">
                                                 <span>Lihat Produk</span>
@@ -290,6 +302,12 @@
                                                     <span>Maintenance</span>
                                                 </button>
                                                 
+                                                <a href="{{ $whatsappUrl ?: '#' }}" 
+                                                   target="_blank" 
+                                                   rel="noopener noreferrer" 
+                                                   class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-emerald-600 text-white font-heading font-semibold text-sm rounded-full">
+                                                    <span>Order via WhatsApp</span>
+                                                </a>
                                                 <a href="{{ route('products.index') }}" 
                                                    class="flex items-center justify-center gap-2 w-full px-4 py-2 border border-navy text-navy font-heading font-semibold text-sm rounded-full">
                                                     <span>Lihat Produk</span>

@@ -3,6 +3,10 @@
 use App\Livewire\About;
 use App\Livewire\Admin\About\Form as AboutForm;
 use App\Livewire\Admin\About\Index as AboutIndex;
+use App\Livewire\Admin\About\MilestoneForm;
+use App\Livewire\Admin\About\MilestoneIndex;
+use App\Livewire\Admin\About\StatForm;
+use App\Livewire\Admin\About\StatIndex;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Faqs\Form as FaqsForm;
@@ -31,6 +35,7 @@ use App\Livewire\Admin\Workflow\Index as WorkflowIndex;
 use App\Livewire\Home;
 use App\Livewire\OrderReceipt;
 use App\Livewire\OrderTracking;
+use App\Livewire\Pemesanan;
 use App\Livewire\Portfolio as PortfolioPage;
 use App\Livewire\Products;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +46,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/products', Products::class)->name('products.index');
 Route::get('/portfolio', PortfolioPage::class)->name('portfolio.index');
 Route::get('/lacak-pesanan/{order?}', OrderTracking::class)->name('orders.track');
+Route::get('/pemesanan', Pemesanan::class)->name('pemesanan');
 Route::get('/order/{orderNumber}', OrderReceipt::class)->name('order.receipt');
 Route::get('/tentang', About::class)->name('about');
 // Admin Authentication Routes (Guest only)
@@ -71,6 +77,18 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/', AboutIndex::class)->name('index');
         Route::get('/create', AboutForm::class)->name('create');
         Route::get('/{about}/edit', AboutForm::class)->name('edit');
+
+        Route::prefix('stats')->name('stats.')->group(function () {
+            Route::get('/', StatIndex::class)->name('index');
+            Route::get('/create', StatForm::class)->name('create');
+            Route::get('/{stat}/edit', StatForm::class)->name('edit');
+        });
+
+        Route::prefix('milestones')->name('milestones.')->group(function () {
+            Route::get('/', MilestoneIndex::class)->name('index');
+            Route::get('/create', MilestoneForm::class)->name('create');
+            Route::get('/{milestone}/edit', MilestoneForm::class)->name('edit');
+        });
     });
 
     Route::prefix('services')->name('services.')->group(function () {

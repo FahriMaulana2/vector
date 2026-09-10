@@ -54,7 +54,7 @@ $heroDescription = $hero?->description;
 
 {{-- CTAs (mobile: stacked full-width, desktop: flex wrap) --}}
                     <div class="relative z-20 flex flex-col md:flex-wrap md:gap-3 gap-2.5 pt-2 md:pt-0">
-                        <a href="{{ $primaryCtaLink ?: '#contact' }}"
+                        <a href="{{ $primaryCtaLink ?: route('products.index') }}"
                            class="group inline-flex items-center justify-center rounded-xl md:rounded-full bg-gold w-full md:w-auto px-5 py-3 md:px-7 md:py-3.5 text-sm font-heading font-bold text-navy shadow-button transition-all duration-300 hover:bg-gold-light hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0">
                             <span class="flex items-center gap-2">
                                 {{ $primaryCta ?: 'Lihat Produk Kami' }}

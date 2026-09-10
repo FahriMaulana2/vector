@@ -109,5 +109,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-12 text-center">
+            <a href="{{ route('home') }}" class="inline-flex items-center gap-2 rounded-full bg-navy/10 border border-navy/20 px-6 py-3 text-xs font-heading font-semibold text-navy transition hover:bg-navy hover:text-cream shadow-sm">
+                <svg class="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Kembali ke Beranda</span>
+            </a>
+        </div>
     </section>
 </div>

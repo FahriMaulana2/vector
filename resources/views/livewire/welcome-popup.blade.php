@@ -133,7 +133,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <div class="leading-relaxed">
-                                <strong class="font-semibold block">Toko Marketplace Sedang Maintenance</strong>
+                                <strong class="font-semibold block">Toko Sedang Maintenance</strong>
                                 <span>Toko tujuan sedang perbaikan. Anda akan diarahkan langsung ke WhatsApp Official Admin untuk konsultasi & order.</span>
                             </div>
                         </div>

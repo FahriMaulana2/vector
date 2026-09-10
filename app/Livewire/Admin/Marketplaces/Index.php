@@ -26,6 +26,21 @@ class Index extends Component
 
     public $availablePlatforms = [];
 
+    // Form fields
+    public $platform = '';
+
+    public $store_name = '';
+
+    public $store_url = '';
+
+    public $display_order = 0;
+
+    public $is_active = true;
+
+    public $maintenance_message = '';
+
+    public $logo = null;
+
     public function mount()
     {
         $this->availablePlatforms = Marketplace::getAvailablePlatforms();
@@ -60,7 +75,6 @@ class Index extends Component
         $marketplace = Marketplace::findOrFail($id);
         $marketplace->update(['is_active' => ! $marketplace->is_active]);
 
-        // Cache akan otomatis ter-clear berkat method booted() di Model Marketplace
         session()->flash('success', 'Status marketplace berhasil diubah.');
     }
 
@@ -96,5 +110,64 @@ class Index extends Component
     private function resetDeleteProperties()
     {
         $this->reset(['marketplaceId', 'deletingStoreName', 'deletingCampaignCount']);
+    }
+
+    protected function rules()
+    {
+        $unique = 'unique:marketplaces,platform';
+        if ($this->marketplaceId) {
+            $unique .= ','.$this->marketplaceId;
+        }
+
+        return [
+            'platform' => 'required|string|'.$unique,
+            'store_name' => 'required|string',
+            'store_url' => 'nullable|url',
+            'display_order' => 'nullable|integer',
+            'is_active' => 'boolean',
+            'maintenance_message' => 'nullable|string',
+        ];
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        if ($this->marketplaceId) {
+            $marketplace = Marketplace::findOrFail($this->marketplaceId);
+            $marketplace->update([
+                'platform' => $this->platform,
+                'store_name' => $this->store_name,
+                'store_url' => $this->store_url,
+                'display_order' => $this->display_order,
+                'is_active' => $this->is_active,
+                'maintenance_message' => $this->maintenance_message,
+            ]);
+            session()->flash('success', 'Marketplace berhasil diperbarui.');
+        } else {
+            Marketplace::create([
+                'platform' => $this->platform,
+                'store_name' => $this->store_name,
+                'store_url' => $this->store_url,
+                'display_order' => $this->display_order,
+                'is_active' => $this->is_active,
+                'maintenance_message' => $this->maintenance_message,
+            ]);
+            session()->flash('success', 'Marketplace berhasil dibuat.');
+        }
+
+        $this->reset(['platform', 'store_name', 'store_url', 'display_order', 'is_active', 'maintenance_message', 'marketplaceId']);
+    }
+
+    public function edit($id)
+    {
+        $marketplace = Marketplace::findOrFail($id);
+        $this->marketplaceId = $id;
+        $this->platform = $marketplace->platform;
+        $this->store_name = $marketplace->store_name;
+        $this->store_url = $marketplace->store_url;
+        $this->display_order = $marketplace->display_order;
+        $this->is_active = $marketplace->is_active;
+        $this->maintenance_message = $marketplace->maintenance_message;
     }
 }

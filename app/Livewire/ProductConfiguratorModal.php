@@ -205,11 +205,7 @@ class ProductConfiguratorModal extends Component
         $this->dispatch('cart-updated');
 
         if ($proceedToForm) {
-            if (request()->routeIs('products.index')) {
-                $this->redirect(route('home').'#contact', navigate: true);
-            } else {
-                $this->dispatch('scroll-to-order-form');
-            }
+            $this->redirect(route('pemesanan'), navigate: true);
         } else {
             $this->dispatch('show-toast', message: "{$productName} berhasil ditambahkan ke keranjang!");
         }

@@ -90,7 +90,7 @@ it('increments click count when recordClick is called', function () {
 
 it('triggers Smart Sync fallback notification when campaign marketplace is inactive', function () {
     Cache::forget('active_popup');
-    Setting::set('company_whatsapp', '08123456789', 'contact');
+    Setting::set('company_whatsapp', '08987654321', 'contact');
 
     $inactiveMarketplace = Marketplace::create([
         'platform' => 'tokopedia',

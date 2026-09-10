@@ -25,7 +25,7 @@ class Hero extends Component
         $primaryCtaLink = null;
         if ($hero && $hero->button_text) {
             $primaryCta = $hero->button_text;
-            $primaryCtaLink = $hero->button_link ?: '#contact';
+            $primaryCtaLink = $hero->button_link ?: route('products.index');
         }
 
         // Gambar tunggal dari database (HeroSection aktif di admin)
