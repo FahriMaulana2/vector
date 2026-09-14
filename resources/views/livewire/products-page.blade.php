@@ -54,15 +54,16 @@
                             @if($product->short_description || $product->description)
                                 <p class="mt-2 max-w-xl text-xs leading-relaxed text-white/70 line-clamp-2 {{ $isFeatured ? 'sm:block' : '' }}">{{ $product->short_description ?? $product->description }}</p>
                             @endif
-                            <div class="mt-4 flex items-center gap-2">
-                                <button type="button"
-                                   wire:click.prevent="$dispatch('open-configurator', { productId: {{ $product->id }} })"
-                                   class="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-2.5 text-[10px] font-heading font-semibold text-navy transition-all duration-300 hover:bg-gold-light hover:shadow-button hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 cursor-pointer">
-                                    <svg class="h-3.5 w-3.5 text-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                                    <span>Pesan Sekarang</span>
-                                    <svg class="h-2.5 w-2.5 text-navy transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                                </button>
-                            </div>
+                            {{-- CTA --}}
+                        <div class="flex items-center gap-3">
+                            <button type="button"
+                               wire:click.prevent="$dispatch('open-configurator', { productId: {{ $product->id }} })"
+                               class="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-navy px-5 py-3 text-xs font-heading font-semibold text-white transition-all duration-300 hover:bg-navy-deep hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 cursor-pointer">
+                                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                <span>Order Produk</span>
+                                <svg class="w-3 h-3 text-gold transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </button>
+                        </div>
                         </div>
                     </article>
                 @empty

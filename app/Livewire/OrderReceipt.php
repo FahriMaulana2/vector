@@ -50,9 +50,8 @@ class OrderReceipt extends Component
                 ->first();
 
             if ($alreadyConfirmed && $alreadyConfirmed->status !== 'menunggu_konfirmasi') {
-                $waNumber = Setting::normalizePhoneNumber(Setting::getWhatsAppNumber());
                 $waMessage = $this->buildWhatsAppMessage($alreadyConfirmed);
-                $waUrl = 'https://wa.me/'.$waNumber.'?text='.rawurlencode($waMessage);
+                $waUrl = Setting::getWhatsAppLink($waMessage);
                 $this->js('window.open('.json_encode($waUrl).", '_blank');");
 
                 return;
@@ -66,9 +65,8 @@ class OrderReceipt extends Component
         $order->update(['status' => 'terkonfirmasi']);
         $this->order = $order->fresh(['orderItems.product']);
 
-        $waNumber = Setting::normalizePhoneNumber(Setting::getWhatsAppNumber());
         $waMessage = $this->buildWhatsAppMessage($this->order);
-        $waUrl = 'https://wa.me/'.$waNumber.'?text='.rawurlencode($waMessage);
+        $waUrl = Setting::getWhatsAppLink($waMessage);
 
         $this->js('window.open('.json_encode($waUrl).", '_blank');");
     }

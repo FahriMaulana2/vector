@@ -72,7 +72,7 @@
                                     {{-- Status / Description --}}
                                     @if($isActive)
                                         <p class="text-xs font-inter text-ink-soft mb-5 line-clamp-2">
-                                            Official store {{ $platformLabel }} OMAH Vector. Transaksi aman, pengiriman cepat & terpercaya.
+                                            Official store {{ $platformLabel }} {{ \App\Models\Setting::getCompanyName() }}. Transaksi aman, pengiriman cepat & terpercaya.
                                         </p>
                                     @else
                                         <div class="bg-amber-50/70 border border-amber-200/70 rounded-xl p-3 mb-5">

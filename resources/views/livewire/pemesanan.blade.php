@@ -23,7 +23,7 @@
                 Selesaikan <span class="gradient-text">Pesanan Anda</span>
             </h1>
             <p class="mt-2.5 text-xs md:text-sm font-inter leading-relaxed text-ink-soft">
-                Periksa rincian pesanan Anda dan lengkapi formulir di bawah ini untuk terhubung langsung ke WhatsApp Admin OMAH Vector.
+                Periksa rincian pesanan Anda dan lengkapi formulir di bawah ini untuk terhubung langsung ke WhatsApp Admin {{ \App\Models\Setting::getCompanyName() }}.
             </p>
 
             {{-- Step Indicator --}}
@@ -271,7 +271,7 @@
                                         <input type="radio" wire:model.live="design_file_status" value="need_design_help" class="h-4 w-4 accent-gold" @disabled(empty($cartItems))>
                                         <div>
                                             <span class="block text-xs font-heading font-bold text-navy">Perlu Bantuan Desain</span>
-                                            <span class="block text-[11px] text-ink-soft">Dibantu tim desainer OMAH Vector</span>
+                                            <span class="block text-[11px] text-ink-soft">Dibantu tim desainer {{ \App\Models\Setting::getCompanyName() }}</span>
                                         </div>
                                     </label>
                                 </div>

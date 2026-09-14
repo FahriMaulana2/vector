@@ -2,12 +2,14 @@
 use App\Models\Marketplace;
 use App\Models\Setting;
 
+$companyName = Setting::getCompanyName();
 $companyEmail = Setting::getEmail();
 $companyWhatsapp = Setting::getWhatsAppNumber();
 $whatsappLink = Setting::getWhatsAppLink();
 $companyPhone = Setting::getPhone();
 $companyAddress = Setting::getAddress();
 $officeHoursRaw = Setting::getOfficeHours();
+$googleMaps = Setting::getGoogleMaps();
 
 $businessHours = [];
 if ($officeHoursRaw) {
@@ -16,8 +18,24 @@ if ($officeHoursRaw) {
             if (str_contains($item, ':')) {
                 [$day, $hours] = array_map('trim', explode(':', $item, 2));
                 $businessHours[] = ['day' => $day, 'hours' => $hours];
+            } else {
+                $businessHours[] = ['day' => 'Hari Kerja', 'hours' => trim($item)];
             }
         }
+    } elseif (str_contains($officeHoursRaw, "\n")) {
+        foreach (explode("\n", $officeHoursRaw) as $item) {
+            $item = trim($item);
+            if ($item === '') continue;
+            if (str_contains($item, ':')) {
+                [$day, $hours] = array_map('trim', explode(':', $item, 2));
+                $businessHours[] = ['day' => $day, 'hours' => $hours];
+            } else {
+                $businessHours[] = ['day' => 'Jam Operasional', 'hours' => $item];
+            }
+        }
+    } elseif (str_contains($officeHoursRaw, ':')) {
+        [$day, $hours] = array_map('trim', explode(':', $officeHoursRaw, 2));
+        $businessHours[] = ['day' => $day, 'hours' => $hours];
     } else {
         $businessHours[] = ['day' => 'Jam Operasional', 'hours' => $officeHoursRaw];
     }
@@ -56,7 +74,7 @@ $hasMarketplaces = Marketplace::exists();
                 <span class="font-heading text-[10px] md:text-xs font-semibold uppercase tracking-[0.18em] text-navy">Hubungi Kami & Official Store</span>
             </span>
             <h2 class="font-heading mt-4 md:mt-5 text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-tight">
-                Mari Wujudkan Ide Kreatif <span class="gradient-text">Bersama OMH Vector</span>
+                Mari Wujudkan Ide Kreatif <span class="gradient-text">Bersama {{ $companyName }}</span>
             </h2>
             <p class="mt-3 md:mt-4 max-w-2xl mx-auto text-sm md:text-base font-inter leading-relaxed text-ink-soft">
                 Konsultasikan kebutuhan cetak langsung bersama tim kami atau pesan produk dengan mudah melalui official marketplace store pilihan Anda.
@@ -124,7 +142,7 @@ $hasMarketplaces = Marketplace::exists();
                                     </div>
                                     <div>
                                         <p class="font-heading text-[10px] uppercase font-bold tracking-wider text-ink-soft">Lokasi Studio</p>
-                                        <h4 class="font-heading text-sm font-semibold text-navy">Workshop OMH</h4>
+                                        <h4 class="font-heading text-sm font-semibold text-navy">Workshop {{ $companyName }}</h4>
                                     </div>
                                 </div>
                                 <p class="font-inter text-xs text-navy leading-relaxed">
@@ -253,7 +271,7 @@ $hasMarketplaces = Marketplace::exists();
                                 </div>
                                 <div>
                                     <p class="font-heading text-[10px] uppercase font-bold tracking-wider text-ink-soft">Lokasi Studio</p>
-                                    <h4 class="font-heading text-sm font-semibold text-navy">Workshop OMH</h4>
+                                    <h4 class="font-heading text-sm font-semibold text-navy">Workshop {{ $companyName }}</h4>
                                 </div>
                             </div>
                             <p class="font-inter text-xs text-navy leading-relaxed">

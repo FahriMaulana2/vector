@@ -27,7 +27,7 @@
                 </h2>
 
                 <p class="mt-3 md:mt-4 font-inter text-xs md:text-base lg:text-lg leading-relaxed text-ink-soft">
-                    Temukan jawaban cepat sebelum menghubungi OMH Vector untuk kebutuhan cetak, desain, atau branding bisnis Anda.
+                    Temukan jawaban cepat sebelum menghubungi {{ \App\Models\Setting::getCompanyName() }} untuk kebutuhan cetak, desain, atau branding bisnis Anda.
                 </p>
 
                 <div class="mt-6 md:mt-8 rounded-lg md:rounded-[1.75rem] border border-gold/30 bg-white p-4 md:p-6 shadow-card">

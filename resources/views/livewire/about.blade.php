@@ -4,10 +4,13 @@ $about = $about ?? \App\Models\AboutSection::getActive();
 $stats = $stats ?? \App\Models\AboutStat::getActive();
 $milestones = $milestones ?? \App\Models\AboutMilestone::getActive();
 
+$companyName = \App\Models\Setting::getCompanyName();
+$logoLetter = $companyName ? mb_substr($companyName, 0, 3) : 'OMH';
+
 $aboutData = [
     'image' => $about?->getImageUrlAttribute() ?? 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80',
-    'imageAlt' => $about?->title ?? 'OMH Vector creative team in modern printing studio',
-    'title' => $about?->title ?? 'Tentang OMH Vector',
+    'imageAlt' => $about?->title ?? ($companyName . ' creative team in modern printing studio'),
+    'title' => $about?->title ?? ('Tentang ' . $companyName),
     'subtitle' => $about?->subtitle ?? 'Mitra Digital Printing & Branding Terpercaya',
     'description' => $about?->description ?? 'Kami adalah creative agency yang fokus pada digital printing, desain grafis, dan branding. Dengan pengalaman lebih dari 6 tahun, kami telah membantu 980+ klien dari UMKM hingga korporasi.',
     'vision' => $about?->vision ?? 'Menjadi creative printing agency terdepan yang dikenal karena inovasi, kualitas, dan pelayanan prima.',
@@ -40,11 +43,11 @@ $aboutData = [
                          onerror="this.style.display='none'; this.parentElement.classList.add('about-fallback');"
                          class="w-full h-72 md:h-[520px] object-cover transition-transform duration-700 hover:scale-105" />
                     <div class="absolute inset-0 z-0 hidden about-fallback-placeholder items-center justify-center bg-navy-deep">
-                        <span class="font-heading text-white/30 text-5xl font-bold">OMH</span>
+                        <span class="font-heading text-white/30 text-5xl font-bold">{{ $logoLetter }}</span>
                     </div>
                     @else
                     <div class="flex w-full h-72 md:h-[520px] items-center justify-center bg-navy-deep">
-                        <span class="font-heading text-white/30 text-5xl font-bold">OMH</span>
+                        <span class="font-heading text-white/30 text-5xl font-bold">{{ $logoLetter }}</span>
                     </div>
                     @endif
 

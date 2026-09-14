@@ -10,8 +10,8 @@
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             Struk Digital Pemesanan
                         </div>
-                        <h1 class="mt-2 text-2xl sm:text-3xl font-bold font-heading text-cream">OMAH Vector</h1>
-                        <p class="text-xs sm:text-sm text-cream/70 mt-1">Creative Digital Printing &amp; Custom Merch</p>
+                        <h1 class="mt-2 text-2xl sm:text-3xl font-bold font-heading text-cream">{{ \App\Models\Setting::getCompanyName() }}</h1>
+                        <p class="text-xs sm:text-sm text-cream/70 mt-1">{{ \App\Models\Setting::getDescription() ?: 'Creative Digital Printing & Custom Merch' }}</p>
                     </div>
                     <div class="sm:text-right">
                         <span class="text-xs uppercase tracking-wider text-cream/60 block">Nomor Pesanan</span>
@@ -194,7 +194,7 @@
                             </span>
                         </button>
                         <p class="text-center text-xs text-slate-500 mt-2.5">
-                            Klik tombol di atas untuk mengirim rincian pesanan Anda langsung ke WhatsApp Admin OMAH Vector.
+                            Klik tombol di atas untuk mengirim rincian pesanan Anda langsung ke WhatsApp Admin {{ \App\Models\Setting::getCompanyName() }}.
                         </p>
                     </div>
                 @endif

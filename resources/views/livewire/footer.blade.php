@@ -5,6 +5,7 @@ $companyDescription = Setting::getDescription() ?: 'Solusi digital printing dan 
 $logoUrl = Setting::getLogoUrl();
 $logoLetter = $companyName ? mb_substr($companyName, 0, 1) : 'O';
 $companyEmail = Setting::getEmail();
+$companyPhone = Setting::getPhone();
 $companyWhatsapp = Setting::getWhatsAppNumber();
 $whatsappLink = Setting::getWhatsAppLink();
 $companyAddress = Setting::getAddress();
@@ -147,6 +148,17 @@ $social = Setting::getSocialMedia();
                             <a href="mailto:{{ $companyEmail }}" class="mt-0.5 inline-block text-sm font-inter text-cream/70 transition-colors duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">{{ $companyEmail }}</a>
                         </div>
                     </div>
+                    @if($companyPhone)
+                    <div class="flex items-start gap-3">
+                        <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold/15 text-gold">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-heading text-[11px] text-cream/40 uppercase tracking-wider">Telepon</p>
+                            <a href="tel:{{ preg_replace('/[^\d+]/', '', $companyPhone) }}" class="mt-0.5 inline-block text-sm font-inter text-cream/70 transition-colors duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">{{ $companyPhone }}</a>
+                        </div>
+                    </div>
+                    @endif
                     <div class="flex items-start gap-3">
                         <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold text-navy">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
@@ -174,16 +186,6 @@ $social = Setting::getSocialMedia();
                 <span class="w-1 h-1 rounded-full bg-gold" aria-hidden="true"></span>
                 &copy; {{ date('Y') }} {{ $companyName }}. All rights reserved.
             </p>
-            <div class="flex flex-wrap items-center gap-4 sm:gap-5">
-                <a href="#" class="transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">Privacy Policy</a>
-                <a href="#" class="transition-all duration-200 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 rounded">Terms of Service</a>
-                <a href="#home"
-                   aria-label="Kembali ke atas"
-                   class="group inline-flex items-center gap-1.5 rounded-full bg-navy-deep/90 border border-gold/30 px-3.5 py-1.5 text-[11px] font-heading font-semibold text-gold transition-all duration-300 hover:bg-gold hover:text-navy hover:border-gold hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 shadow-sm">
-                    <span>Ke Atas</span>
-                    <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                </a>
-            </div>
         </div>
     </div>
 </footer>

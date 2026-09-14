@@ -3,13 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\Order;
+use App\Models\Setting;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
-#[Title('Lacak Pesanan - OMAH Vector')]
 class OrderTracking extends Component
 {
     public string $orderNumber = '';
@@ -70,6 +69,7 @@ class OrderTracking extends Component
 
     public function render()
     {
-        return view('livewire.order-tracking');
+        return view('livewire.order-tracking')
+            ->title('Lacak Pesanan - ' . Setting::getCompanyName());
     }
 }

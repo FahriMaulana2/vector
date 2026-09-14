@@ -3,7 +3,7 @@
 <div class="min-h-screen bg-light pt-28 pb-20">
     <section class="mx-auto max-w-5xl px-5 md:px-6 lg:px-8">
         <div class="max-w-2xl">
-            <p class="font-heading text-xs font-semibold uppercase tracking-[0.25em] text-gold-dark">OMH Vector</p>
+            <p class="font-heading text-xs font-semibold uppercase tracking-[0.25em] text-gold-dark">{{ \App\Models\Setting::getCompanyName() }}</p>
             <h1 class="mt-3 font-heading text-3xl font-bold tracking-tight text-navy md:text-5xl">Lacak Pesanan</h1>
             <p class="mt-4 max-w-xl text-base leading-relaxed text-ink-soft md:text-lg">
                 Masukkan nomor pesanan dan email yang digunakan saat pemesanan untuk melihat pembaruan status pesanan Anda.

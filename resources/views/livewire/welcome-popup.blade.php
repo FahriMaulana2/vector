@@ -91,7 +91,7 @@
                                 </span>
                             @else
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#173B6C] text-white shadow-md">
-                                    <span>✨ OMAH VECTOR</span>
+                                    <span>✨ {{ strtoupper(\App\Models\Setting::getCompanyName()) }}</span>
                                 </span>
                             @endif
                         </div>
@@ -112,7 +112,7 @@
                                 </span>
                             @else
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#173B6C]/10 text-[#173B6C] border border-[#173B6C]/20">
-                                    <span>✨ OMAH VECTOR</span>
+                                    <span>✨ {{ strtoupper(\App\Models\Setting::getCompanyName()) }}</span>
                                 </span>
                             @endif
                         </div>

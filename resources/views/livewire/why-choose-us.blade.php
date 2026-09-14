@@ -31,7 +31,7 @@ $reasons = $reasons ?? [];
                 <span class="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-gold"></span>
                 <span class="font-heading text-[10px] md:text-xs font-semibold uppercase tracking-[0.15em] md:tracking-[0.22em] text-gold">Mengapa Memilih Kami</span>
             </span>
-            <h2 class="font-heading mt-4 md:mt-6 text-xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight md:leading-[1.1] text-cream">Alasan Tepat Memilih OMH Vector sebagai <span class="gradient-text">Partner Kreatif Anda</span></h2>
+            <h2 class="font-heading mt-4 md:mt-6 text-xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight md:leading-[1.1] text-cream">Alasan Tepat Memilih {{ \App\Models\Setting::getCompanyName() }} sebagai <span class="gradient-text">Partner Kreatif Anda</span></h2>
             <p class="mt-3 md:mt-5 max-w-2xl mx-auto text-sm md:text-base lg:text-lg font-inter leading-relaxed text-white/60">Kami berkomitmen memberikan layanan percetakan dan branding terbaik untuk setiap klien.</p>
         </div>
 
