@@ -118,7 +118,7 @@ class Index extends Component
         // Bersihkan cache agar frontend langsung menggunakan data baru
         Setting::forgetCache();
 
-        session()->flash('success', 'Pengaturan website berhasil disimpan.');
+        $this->dispatch('notify', type: 'success', message: 'Pengaturan website berhasil disimpan.');
     }
 
     private function getGroupForKey($key)

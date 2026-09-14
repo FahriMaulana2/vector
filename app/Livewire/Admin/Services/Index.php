@@ -20,7 +20,7 @@ class Index extends Component
     {
         $item = Service::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'Layanan berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Layanan berhasil dihapus.');
     }
 
     public function render()

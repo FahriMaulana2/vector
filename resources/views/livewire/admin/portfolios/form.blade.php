@@ -232,9 +232,8 @@
                                     <div class="absolute right-4 top-4">
                                         <button
                                             type="button"
-                                            wire:click="removeMainImage"
-                                            wire:confirm="Hapus gambar utama ini?"
-                                            class="rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white shadow transition hover:bg-red-700"
+                                            @click="$dispatch('confirm-delete', { action: 'removeMainImage', componentId: $wire.__instance.id, title: 'Hapus Gambar Utama?', message: 'Gambar utama portofolio akan dihapus.' })"
+                                            class="rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white shadow transition hover:bg-red-700 cursor-pointer"
                                         >
                                             Hapus
                                         </button>
@@ -344,9 +343,8 @@
 
                                                 <button
                                                     type="button"
-                                                    wire:click="removeGalleryImage('{{ $galleryImage }}')"
-                                                    wire:confirm="Hapus gambar gallery ini?"
-                                                    class="absolute right-2 top-2 rounded-lg bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white opacity-0 shadow transition group-hover:opacity-100 hover:bg-red-700"
+                                                    @click="$dispatch('confirm-delete', { id: '{{ $galleryImage }}', action: 'removeGalleryImage', componentId: $wire.__instance.id, title: 'Hapus Gambar Galeri?', message: 'Gambar galeri portofolio ini akan dihapus.' })"
+                                                    class="absolute right-2 top-2 rounded-lg bg-red-600 px-2.5 py-1.5 text-xs font-semibold text-white opacity-0 shadow transition group-hover:opacity-100 hover:bg-red-700 cursor-pointer"
                                                 >
                                                     Hapus
                                                 </button>

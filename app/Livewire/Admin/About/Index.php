@@ -18,7 +18,7 @@ class Index extends Component
     {
         $item = AboutSection::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'Tentang kami berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Tentang kami berhasil dihapus.');
     }
 
     public function render()

@@ -84,6 +84,7 @@ class Form extends Component
     /**
      * @var array<int, array{
      *   id: int|null,
+     *   option_id: int|null,
      *   side_mode: string,
      *   min_qty: int,
      *   price_per_unit: numeric-string,
@@ -157,6 +158,7 @@ class Form extends Component
         $this->tiers = $item->qtyPriceTiers->map(function ($tier) {
             return [
                 'id' => $tier->id,
+                'option_id' => $tier->option_id,
                 'side_mode' => $tier->side_mode,
                 'min_qty' => (int) $tier->min_qty,
                 'price_per_unit' => $tier->price_per_unit,
@@ -212,6 +214,7 @@ class Form extends Component
     {
         $this->tiers[] = [
             'id' => null,
+            'option_id' => null,
             'side_mode' => '1_muka',
             'min_qty' => 1,
             'price_per_unit' => '0',
@@ -253,6 +256,7 @@ class Form extends Component
 
             // Tiers
             'tiers' => $this->pricing_mode === 'qty_tiered' ? 'required|array|min:1' : 'nullable|array',
+            'tiers.*.option_id' => 'nullable|integer',
             'tiers.*.side_mode' => 'required_with:tiers|in:1_muka,2_muka',
             'tiers.*.min_qty' => 'required_with:tiers|integer|min:1',
             'tiers.*.price_per_unit' => 'required_with:tiers|numeric|min:0',
@@ -423,6 +427,7 @@ class Form extends Component
             }
 
             $tier->product_id = $item->id;
+            $tier->option_id = ! empty($tierData['option_id']) ? (int) $tierData['option_id'] : null;
             $tier->side_mode = $tierData['side_mode'];
             $tier->min_qty = (int) $tierData['min_qty'];
             $tier->price_per_unit = (float) $tierData['price_per_unit'];
@@ -452,6 +457,22 @@ class Form extends Component
             route('admin.products.index'),
             navigate: true
         );
+    }
+
+    /**
+     * Get options from the first option group that contains "bahan" in its name.
+     *
+     * @return array<int, array{id: int|null, name: string}>
+     */
+    public function getBahanOptionsProperty(): array
+    {
+        foreach ($this->optionGroups as $group) {
+            if (str_contains(strtolower($group['name'] ?? ''), 'bahan')) {
+                return $group['options'] ?? [];
+            }
+        }
+
+        return [];
     }
 
     /**

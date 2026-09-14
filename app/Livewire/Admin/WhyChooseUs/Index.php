@@ -20,7 +20,7 @@ class Index extends Component
     {
         $item = WhyChooseUs::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'Data berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Data berhasil dihapus.');
     }
 
     public function render()

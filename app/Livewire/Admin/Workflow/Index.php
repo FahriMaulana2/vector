@@ -20,7 +20,7 @@ class Index extends Component
     {
         $item = WorkflowStep::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'Langkah alur kerja berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Langkah alur kerja berhasil dihapus.');
     }
 
     public function render()

@@ -128,6 +128,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/page-content', PortfolioPageContent::class)->name('page-content');
         Route::get('/create', PortfoliosForm::class)->name('create');
         Route::get('/{portfolio}/edit', PortfoliosForm::class)->name('edit');
+        Route::delete('/{portfolio}', [PortfoliosIndex::class, 'destroyRoute'])->name('destroy');
     });
 
     // Operasional

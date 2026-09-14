@@ -70,6 +70,6 @@ class OrderTracking extends Component
     public function render()
     {
         return view('livewire.order-tracking')
-            ->title('Lacak Pesanan - ' . Setting::getCompanyName());
+            ->title('Lacak Pesanan - '.Setting::getCompanyName());
     }
 }

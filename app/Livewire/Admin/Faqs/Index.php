@@ -22,14 +22,14 @@ class Index extends Component
         $item->is_active = ! $item->is_active;
         $item->save();
 
-        session()->flash('success', 'Status FAQ berhasil diperbarui.');
+        $this->dispatch('notify', type: 'success', message: 'Status FAQ berhasil diperbarui.');
     }
 
     public function delete($id)
     {
         $item = Faq::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'FAQ berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'FAQ berhasil dihapus.');
     }
 
     public function render()

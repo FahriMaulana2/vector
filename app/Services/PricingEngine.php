@@ -73,7 +73,20 @@ class PricingEngine
 
         // 2. Base Price Determination & Anti-Zero Protection
         if ($product->pricing_mode === 'qty_tiered') {
-            $tierPrice = ProductQtyPriceTier::findPriceFor($product->id, $sideMode, $qty);
+            $materialOptionId = null;
+            $materialGroup = $product->optionGroups->first(function ($group) {
+                return str_contains(strtolower($group->name), 'bahan');
+            });
+
+            if ($materialGroup) {
+                $groupOptionIds = $materialGroup->options->pluck('id')->all();
+                $selectedInGroup = array_values(array_intersect($groupOptionIds, $flatOptionIds));
+                if (! empty($selectedInGroup)) {
+                    $materialOptionId = (int) $selectedInGroup[0];
+                }
+            }
+
+            $tierPrice = ProductQtyPriceTier::findPriceFor($product->id, $sideMode, $qty, $materialOptionId);
             if ($tierPrice === null) {
                 throw new InvalidArgumentException("Kombinasi jumlah ({$qty}) dan sisi cetak ({$sideMode}) tidak tersedia untuk produk ini.");
             }

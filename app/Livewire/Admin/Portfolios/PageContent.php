@@ -62,7 +62,7 @@ class PageContent extends Component
             Setting::set($key, $this->{$key}, 'portfolio_page');
         }
 
-        session()->flash('success', 'Konten halaman portfolio berhasil disimpan.');
+        $this->dispatch('notify', type: 'success', message: 'Konten halaman portfolio berhasil disimpan.');
     }
 
     /**

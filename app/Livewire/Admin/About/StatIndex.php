@@ -21,7 +21,7 @@ class StatIndex extends Component
     {
         $item = AboutStat::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'Statistik berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Statistik berhasil dihapus.');
     }
 
     public function render(): View

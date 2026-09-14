@@ -21,7 +21,7 @@ class MilestoneIndex extends Component
     {
         $item = AboutMilestone::findOrFail($id);
         $item->delete();
-        session()->flash('success', 'Milestone berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Milestone berhasil dihapus.');
     }
 
     public function render(): View

@@ -75,7 +75,7 @@ class Index extends Component
         $marketplace = Marketplace::findOrFail($id);
         $marketplace->update(['is_active' => ! $marketplace->is_active]);
 
-        session()->flash('success', 'Status marketplace berhasil diubah.');
+        $this->dispatch('notify', type: 'success', message: 'Status marketplace berhasil diubah.');
     }
 
     public function confirmDelete($id)
@@ -104,7 +104,7 @@ class Index extends Component
         $marketplace->delete();
 
         $this->closeDeleteModal();
-        session()->flash('success', 'Marketplace berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Marketplace berhasil dihapus.');
     }
 
     private function resetDeleteProperties()
@@ -143,7 +143,7 @@ class Index extends Component
                 'is_active' => $this->is_active,
                 'maintenance_message' => $this->maintenance_message,
             ]);
-            session()->flash('success', 'Marketplace berhasil diperbarui.');
+            $this->dispatch('notify', type: 'success', message: 'Marketplace berhasil diperbarui.');
         } else {
             Marketplace::create([
                 'platform' => $this->platform,
@@ -153,7 +153,7 @@ class Index extends Component
                 'is_active' => $this->is_active,
                 'maintenance_message' => $this->maintenance_message,
             ]);
-            session()->flash('success', 'Marketplace berhasil dibuat.');
+            $this->dispatch('notify', type: 'success', message: 'Marketplace berhasil dibuat.');
         }
 
         $this->reset(['platform', 'store_name', 'store_url', 'display_order', 'is_active', 'maintenance_message', 'marketplaceId']);

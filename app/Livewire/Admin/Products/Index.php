@@ -75,7 +75,7 @@ class Index extends Component
 
         $product->delete();
 
-        session()->flash('success', 'Produk berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Produk berhasil dihapus.');
     }
 
     /**

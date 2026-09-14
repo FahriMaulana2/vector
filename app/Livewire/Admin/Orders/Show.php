@@ -73,7 +73,7 @@ class Show extends Component
             ]);
         });
 
-        session()->flash('success', 'Status pesanan berhasil diperbarui.');
+        $this->dispatch('notify', type: 'success', message: 'Status pesanan berhasil diperbarui.');
         $this->status_notes = '';
     }
 

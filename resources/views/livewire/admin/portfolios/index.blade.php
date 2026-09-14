@@ -201,9 +201,8 @@
 
                                     <button
                                         type="button"
-                                        wire:click="delete({{ $item->id }})"
-                                        wire:confirm="Yakin ingin menghapus portofolio ini?"
-                                        class="rounded-lg px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+                                        @click="$dispatch('confirm-delete', { id: {{ $item->id }}, componentId: $wire.__instance.id, action: 'delete' })"
+                                        class="rounded-lg px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50 cursor-pointer"
                                     >
                                         Hapus
                                     </button>

@@ -364,12 +364,20 @@
                             Belum ada tier harga. Klik "Tambah Tier" untuk menambahkan.
                         </div>
                     @else
+                        @php $hasBahan = count($this->bahanOptions) > 0; @endphp
                         <div class="space-y-3">
                             {{-- Header --}}
                             <div class="grid grid-cols-12 gap-3 px-1 mb-1">
-                                <div class="col-span-3 text-xs font-semibold text-text-secondary uppercase tracking-wide">Sisi Cetak</div>
-                                <div class="col-span-3 text-xs font-semibold text-text-secondary uppercase tracking-wide">Min. Qty</div>
-                                <div class="col-span-4 text-xs font-semibold text-text-secondary uppercase tracking-wide">Harga/Satuan (Rp)</div>
+                                @if($hasBahan)
+                                    <div class="col-span-3 text-xs font-semibold text-text-secondary uppercase tracking-wide">Bahan</div>
+                                    <div class="col-span-2 text-xs font-semibold text-text-secondary uppercase tracking-wide">Sisi Cetak</div>
+                                    <div class="col-span-2 text-xs font-semibold text-text-secondary uppercase tracking-wide">Min. Qty</div>
+                                    <div class="col-span-3 text-xs font-semibold text-text-secondary uppercase tracking-wide">Harga/Satuan (Rp)</div>
+                                @else
+                                    <div class="col-span-3 text-xs font-semibold text-text-secondary uppercase tracking-wide">Sisi Cetak</div>
+                                    <div class="col-span-3 text-xs font-semibold text-text-secondary uppercase tracking-wide">Min. Qty</div>
+                                    <div class="col-span-4 text-xs font-semibold text-text-secondary uppercase tracking-wide">Harga/Satuan (Rp)</div>
+                                @endif
                                 <div class="col-span-1 text-xs font-semibold text-text-secondary uppercase tracking-wide text-center">Aktif</div>
                                 <div class="col-span-1"></div>
                             </div>
@@ -377,8 +385,28 @@
                             @foreach($tiers as $tIdx => $tier)
                                 <div class="grid grid-cols-12 gap-3 items-center p-3 bg-surface rounded-xl border border-border">
 
+                                    {{-- Bahan (jika ada opsi bahan) --}}
+                                    @if($hasBahan)
+                                        <div class="col-span-3">
+                                            <select
+                                                wire:model="tiers.{{ $tIdx }}.option_id"
+                                                class="w-full px-3 py-2 rounded-lg border border-border bg-white text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                                            >
+                                                <option value="">Semua Bahan</option>
+                                                @foreach($this->bahanOptions as $bOpt)
+                                                    @if(!empty($bOpt['id']))
+                                                        <option value="{{ $bOpt['id'] }}">{{ $bOpt['name'] }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            @error("tiers.{$tIdx}.option_id")
+                                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endif
+
                                     {{-- Side mode --}}
-                                    <div class="col-span-3">
+                                    <div class="{{ $hasBahan ? 'col-span-2' : 'col-span-3' }}">
                                         <select
                                             wire:model="tiers.{{ $tIdx }}.side_mode"
                                             class="w-full px-3 py-2 rounded-lg border border-border bg-white text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
@@ -392,7 +420,7 @@
                                     </div>
 
                                     {{-- Min qty --}}
-                                    <div class="col-span-3">
+                                    <div class="{{ $hasBahan ? 'col-span-2' : 'col-span-3' }}">
                                         <input
                                             type="number"
                                             wire:model="tiers.{{ $tIdx }}.min_qty"
@@ -406,7 +434,7 @@
                                     </div>
 
                                     {{-- Price per unit --}}
-                                    <div class="col-span-4">
+                                    <div class="{{ $hasBahan ? 'col-span-3' : 'col-span-4' }}">
                                         <input
                                             type="number"
                                             wire:model="tiers.{{ $tIdx }}.price_per_unit"

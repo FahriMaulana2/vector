@@ -298,10 +298,9 @@
                                             {{-- Delete --}}
                                             <button
                                                 type="button"
-                                                wire:click="delete({{ $item->id }})"
-                                                wire:confirm="Yakin ingin menghapus produk ini?"
+                                                @click="$dispatch('confirm-delete', { id: {{ $item->id }}, componentId: $wire.__instance.id, action: 'delete' })"
                                                 title="Hapus produk"
-                                                class="p-2 text-text-secondary hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                                class="p-2 text-text-secondary hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                                             >
 
                                                 <svg

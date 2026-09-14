@@ -62,7 +62,7 @@ class PageContent extends Component
             Setting::set($key, $this->{$key}, 'products_page');
         }
 
-        session()->flash('success', 'Konten halaman produk berhasil disimpan.');
+        $this->dispatch('notify', type: 'success', message: 'Konten halaman produk berhasil disimpan.');
     }
 
     /**

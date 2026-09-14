@@ -23,7 +23,7 @@ class Index extends Component
         $hero = HeroSection::findOrFail($id);
         $hero->delete();
 
-        session()->flash('success', 'Hero section berhasil dihapus.');
+        $this->dispatch('notify', type: 'success', message: 'Hero section berhasil dihapus.');
     }
 
     public function render()
