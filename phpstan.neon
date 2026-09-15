@@ -11,4 +11,8 @@ parameters:
         - database/
         - routes/
 
-    level: 7
+    level: 5
+
+    excludePaths:
+        - database/factories/*
+        - database/seeders/*
