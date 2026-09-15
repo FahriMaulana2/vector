@@ -17,6 +17,9 @@ $aboutData = [
     'mission' => $about?->mission ?? 'Memberikan layanan cetak dan branding berkualitas tinggi dengan harga terjangkau dan tepat waktu.',
     'yearsExperience' => (int) ($about?->years_experience ?? 6),
 ];
+
+$missionItems = collect(preg_split('/\d+\.\s+/', $aboutData['mission']))->map(fn($item) => trim($item))->filter();
+$visionItems = collect(preg_split('/\d+\.\s+/', $aboutData['vision']))->map(fn($item) => trim($item))->filter();
 ?>
 
 <section id="about" class="relative overflow-hidden bg-white {{ $isPage ? 'pt-8 pb-16 md:pb-24' : '' }}">
@@ -84,20 +87,36 @@ $aboutData = [
                 </div>
 
                 {{-- Mission & Vision Cards --}}
-                <div class="grid gap-3 md:gap-4 sm:grid-cols-2">
-                    <div class="group rounded-xl md:rounded-2xl border border-navy/10 bg-white p-4 md:p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40">
+                <div class="grid gap-3 md:gap-4 sm:grid-cols-2 items-stretch">
+                    <div class="group rounded-xl md:rounded-2xl border border-navy/10 bg-white p-4 md:p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40 flex flex-col h-full">
                         <div class="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-gold/15 text-gold-dark transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
                             <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         </div>
                         <h3 class="mt-3 md:mt-4 font-heading text-base md:text-lg font-semibold text-navy">Misi Kami</h3>
-                        <p class="mt-2 text-xs md:text-sm font-inter leading-relaxed text-ink-soft">{{ $aboutData['mission'] }}</p>
+                        @if($missionItems->count() > 1)
+                            <ol class="mt-2 text-xs md:text-sm font-inter leading-relaxed text-ink-soft list-decimal list-inside flex-1">
+                                @foreach($missionItems as $item)
+                                    <li>{{ $item }}</li>
+                                @endforeach
+                            </ol>
+                        @else
+                            <p class="mt-2 text-xs md:text-sm font-inter leading-relaxed text-ink-soft flex-1">{{ $aboutData['mission'] }}</p>
+                        @endif
                     </div>
-                    <div class="group rounded-xl md:rounded-2xl border border-navy/10 bg-white p-4 md:p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40">
+                    <div class="group rounded-xl md:rounded-2xl border border-navy/10 bg-white p-4 md:p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40 flex flex-col h-full">
                         <div class="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-gold/15 text-gold-dark transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
                             <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         </div>
                         <h3 class="mt-3 md:mt-4 font-heading text-base md:text-lg font-semibold text-navy">Visi Kami</h3>
-                        <p class="mt-2 text-xs md:text-sm font-inter leading-relaxed text-ink-soft">{{ $aboutData['vision'] }}</p>
+                        @if($visionItems->count() > 1)
+                            <ol class="mt-2 text-xs md:text-sm font-inter leading-relaxed text-ink-soft list-decimal list-inside flex-1">
+                                @foreach($visionItems as $item)
+                                    <li>{{ $item }}</li>
+                                @endforeach
+                            </ol>
+                        @else
+                            <p class="mt-2 text-xs md:text-sm font-inter leading-relaxed text-ink-soft flex-1">{{ $aboutData['vision'] }}</p>
+                        @endif
                     </div>
                 </div>
 

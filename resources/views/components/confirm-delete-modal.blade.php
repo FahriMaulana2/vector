@@ -1,37 +1,6 @@
 <div
     id="omh-confirm-modal"
-    x-data="{
-        open: false,
-        pendingId: null,
-        pendingComponentId: null,
-        pendingAction: 'delete',
-        title: 'Hapus Data?',
-        message: 'Data ini akan dihapus secara permanen.<br>Tindakan ini <span class=\"font-semibold text-red-500\">tidak dapat dibatalkan</span>.',
-        show(detail) {
-            this.pendingId = detail.id !== undefined ? detail.id : null;
-            this.pendingComponentId = detail.componentId || null;
-            this.pendingAction = detail.action || 'delete';
-            this.title = detail.title || 'Hapus Data?';
-            this.message = detail.message || 'Data ini akan dihapus secara permanen.<br>Tindakan ini <span class=\"font-semibold text-red-500\">tidak dapat dibatalkan</span>.';
-            this.open = true;
-        },
-        confirm() {
-            if (this.pendingComponentId) {
-                const component = Livewire.find(this.pendingComponentId);
-                if (component) {
-                    if (this.pendingId !== null && this.pendingId !== undefined) {
-                        component[this.pendingAction](this.pendingId);
-                    } else {
-                        component[this.pendingAction]();
-                    }
-                }
-            }
-            this.open = false;
-        },
-        cancel() {
-            this.open = false;
-        }
-    }"
+    x-data="confirmDeleteModal()"
     x-show="open"
     x-transition:enter="transition ease-out duration-200"
     x-transition:enter-start="opacity-0"
@@ -102,3 +71,42 @@
         </div>
     </div>
 </div>
+
+<script>
+    function confirmDeleteModal() {
+        return {
+            open: false,
+            pendingId: null,
+            pendingComponentId: null,
+            pendingAction: 'delete',
+            title: 'Hapus Data?',
+            message: 'Data ini akan dihapus secara permanen.<br>Tindakan ini <span class="font-semibold text-red-500">tidak dapat dibatalkan</span>.',
+            show(detail) {
+                this.pendingId = detail && detail.id !== undefined ? detail.id : null;
+                this.pendingComponentId = (detail && detail.componentId) ? detail.componentId : null;
+                this.pendingAction = (detail && detail.action) ? detail.action : 'delete';
+                this.title = (detail && detail.title) ? detail.title : 'Hapus Data?';
+                this.message = (detail && detail.message)
+                    ? detail.message
+                    : 'Data ini akan dihapus secara permanen.<br>Tindakan ini <span class="font-semibold text-red-500">tidak dapat dibatalkan</span>.';
+                this.open = true;
+            },
+            confirm() {
+                if (this.pendingComponentId && window.Livewire) {
+                    const component = window.Livewire.find(this.pendingComponentId);
+                    if (component) {
+                        if (this.pendingId !== null && this.pendingId !== undefined) {
+                            component[this.pendingAction](this.pendingId);
+                        } else {
+                            component[this.pendingAction]();
+                        }
+                    }
+                }
+                this.open = false;
+            },
+            cancel() {
+                this.open = false;
+            }
+        };
+    }
+</script>
