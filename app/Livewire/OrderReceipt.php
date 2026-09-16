@@ -73,59 +73,60 @@ class OrderReceipt extends Component
 
     public function buildWhatsAppMessage(Order $order): string
     {
-        $separator = "\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81\xE2\x94\x81";
-        $designStatusLabel = $order->design_file_status === 'ready' ? 'File Sudah Siap' : 'Belum Ada File / Minta Bantuan Desain';
+        $designStatusLabel = $order->design_file_status === 'ready'
+            ? 'File Sudah Siap'
+            : 'Belum Ada File / Minta Bantuan Desain';
 
-        $itemsSummary = '';
+        // --- Build line items ---
+        $itemLines = '';
         foreach ($order->orderItems as $idx => $item) {
             $num = $idx + 1;
-            $itemsSummary .= "{$num}. *{$item->product_name}* (Qty: {$item->qty})\n";
+            $itemLines .= "{$num}. {$item->product_name} x{$item->qty}\n";
 
+            // Side label + options on a compact detail line
+            $details = [];
             if ($item->side_mode) {
-                $sideLabel = $item->side_mode === '2_muka' ? '2 Muka (Bolak-balik)' : '1 Muka';
-                $itemsSummary .= "   - Sisi: {$sideLabel}\n";
+                $details[] = $item->side_mode === '2_muka' ? '2 Muka' : '1 Muka';
             }
-
             if ($item->length_m && $item->width_m) {
-                $itemsSummary .= "   - Ukuran: {$item->length_m}m x {$item->width_m}m\n";
+                $details[] = "{$item->length_m}m x {$item->width_m}m";
             }
-
             if (! empty($item->selected_options) && is_array($item->selected_options)) {
-                $opts = array_map(fn ($o) => ($o['group_name'] ?? '').': '.($o['option_name'] ?? ''), $item->selected_options);
-                $itemsSummary .= '   - Opsi: '.implode(', ', $opts)."\n";
+                foreach ($item->selected_options as $o) {
+                    $details[] = ($o['option_name'] ?? '');
+                }
+            }
+            if ($details !== []) {
+                $itemLines .= '   '.implode(', ', array_filter($details))."\n";
             }
 
-            $itemsSummary .= '   - Subtotal: Rp '.number_format((float) $item->line_subtotal, 0, ',', '.')."\n\n";
+            $itemLines .= '   Rp '.number_format((float) $item->line_subtotal, 0, ',', '.')."\n";
         }
 
+        // --- Manual quote warning ---
         $manualQuoteNotice = $order->has_manual_quote_item
-            ? "\n\xE2\x9A\xA0\xEF\xB8\x8F *Catatan*: Terdapat item dengan opsi yang memerlukan konfirmasi harga tambahan dari admin.\n"
+            ? "\nPERHATIAN: Ada item perlu konfirmasi harga tambahan\n"
             : '';
 
+        // --- Notes ---
         $notesBlock = $order->notes
-            ? "{$separator}\n\xF0\x9F\x92\xAC *CATATAN TAMBAHAN*\n{$order->notes}\n\n"
+            ? "\nCatatan: {$order->notes}\n"
             : '';
 
-        return "Halo Admin OMAH Vector \xF0\x9F\x91\x8B\n\n"
-            ."Saya ingin memesan cetak dengan nomor pesanan: *{$order->order_number}*\n\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x93\x8B *DATA PEMESAN*\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x91\xA4 Nama: {$order->customer_name}\n"
-            ."\xF0\x9F\x93\xB1 No. WA: {$order->customer_phone}\n"
-            ."\xF0\x9F\x93\xA7 Email: {$order->customer_email}\n"
-            ."\xF0\x9F\x93\x8D Alamat Pengiriman:\n{$order->shipping_address}\n"
-            ."\xF0\x9F\x93\x81 Status File: {$designStatusLabel}\n\n"
-            ."{$separator}\n"
-            ."\xF0\x9F\x9B\x92 *RINCIAN ITEM PESANAN*\n"
-            ."{$separator}\n"
-            .trim($itemsSummary)."\n\n"
-            .'*TOTAL ESTIMASI SUBTOTAL*: Rp '.number_format((float) $order->subtotal, 0, ',', '.')."\n"
+        return "*PESANAN BARU - OMAH VECTOR*\n"
+            ."No. Pesanan: *{$order->order_number}*\n\n"
+            ."*Data Pemesan*\n"
+            ."Nama: {$order->customer_name}\n"
+            ."WA: {$order->customer_phone}\n"
+            ."Email: {$order->customer_email}\n"
+            ."Alamat: {$order->shipping_address}\n"
+            ."File Desain: {$designStatusLabel}\n\n"
+            ."*Rincian Pesanan*\n"
+            .trim($itemLines)."\n\n"
+            .'*Subtotal: Rp '.number_format((float) $order->subtotal, 0, ',', '.')."*\n"
             .$manualQuoteNotice
             .$notesBlock
-            ."{$separator}\n"
-            ."Mohon dicek dan diinformasikan kelanjutannya.\n"
-            .'Terima kasih!';
+            ."\nMohon dicek dan diinfokan kelanjutannya. Terima kasih!";
     }
 
     public function render()
