@@ -100,15 +100,12 @@
                                             <span>Toko Sedang Maintenance</span>
                                         </button>
 
-                                        <a href="{{ $whatsappUrl ?: '#' }}"
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-semibold text-xs rounded-xl transition-colors shadow-sm">
-                                            <span>Order via WhatsApp</span>
-                                        </a>
                                         <a href="{{ route('products.index') }}"
-                                           class="flex items-center justify-center gap-2 w-full px-4 py-2 border border-navy/20 text-navy hover:bg-navy hover:text-white font-heading font-semibold text-xs rounded-xl transition-colors">
-                                            <span>Lihat Produk</span>
+                                           class="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-navy hover:bg-navy-deep text-white font-heading font-semibold text-xs rounded-xl border border-gold/30 transition-all duration-200 shadow-button hover:shadow-button-hover">
+                                            <span>Order Melalui Website</span>
+                                            <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                            </svg>
                                         </a>
                                     @endif
                                 </div>

@@ -33,7 +33,7 @@ $heroDescription = $hero?->description;
                 <div class="space-y-5 md:space-y-8 md:pt-0" data-aos="fade-right" data-aos-delay="100">
                     {{-- Section Label / Badge --}}
                     <div>
-                        <span class="inline-flex items-center gap-2 rounded-full bg-gold/10 px-3 py-1.5 border border-gold/40 backdrop-blur-sm md:gap-2.5 md:px-4 md:py-2">
+                        <span class="inline-flex mt-10 md:mt-0 items-center gap-2 rounded-full bg-gold/10 px-3 py-1.5 border border-gold/40 backdrop-blur-sm md:gap-2.5 md:px-4 md:py-2">
                             <span class="relative flex h-1.5 w-1.5 md:h-2 md:w-2">
                                 <span class="absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 animate-ping"></span>
                                 <span class="relative inline-flex rounded-full h-full w-full bg-gold"></span>

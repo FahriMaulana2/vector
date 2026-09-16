@@ -2,7 +2,6 @@
 
 use App\Livewire\Marketplaces as FrontendMarketplaces;
 use App\Models\Marketplace;
-use App\Models\Setting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
@@ -32,12 +31,12 @@ it('renders active and maintenance marketplaces on frontend component', function
         ->assertSee('Tokopedia Maintenance Store')
         ->assertSee('Sedang stok opname')
         ->assertSee('Kunjungi Toko')
-        ->assertSee('Order via WhatsApp');
+        ->assertSee('Order Melalui Website')
+        ->assertDontSee('Order via WhatsApp')
+        ->assertDontSee('Lihat Produk');
 });
 
-it('uses WhatsApp fallback URL for inactive marketplaces', function () {
-    Setting::set('company_whatsapp', '08123456789', 'contact');
-
+it('links to product catalog for maintenance marketplaces', function () {
     Marketplace::create([
         'platform' => 'tiktok',
         'store_name' => 'TikTok Shop Off',
@@ -45,7 +44,8 @@ it('uses WhatsApp fallback URL for inactive marketplaces', function () {
     ]);
 
     Livewire::test(FrontendMarketplaces::class)
-        ->assertSee('https://wa.me/628123456789');
+        ->assertSee(route('products.index'))
+        ->assertSee('Order Melalui Website');
 });
 
 it('renders empty component cleanly when no marketplaces exist in database', function () {
