@@ -21,13 +21,13 @@ class ProductConfiguratorModal extends Component
 
     public ?Product $product = null;
 
-    public int $qty = 1;
+    public int|string|null $qty = 1;
 
     public string $sideMode = '1_muka';
 
-    public ?float $lengthM = null;
+    public int|float|string|null $lengthM = null;
 
-    public ?float $widthM = null;
+    public int|float|string|null $widthM = null;
 
     /**
      * @var array<int, int|string>
@@ -109,7 +109,8 @@ class ProductConfiguratorModal extends Component
     public function incrementQty(): void
     {
         $step = max(1, (int) ($this->product?->qty_increment ?? 1));
-        $this->qty += $step;
+        $current = is_numeric($this->qty) ? (int) $this->qty : 0;
+        $this->qty = $current + $step;
         $this->refreshCalculation(app(PricingEngine::class));
     }
 
@@ -117,8 +118,9 @@ class ProductConfiguratorModal extends Component
     {
         $step = max(1, (int) ($this->product?->qty_increment ?? 1));
         $min = max(1, (int) ($this->product?->min_qty ?? 1));
-        if ($this->qty - $step >= $min) {
-            $this->qty -= $step;
+        $current = is_numeric($this->qty) ? (int) $this->qty : $min;
+        if ($current - $step >= $min) {
+            $this->qty = $current - $step;
         } else {
             $this->qty = $min;
         }
@@ -129,10 +131,10 @@ class ProductConfiguratorModal extends Component
     {
         if ($this->productId && $this->product) {
             $this->cachedProductStates[$this->productId] = [
-                'qty' => $this->qty,
+                'qty' => is_numeric($this->qty) ? (int) $this->qty : (int) ($this->product->min_qty ?? 1),
                 'sideMode' => $this->sideMode,
-                'lengthM' => $this->lengthM,
-                'widthM' => $this->widthM,
+                'lengthM' => is_numeric($this->lengthM) ? (float) $this->lengthM : null,
+                'widthM' => is_numeric($this->widthM) ? (float) $this->widthM : null,
                 'selectedOptions' => $this->selectedOptions,
             ];
         }
@@ -150,13 +152,17 @@ class ProductConfiguratorModal extends Component
 
         try {
             $this->errorMessage = null;
+            $qty = is_numeric($this->qty) ? (int) $this->qty : 0;
+            $lengthM = is_numeric($this->lengthM) ? (float) $this->lengthM : null;
+            $widthM = is_numeric($this->widthM) ? (float) $this->widthM : null;
+
             $this->calculationPreview = $pricingEngine->calculate(
                 $this->product,
-                $this->qty,
+                $qty,
                 $this->selectedOptions,
                 $this->sideMode,
-                $this->lengthM,
-                $this->widthM
+                $lengthM,
+                $widthM
             );
         } catch (InvalidArgumentException $e) {
             $this->errorMessage = $e->getMessage();
@@ -170,14 +176,18 @@ class ProductConfiguratorModal extends Component
             return;
         }
 
+        $qty = is_numeric($this->qty) ? (int) $this->qty : 0;
+        $lengthM = is_numeric($this->lengthM) ? (float) $this->lengthM : null;
+        $widthM = is_numeric($this->widthM) ? (float) $this->widthM : null;
+
         try {
             $itemData = $pricingEngine->calculate(
                 $this->product,
-                $this->qty,
+                $qty,
                 $this->selectedOptions,
                 $this->sideMode,
-                $this->lengthM,
-                $this->widthM
+                $lengthM,
+                $widthM
             );
         } catch (InvalidArgumentException $e) {
             $this->errorMessage = $e->getMessage();
@@ -193,10 +203,10 @@ class ProductConfiguratorModal extends Component
 
         // Cache state for current product
         $this->cachedProductStates[$this->productId] = [
-            'qty' => $this->qty,
+            'qty' => $qty,
             'sideMode' => $this->sideMode,
-            'lengthM' => $this->lengthM,
-            'widthM' => $this->widthM,
+            'lengthM' => $lengthM,
+            'widthM' => $widthM,
             'selectedOptions' => $this->selectedOptions,
         ];
 
