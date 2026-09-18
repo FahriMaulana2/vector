@@ -30,6 +30,7 @@ class Portfolio extends Model
     ];
 
     protected $casts = [
+        'portfolio_category_id' => 'integer',
         'project_date' => 'date',
         'is_featured' => 'boolean',
         'sort_order' => 'integer',
