@@ -17,13 +17,14 @@
                 @endforeach
             </div>
 
-            <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" wire:key="product-grid-{{ $activeCategory }}-{{ $products->currentPage() }}">
+            <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch" wire:key="product-grid-{{ $activeCategory }}-{{ $products->currentPage() }}">
                 @forelse($products as $index => $product)
                     @php
                         $isFeatured = $this->isProductsPage && $products->currentPage() === 1 && $index === 0;
                         $productImage = $product->image_url ?: ($product->coverImage()?->image_url);
                     @endphp
-                    <article wire:key="product-{{ $product->id }}" class="group relative min-h-[320px] overflow-hidden rounded-[1.75rem] border border-white/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40 {{ $isFeatured ? 'sm:col-span-2 lg:col-span-2 lg:min-h-[440px]' : '' }}" data-aos="fade-up" data-aos-delay="{{ 80 + ($loop->index * 60) }}">
+                    <article wire:key="product-{{ $product->id }}" class="group relative flex flex-col h-[380px] sm:h-[420px] overflow-hidden rounded-[1.75rem] border border-white/70 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold/40 {{ $isFeatured ? 'sm:col-span-2 lg:col-span-2' : '' }}" data-aos="fade-up" data-aos-delay="{{ 80 + ($loop->index * 60) }}">
+                        {{-- Background image layer --}}
                         <div class="absolute inset-0 overflow-hidden">
                             @if($productImage)
                                 <img src="{{ $productImage }}" alt="{{ $product->name }}" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
@@ -44,26 +45,25 @@
                                 <span class="inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-navy shadow-soft">{{ $product->badge }}</span>
                             </div>
                         @endif
-                        <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
-                            @if($product->category)
-                                <div class="flex items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/75">
+                        {{-- Content pushed to bottom, CTA at very bottom via mt-auto --}}
+                        <div class="relative z-10 mt-auto flex flex-col p-5 sm:p-6">
+                            <div class="flex items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/75 min-h-[1rem]">
+                                @if($product->category)
                                     <span>{{ $product->category->name }}</span>
-                                </div>
-                            @endif
-                            <h2 class="mt-2 font-heading text-lg font-bold leading-tight text-white sm:text-xl {{ $isFeatured ? 'lg:text-3xl' : '' }}">{{ $product->name }}</h2>
-                            @if($product->short_description || $product->description)
-                                <p class="mt-2 max-w-xl text-xs leading-relaxed text-white/70 line-clamp-2 {{ $isFeatured ? 'sm:block' : '' }}">{{ $product->short_description ?? $product->description }}</p>
-                            @endif
+                                @endif
+                            </div>
+                            <h2 class="mt-2 font-heading text-lg font-bold leading-tight text-white line-clamp-2 min-h-[3rem] sm:text-xl {{ $isFeatured ? 'lg:text-2xl' : '' }}">{{ $product->name }}</h2>
+                            <p class="mt-2 max-w-xl text-xs leading-relaxed text-white/70 line-clamp-2 min-h-[2.5rem]">{{ $product->short_description ?? $product->description }}</p>
                             {{-- CTA --}}
-                        <div class="flex items-center gap-3">
-                            <button type="button"
-                               wire:click.prevent="$dispatch('open-configurator', { productId: {{ $product->id }} })"
-                               class="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-navy px-5 py-3 text-xs font-heading font-semibold text-white transition-all duration-300 hover:bg-navy-deep hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 cursor-pointer">
-                                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                                <span>Order Produk</span>
-                                <svg class="w-3 h-3 text-gold transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                            </button>
-                        </div>
+                            <div class="mt-4 flex items-center gap-3">
+                                <button type="button"
+                                   wire:click.prevent="$dispatch('open-configurator', { productId: {{ $product->id }} })"
+                                   class="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-navy px-5 py-3 text-xs font-heading font-semibold text-white transition-all duration-300 hover:bg-navy-deep hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 cursor-pointer">
+                                    <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                    <span>Order Produk</span>
+                                    <svg class="w-3 h-3 text-gold transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </button>
+                            </div>
                         </div>
                     </article>
                 @empty

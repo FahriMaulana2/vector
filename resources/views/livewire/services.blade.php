@@ -12,7 +12,7 @@ $serviceIcons = [
 $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
 ?>
 
-<section id="services" class="relative overflow-hidden bg-light">
+<section id="services" class="relative overflow-hidden bg-gradient-to-b from-[#FAFBFD] via-light to-white md:bg-light">
     {{-- Background decorations --}}
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-1/3 left-0 w-[280px] h-[280px] md:w-[450px] md:h-[450px] bg-gradient-to-r from-gold/8 to-transparent rounded-full blur-3xl"></div>
@@ -24,7 +24,7 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
 
     <div class="absolute top-0 left-0 z-0 h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent pointer-events-none"></div>
 
-    <div class="mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-20 lg:py-24 relative z-10 md:max-w-7xl">
+    <div class="mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-20 lg:py-24 relative z-10 md:max-w-7xl">
         {{-- Section Header --}}
         <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
             <span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 md:px-4 md:py-1.5 border border-gold/30 shadow-soft mb-4 md:mb-6">
@@ -36,7 +36,7 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
         </div>
 
         {{-- Service Cards Grid --}}
-        <div class="mt-8 md:mt-14 grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start" id="services-grid">
+        <div class="mt-8 md:mt-14 grid gap-3 md:gap-6 grid-cols-3 lg:grid-cols-3 items-stretch md:items-start" id="services-grid">
             @forelse($services as $service)
             @php
                 $iconIsImage = $service->icon && !isset($serviceIcons[$service->icon]) && (str_contains($service->icon, '/') || str_contains($service->icon, '.'));
@@ -47,39 +47,38 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
             <div 
                 wire:key="service-{{ $service->id }}"
                 data-service-id="{{ $service->id }}"
-                class="service-card group relative rounded-lg md:rounded-[1.75rem] border border-white/70 bg-white p-4 md:p-8 flex flex-col overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:-translate-y-1 md:hover:-translate-y-1.5 hover:shadow-card-hover hover:border-gold/40 shadow-card z-10"
+                class="service-card group relative rounded-2xl md:rounded-[1.75rem] border border-navy/[0.06] md:border-white/70 bg-white px-2.5 py-5 min-[375px]:px-3 min-[375px]:py-5 md:p-8 flex flex-col min-h-[140px] md:min-h-0 overflow-hidden cursor-pointer transition-all duration-200 md:duration-500 ease-in-out active:-translate-y-0.5 active:shadow-[0_8px_20px_rgba(11,31,42,0.12)] md:hover:-translate-y-1.5 md:hover:shadow-card-hover md:hover:border-gold/40 shadow-[0_4px_16px_rgba(11,31,42,0.06)] md:shadow-card z-10"
                 data-aos="fade-up" 
                 data-aos-delay="{{ $delay }}"
             >
-                {{-- Top gold accent line --}}
-                <div class="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-gold to-gold-light transition-all duration-500 group-hover:w-full"></div>
+                {{-- Top gold accent line (3px on mobile, full width; expandable on desktop hover) --}}
+                <div class="absolute top-0 left-0 h-[3px] md:h-1 w-full md:w-0 bg-gradient-to-r from-gold to-gold-light transition-all duration-500 md:group-hover:w-full"></div>
 
                 <div class="flex flex-col flex-1">
-                    {{-- Icon area --}}
-                    <div class="flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-lg md:rounded-2xl bg-gold/15 text-gold-dark transition-all duration-300 group-hover:bg-gold group-hover:text-white group-hover:scale-110 group-hover:shadow-button">
+                    {{-- Icon area (48x48 on mobile, centered, subtle glow) --}}
+                    <div class="mx-auto md:mx-0 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center shrink-0 rounded-xl md:rounded-2xl bg-gradient-to-br from-cream via-gold/15 to-gold/25 md:bg-gold/15 text-gold-dark shadow-[0_2px_10px_rgba(214,168,61,0.2)] md:shadow-none transition-all duration-300 group-hover:bg-gold group-hover:text-white group-hover:scale-105 md:group-hover:scale-110 group-hover:shadow-button">
                         @if($iconIsImage)
-                        <img src="{{ asset('storage/' . $service->icon) }}" alt="{{ $service->title }}" class="w-5 h-5 md:w-7 md:h-7 object-contain">
+                        <img src="{{ asset('storage/' . $service->icon) }}" alt="{{ $service->title }}" class="w-6 h-6 md:w-7 md:h-7 object-contain">
                         @else
-                        <svg class="w-5 h-5 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="{{ $iconPath }}"/>
                         </svg>
                         @endif
                     </div>
-                    <h3 class="mt-3 md:mt-6 font-heading text-sm md:text-lg font-semibold text-navy">{{ $service->title }}</h3>
+                    <h3 class="mt-2.5 md:mt-6 font-heading text-xs md:text-lg font-bold md:font-semibold text-navy leading-snug md:leading-tight text-center md:text-left">{{ $service->title }}</h3>
                     
-                    {{-- Container deskripsi dengan max-height transition --}}
-                    <div class="service-desc-wrapper mt-2 md:mt-2.5 flex-1 overflow-hidden transition-all duration-500 ease-in-out">
-                        <p class="service-desc text-xs md:text-sm font-inter leading-relaxed text-ink-soft line-clamp-2">
+                    {{-- Container deskripsi (10px, visible on mobile, max 2 lines line-clamp) --}}
+                    <div class="service-desc-wrapper mt-1.5 md:mt-2.5 flex-1 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="service-desc text-[10px] md:text-sm font-inter leading-[1.35] md:leading-relaxed text-ink-soft line-clamp-2 text-center md:text-left">
                             {{ $service->description }}
                         </p>
                     </div>
 
-                    {{-- CTA --}}
-                    <div class="mt-3 md:mt-6 flex items-center justify-between gap-2">
+                    {{-- CTA (hidden on mobile) --}}
+                    <div class="hidden md:flex mt-3 md:mt-6 items-center justify-between gap-2">
                         <span class="h-1 w-6 md:w-8 rounded-full bg-gold/30 transition-all duration-300 group-hover:w-10 md:group-hover:w-12 group-hover:bg-gold"></span>
                         <a href="#kontak" class="inline-flex items-center gap-1 md:gap-2 text-xs md:text-sm font-heading font-semibold text-navy transition-all duration-300 group-hover:text-gold-dark group-hover:gap-2 md:group-hover:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 rounded-lg whitespace-nowrap">
-                            <span class="hidden md:inline">Pelajari Layanan</span>
-                            <span class="md:hidden">Pelajari</span>
+                            <span>Pelajari Layanan</span>
                             <span class="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full bg-gold/10 transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
                                 <svg class="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </span>
@@ -94,23 +93,30 @@ $serviceIcons['default'] = 'M12 6v6m0 0v6m0-6h6m-6 0H6';
     </div>
 </section>
 
-{{-- JavaScript untuk handle animasi card + expand deskripsi --}}
+{{-- JavaScript untuk handle animasi card + expand deskripsi pada desktop --}}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.service-card');
     const SHORT_HEIGHT = 72; // Tinggi deskripsi pendek dalam pixel (sekitar 3 baris)
     let activeCard = null;
 
-    // Inisialisasi: batasi tinggi semua deskripsi
-    cards.forEach(card => {
-        const wrapper = card.querySelector('.service-desc-wrapper');
-        wrapper.style.maxHeight = SHORT_HEIGHT + 'px';
-    });
+    // Inisialisasi: batasi tinggi deskripsi pada desktop saja
+    if (window.innerWidth >= 768) {
+        cards.forEach(card => {
+            const wrapper = card.querySelector('.service-desc-wrapper');
+            if (wrapper) wrapper.style.maxHeight = SHORT_HEIGHT + 'px';
+        });
+    }
 
     cards.forEach(card => {
         card.addEventListener('click', function(e) {
             // Jika klik pada link "Pelajari Layanan", biarkan default behavior
             if (e.target.closest('a[href="#kontak"]')) {
+                return;
+            }
+
+            // Pada mobile (< 768px), biarkan interaksi touch :active bekerja tanpa efek zoom desktop
+            if (window.innerWidth < 768) {
                 return;
             }
 
@@ -135,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Expand deskripsi card aktif
             const activeWrapper = this.querySelector('.service-desc-wrapper');
-            activeWrapper.style.maxHeight = '500px'; // Nilai cukup besar untuk menampung deskripsi full
+            if (activeWrapper) activeWrapper.style.maxHeight = '500px';
             
             // Kecilkan card lain
             cards.forEach(otherCard => {
@@ -148,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Animasi garis atas
             const accentLine = this.querySelector('.absolute.top-0');
             if (accentLine) {
-                accentLine.classList.remove('w-0', 'group-hover:w-full');
+                accentLine.classList.remove('md:w-0', 'md:group-hover:w-full');
                 accentLine.classList.add('w-full');
             }
         });
@@ -159,14 +165,16 @@ document.addEventListener('DOMContentLoaded', function() {
             card.classList.remove('scale-105', 'z-20', 'shadow-2xl', 'border-gold', 'ring-4', 'ring-gold/20', 'scale-95', 'opacity-40', 'blur-[1px]', 'z-0');
             card.classList.add('hover:-translate-y-1.5', 'hover:shadow-card-hover', 'hover:border-gold/40', 'border-white/70', 'shadow-card', 'z-10');
             
-            // Kembalikan deskripsi ke tinggi pendek
+            // Kembalikan deskripsi ke tinggi pendek pada desktop
             const wrapper = card.querySelector('.service-desc-wrapper');
-            wrapper.style.maxHeight = SHORT_HEIGHT + 'px';
+            if (wrapper && window.innerWidth >= 768) {
+                wrapper.style.maxHeight = SHORT_HEIGHT + 'px';
+            }
             
             const accentLine = card.querySelector('.absolute.top-0');
             if (accentLine) {
                 accentLine.classList.remove('w-full');
-                accentLine.classList.add('w-0', 'group-hover:w-full');
+                accentLine.classList.add('md:w-0', 'md:group-hover:w-full');
             }
         });
     }

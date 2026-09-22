@@ -17,10 +17,10 @@
                 @endforeach
             </div>
 
-            <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" wire:key="portfolio-grid-{{ $activeCategory }}-{{ $portfolios->currentPage() }}">
+            <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch" wire:key="portfolio-grid-{{ $activeCategory }}-{{ $portfolios->currentPage() }}">
                 @forelse($portfolios as $index => $portfolio)
                     @php($portfolioYear = $portfolio->project_date?->format('Y'))
-                    <article wire:key="portfolio-{{ $portfolio->id }}" class="group relative min-h-[300px] overflow-hidden rounded-2xl bg-navy-deep {{ $loop->first ? 'sm:col-span-2 lg:col-span-2 lg:min-h-[460px]' : '' }}" data-aos="fade-up" data-aos-delay="{{ 80 + ($loop->index * 55) }}">
+                    <article wire:key="portfolio-{{ $portfolio->id }}" class="group relative flex flex-col h-[380px] sm:h-[420px] overflow-hidden rounded-2xl bg-navy-deep {{ $loop->first ? 'sm:col-span-2 lg:col-span-2' : '' }}" data-aos="fade-up" data-aos-delay="{{ 80 + ($loop->index * 55) }}">
                         @if($portfolio->image_url)
                             <img src="{{ $portfolio->image_url }}" alt="{{ $portfolio->title }}" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                             <div class="absolute inset-0 hidden flex-col items-center justify-center bg-navy-deep text-center"><span class="text-[10px] uppercase tracking-[0.16em] text-white/50">Preview Tidak Tersedia</span></div>
@@ -28,10 +28,10 @@
                             <div class="absolute inset-0 flex flex-col items-center justify-center bg-navy-deep text-center"><svg class="h-9 w-9 text-gold/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="mt-3 text-[10px] uppercase tracking-[0.16em] text-white/45">Preview Tidak Tersedia</span></div>
                         @endif
                         <div class="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/25 to-transparent"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                            <div class="flex items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/75">@if($portfolio->category)<span>{{ $portfolio->category->name }}</span>@endif @if($portfolioYear)<span>· {{ $portfolioYear }}</span>@endif</div>
-                            <h2 class="mt-2 font-heading text-lg font-bold leading-tight text-white sm:text-xl {{ $loop->first ? 'lg:text-3xl' : '' }}">{{ $portfolio->title }}</h2>
-                            @if($portfolio->description)<p class="mt-2 max-w-xl text-xs leading-relaxed text-white/70 line-clamp-2">{{ $portfolio->description }}</p>@endif
+                        <div class="relative z-10 mt-auto flex flex-col p-5 sm:p-6">
+                            <div class="flex items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/75 min-h-[1rem]">@if($portfolio->category)<span>{{ $portfolio->category->name }}</span>@endif @if($portfolioYear)<span>· {{ $portfolioYear }}</span>@endif</div>
+                            <h2 class="mt-2 font-heading text-lg font-bold leading-tight text-white line-clamp-2 min-h-[3rem] sm:text-xl {{ $loop->first ? 'lg:text-2xl' : '' }}">{{ $portfolio->title }}</h2>
+                            @if($portfolio->description)<p class="mt-2 max-w-xl text-xs leading-relaxed text-white/70 line-clamp-2 min-h-[2.5rem]">{{ $portfolio->description }}</p>@else<div class="min-h-[2.5rem]"></div>@endif
                         </div>
                     </article>
                 @empty
