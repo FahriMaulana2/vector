@@ -105,3 +105,41 @@ it('can type qty manually on standard product without throwing PropertyNotFoundE
         ->assertSet('errorMessage', null)
         ->assertSet('calculationPreview.qty', 10);
 });
+
+it('loads existing cart item data in edit mode and updates it without creating a duplicate', function () {
+    $product = Product::where('pricing_mode', 'standard')
+        ->where('requires_area_calculation', false)
+        ->firstOrFail();
+
+    // 1. Initial add to cart
+    Livewire::test(ProductConfiguratorModal::class)
+        ->dispatch('open-configurator', productId: $product->id)
+        ->assertSet('isOpen', true)
+        ->set('qty', 5)
+        ->call('addToCart', proceedToForm: false)
+        ->assertSet('isOpen', false);
+
+    $cartService = app(CartService::class);
+    expect($cartService->count())->toBe(1);
+    $initialItem = collect($cartService->getItems())->first();
+    $uuid = $initialItem['uuid'];
+    expect($initialItem['qty'])->toBe(5);
+
+    // 2. Open in edit mode via event (simulating Ubah Spesifikasi click)
+    $editComponent = Livewire::test(ProductConfiguratorModal::class)
+        ->dispatch('open-configurator', productId: $product->id, cartItemUuid: $uuid)
+        ->assertSet('isOpen', true)
+        ->assertSet('editingCartItemUuid', $uuid)
+        ->assertSet('qty', 5); // Populated with existing data, not reset!
+
+    // 3. Update specifications and save
+    $editComponent->set('qty', 12)
+        ->call('addToCart', proceedToForm: false)
+        ->assertSet('isOpen', false);
+
+    // 4. Assert updated in-place without duplicate
+    expect($cartService->count())->toBe(1);
+    $updatedItem = $cartService->getItem($uuid);
+    expect($updatedItem)->not->toBeNull()
+        ->and($updatedItem['qty'])->toBe(12);
+});

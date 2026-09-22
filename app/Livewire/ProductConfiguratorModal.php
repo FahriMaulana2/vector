@@ -51,6 +51,9 @@ class ProductConfiguratorModal extends Component
     #[On('open-configurator')]
     public function openConfigurator(int $productId, ?string $cartItemUuid = null, ?CartService $cartService = null, ?PricingEngine $pricingEngine = null): void
     {
+        $cartService ??= app(CartService::class);
+        $pricingEngine ??= app(PricingEngine::class);
+
         $this->productId = $productId;
         $this->editingCartItemUuid = $cartItemUuid;
 

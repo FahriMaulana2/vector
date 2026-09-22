@@ -1,4 +1,74 @@
-<div class="relative overflow-hidden bg-cream py-10 md:py-16 lg:py-20 pt-24 md:pt-28 min-h-screen">
+<div x-data="{
+        hiddenItems: {},
+        undoTimers: {},
+        toastVisible: false,
+        toastItemName: '',
+        currentDeleteUuid: null,
+        countdown: 3,
+        countdownInterval: null,
+
+        initiateDelete(uuid, name) {
+            if (this.currentDeleteUuid && this.currentDeleteUuid !== uuid) {
+                this.confirmDelete(this.currentDeleteUuid);
+            }
+
+            this.currentDeleteUuid = uuid;
+            this.toastItemName = name;
+            this.hiddenItems[uuid] = true;
+            this.toastVisible = true;
+            this.countdown = 3;
+
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+            }
+            this.countdownInterval = setInterval(() => {
+                if (this.countdown > 1) {
+                    this.countdown--;
+                }
+            }, 1000);
+
+            if (this.undoTimers[uuid]) {
+                clearTimeout(this.undoTimers[uuid]);
+            }
+
+            this.undoTimers[uuid] = setTimeout(() => {
+                this.confirmDelete(uuid);
+            }, 3000);
+        },
+
+        undoDelete() {
+            if (!this.currentDeleteUuid) return;
+            const uuid = this.currentDeleteUuid;
+            if (this.undoTimers[uuid]) {
+                clearTimeout(this.undoTimers[uuid]);
+                delete this.undoTimers[uuid];
+            }
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+                this.countdownInterval = null;
+            }
+            this.hiddenItems[uuid] = false;
+            this.toastVisible = false;
+            this.currentDeleteUuid = null;
+        },
+
+        confirmDelete(uuid) {
+            if (this.undoTimers[uuid]) {
+                clearTimeout(this.undoTimers[uuid]);
+                delete this.undoTimers[uuid];
+            }
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+                this.countdownInterval = null;
+            }
+            if (this.currentDeleteUuid === uuid) {
+                this.toastVisible = false;
+                this.currentDeleteUuid = null;
+            }
+            $wire.removeItem(uuid);
+        }
+    }"
+    class="relative overflow-hidden bg-cream py-10 md:py-16 lg:py-20 pt-24 md:pt-28 min-h-screen">
     {{-- Subtle decorative background --}}
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-[-80px] left-[-80px] w-[280px] h-[280px] md:w-[420px] md:h-[420px] bg-gradient-to-br from-gold/10 to-transparent rounded-full blur-3xl"></div>
@@ -85,7 +155,12 @@
                     @else
                         <div class="divide-y divide-navy/5 space-y-3 max-h-[420px] overflow-y-auto pr-1">
                             @foreach($cartItems as $uuid => $item)
-                                <div class="pt-3 first:pt-0 space-y-2">
+                                <div wire:key="cart-item-{{ $uuid }}"
+                                     x-show="!hiddenItems['{{ $uuid }}']"
+                                     x-transition:leave="transition-all ease-in duration-200"
+                                     x-transition:leave-start="opacity-100 max-h-40"
+                                     x-transition:leave-end="opacity-0 max-h-0 overflow-hidden"
+                                     class="pt-3 first:pt-0 space-y-2">
                                     <div class="flex items-start justify-between gap-2">
                                         <div>
                                             <h3 class="font-heading text-xs sm:text-sm font-bold text-navy leading-snug">{{ $item['product_name'] ?? 'Produk' }}</h3>
@@ -126,13 +201,7 @@
                                     {{-- Actions --}}
                                     <div class="flex items-center gap-2 pt-1">
                                         <button type="button"
-                                                wire:click.prevent="$dispatch('open-configurator', { productId: {{ $item['product_id'] }}, cartItemUuid: '{{ $uuid }}' })"
-                                                class="text-[11px] font-medium text-navy hover:text-gold-dark transition-colors underline cursor-pointer">
-                                            Ubah Spesifikasi
-                                        </button>
-                                        <span class="text-slate-300">|</span>
-                                        <button type="button"
-                                                wire:click.prevent="removeItem('{{ $uuid }}')"
+                                                @click="initiateDelete('{{ $uuid }}', '{{ addslashes($item['product_name'] ?? 'Produk') }}')"
                                                 class="text-[11px] font-medium text-red-500 hover:text-red-700 transition-colors underline cursor-pointer">
                                             Hapus
                                         </button>
@@ -334,6 +403,42 @@
                 </svg>
                 <span>Kembali ke Beranda</span>
             </a>
+        </div>
+    </div>
+
+    {{-- Toast Undo Notification --}}
+    <div x-show="toastVisible"
+         x-cloak
+         x-transition:enter="transition ease-out duration-300 transform"
+         x-transition:enter-start="translate-y-4 opacity-0 scale-95"
+         x-transition:enter-end="translate-y-0 opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-200 transform"
+         x-transition:leave-start="translate-y-0 opacity-100 scale-100"
+         x-transition:leave-end="translate-y-4 opacity-0 scale-95"
+         class="fixed bottom-6 right-6 z-[9999] flex items-center justify-between gap-4 rounded-2xl bg-navy-deep px-5 py-3.5 text-cream shadow-2xl border border-gold/40 max-w-md w-full sm:w-auto"
+         style="display: none;">
+        <div class="flex items-center gap-2.5 min-w-0">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-500/20 text-red-400">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </div>
+            <div class="truncate">
+                <p class="text-xs font-inter text-cream truncate">
+                    Item <span class="font-semibold text-gold" x-text="toastItemName"></span> dihapus
+                </p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+            <button type="button"
+                    @click="undoDelete()"
+                    class="inline-flex items-center gap-1.5 rounded-lg bg-gold px-3 py-1.5 text-xs font-heading font-bold text-navy hover:bg-gold-light transition active:scale-95 shadow-sm cursor-pointer">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h10a5 5 0 015 5v2m0 0l-4-4m4 4l4-4" />
+                </svg>
+                <span>Urungkan</span>
+                <span class="text-[10px] opacity-80" x-text="'(' + countdown + 's)'"></span>
+            </button>
         </div>
     </div>
 </div>
