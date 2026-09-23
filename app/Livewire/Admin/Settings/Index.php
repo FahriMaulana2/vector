@@ -85,6 +85,16 @@ class Index extends Component
             // Mendukung PNG, ICO, SVG (Maks 1MB)
             'favicon' => 'nullable|mimes:png,ico,svg,jpg,jpeg|max:1024',
         ]);
+        // Normalisasi Google Maps Embed URL (ekstrak URL src jika admin memasukkan seluruh tag <iframe>)
+        if (! empty($this->settings['google_maps_embed'])) {
+            $embed = trim((string) $this->settings['google_maps_embed']);
+            if (preg_match('/<iframe\s+[^>]*src="([^"]+)"/i', $embed, $matches)) {
+                $this->settings['google_maps_embed'] = $matches[1];
+            } else {
+                $this->settings['google_maps_embed'] = $embed;
+            }
+        }
+
         // Simpan pengaturan teks
         foreach ($this->settings as $key => $value) {
             Setting::updateOrCreate(

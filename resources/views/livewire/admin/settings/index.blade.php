@@ -214,6 +214,33 @@
                         </div>
 
 
+                        {{-- Google Maps Embed URL --}}
+                        <div class="md:col-span-2">
+
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Google Maps Embed URL
+                            </label>
+
+                            <textarea
+                                wire:model.live="settings.google_maps_embed"
+                                rows="2"
+                                placeholder="https://www.google.com/maps/embed?pb=..."
+                                class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F2747]/20 focus:border-[#0F2747] bg-slate-50/50 focus:bg-white resize-none font-mono text-xs @error('settings.google_maps_embed') border-red-300 @enderror"
+                            ></textarea>
+
+                            <p class="mt-1.5 text-xs text-slate-500">
+                                Masukkan URL embed Google Maps untuk menampilkan lokasi OMAH Vector pada website.
+                            </p>
+
+                            @error('settings.google_maps_embed')
+                                <p class="mt-1 text-xs text-red-600">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                        </div>
+
+
                         {{-- Deskripsi --}}
                         <div class="md:col-span-2">
 
